@@ -1,13 +1,32 @@
-<header>
-  <nav>
-    <!-- Navigation Menu Here -->
-  </nav>
-</header>
-<main>
-  <h1>Welcome to My Portfolio</h1>
-  <p>I'm Jampa Matos, a Padawan software developer focused on creating impactful solutions.</p>
-  <a href="#work">View My Work</a>
-</main>
-<footer>
-  <p>Connect with me on <a href="https://github.com/jampamatos">GitHub</a>, <a href="https://linkedin.com/in/jampamatos">LinkedIn</a>, and <a href="https://twitter.com/jumpamatos">Twitter</a>.</p>
-</footer>
+<!-- Main Window - Program Manager -->
+<div id="main-window" class="window">
+  <header class="window-header">
+    <button class="reduce">-</button>
+    <span>Jampa Matos' Portfolio</span>
+    <div class="window-controls">
+        <button class="arrow-down">▼</button>
+        <button class="arrow-up">▲</button>
+    </div>
+  </header>
+  <div class="menu-bar">
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="window-body">
+    <div class="left-panel">
+        <ul class="icon-list">
+        <li><a href="#projects"><%= image_tag('projects.png', alt: 'Projects') %><span>Projects</span></a></li>
+        <li><a href="#about"><%= image_tag('about_me.png', alt: 'About Me') %><span>About Me</span></a></li>
+        <li><a href="#contact"><%= image_tag('contact.png', alt: 'Contact') %><span>Contact</span></a></li>
+        </ul>
+    </div>
+    <div class="right-panel">
+        <img src="<%= asset_path('profile.jpg') %>" alt="Jampa Matos" class="profile-pic">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I'm a Padawan coder looking to share my coding skills and the projects I'm creating. Come with me and let's explore my work and journey into the world of development!</p>
+    </div>
+  </div>
+</div>

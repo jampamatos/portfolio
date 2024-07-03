@@ -1,22 +1,137 @@
-header {
-    background: #333;
+
+body, html {
+    font-family: 'Courier New', monospace;
+    background-color: #c0c0c0 !important; /* Light gray background */
+}
+
+.window {
+    width: 80%; /* Set the width to 80% of the viewport */
+    margin: 2% auto; /* Center it horizontally and add some vertical margin */
+    padding: 20px; /* Increase padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth */
+    background: #c0c0c0; /* Light gray background */
+    border: 5px solid #000080; /* Dark blue border */
+    padding: 5px;
+    position: relative;
+    font-family: 'Courier New', monospace;
+}
+
+.window-header {
+    background: #000080; /* Dark blue */
     color: white;
-    padding: 1em 0;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-weight: bold;
+    position: relative; /* Allows absolute positioning inside */
   }
-  
-  main {
-    background: url('path_to_your_image.jpg') no-repeat center center;
-    background-size: cover;
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
+
+  .window-header span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
+
+  .reduce, .arrow-down, .arrow-up {
+    width: 20px;
+    height: 20px;
+    background: #c0c0c0; /* Light gray */
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+  }
+
+.window-controls {
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar {
+    background: #ebebeb;
+    color: black;
+    padding: 5px 10px;
   
-  footer {
-    background: #222;
-    color: white;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+  
+    li {
+        margin-right: 10px;
+    }
+  
+    a {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.window-body {
+    background: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    .left-panel {
+        width: 50%;
+      }
+    
+      .right-panel {
+        width: 50%;
+        text-align: left; /* Align text to the left */
+        padding-left: 20px; /* Add some padding between the columns */
+      }
+
+      .right-panel h1 {
+        font-weight: bold;
+        font-size: 24px; /* Adjust size as needed */
+        color: #000080; /* Optional: Use the dark blue to tie it to your header */
+        margin: 10px 0px; /* Adds space between the title and the paragraph */
+    }
+    
+    .right-panel p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #212529; /* Slightly darker text for better readability */
+    }
+    
+      .profile-pic {
+        width: 100%; /* Make the image responsive within the right panel */
+        max-width: 300px; /* Limit the maximum width to keep it from becoming too large */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px; /* Optional: round the corners for a smoother look */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add a subtle shadow for depth */
+        filter: contrast(150%) brightness(90%);
+      }
+}
+
+.icon-list {
+    list-style: none;
+    padding: 0;
+}
+
+.icon-list li {
+    display: inline-block;
+    margin-right: 10px;
     text-align: center;
-    padding: 1em 0;
+}
+
+.icon-list img {
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .window-body {
+      flex-direction: column;
+  
+      .left-panel, .right-panel {
+        width: 100%; /* Each panel takes full width on small screens */
+      }
+    }
   }
   
