@@ -1,137 +1,99 @@
-
 body, html {
-    font-family: 'Courier New', monospace;
-    background-color: #c0c0c0 !important; /* Light gray background */
+  font-family: 'Courier New', monospace;
+  background-color: #c0c0c0; /* Fundo cinza claro para todo o documento */
+  margin: 0; /* Remove margem padrão */
+  padding: 0; /* Remove preenchimento padrão */
+  height: 100%; /* Altura total para o body */
+  overflow: hidden; /* Oculta overflow para evitar barras de rolagem indesejadas no body */
 }
 
-.window {
-    width: 80%; /* Set the width to 80% of the viewport */
-    margin: 2% auto; /* Center it horizontally and add some vertical margin */
-    padding: 20px; /* Increase padding */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth */
-    background: #c0c0c0; /* Light gray background */
-    border: 5px solid #000080; /* Dark blue border */
-    padding: 5px;
-    position: relative;
-    font-family: 'Courier New', monospace;
+#main-window {
+  position: relative;
+  width: 80%; /* Largura ajustada para 80% da viewport */
+  height: 90%; /* Altura ajustada para ocupar a maior parte da viewport */
+  margin: 5% auto; /* Centraliza na página e adiciona margem superior/inferior */
+  border: 2px solid darkblue; /* Borda visível e estilizada */
+  padding: 10px; /* Preenchimento interno para o conteúdo */
+  box-sizing: border-box; /* Inclui borda e padding no cálculo de width/height */
+  resize: both; /* Permite redimensionamento */
+  overflow: auto; /* Permite scroll se o conteúdo exceder a janela */
+  background: white; /* Fundo branco para o conteúdo */
+  min-height: 150px; /* Altura mínima */
+  min-width: 200px; /* Largura mínima */
+  display: flex;
+  flex-direction: column; /* Organiza o cabeçalho, menu e corpo em coluna */
 }
 
-.window-header {
-    background: #000080; /* Dark blue */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    font-weight: bold;
-    position: relative; /* Allows absolute positioning inside */
-  }
-
-  .window-header span {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .reduce, .arrow-down, .arrow-up {
-    width: 20px;
-    height: 20px;
-    background: #c0c0c0; /* Light gray */
-    border: 1px solid black;
-    color: black;
-    cursor: pointer;
-  }
-
-.window-controls {
-    display: flex;
-    align-items: center;
-}
-
-.menu-bar {
-    background: #ebebeb;
-    color: black;
-    padding: 5px 10px;
-  
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-    }
-  
-    li {
-        margin-right: 10px;
-    }
-  
-    a {
-        color: black;
-        text-decoration: none;
-    }
+.window-header, .menu-bar {
+  background: #000080; /* Fundo azul escuro */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  font-weight: bold; /* Texto em negrito para destaque */
 }
 
 .window-body {
-    background: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+  display: flex;
+  flex-grow: 1; /* Permite que o corpo cresça para ocupar todo espaço disponível */
+  padding: 10px;
+  background: white; /* Fundo branco para conteúdo */
+  overflow: hidden; /* Esconde o overflow dentro do window-body */
+  flex-direction: row; /* Organiza os painéis lado a lado */
+}
 
-    .left-panel {
-        width: 50%;
-      }
-    
-      .right-panel {
-        width: 50%;
-        text-align: left; /* Align text to the left */
-        padding-left: 20px; /* Add some padding between the columns */
-      }
+.left-panel, .right-panel {
+  flex: 1; /* Distribuição igual do espaço */
+  padding: 10px;
+  box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
+}
 
-      .right-panel h1 {
-        font-weight: bold;
-        font-size: 24px; /* Adjust size as needed */
-        color: #000080; /* Optional: Use the dark blue to tie it to your header */
-        margin: 10px 0px; /* Adds space between the title and the paragraph */
-    }
-    
-    .right-panel p {
-        font-size: 16px;
-        line-height: 1.5;
-        color: #212529; /* Slightly darker text for better readability */
-    }
-    
-      .profile-pic {
-        width: 100%; /* Make the image responsive within the right panel */
-        max-width: 300px; /* Limit the maximum width to keep it from becoming too large */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 5px; /* Optional: round the corners for a smoother look */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add a subtle shadow for depth */
-        filter: contrast(150%) brightness(90%);
-      }
+.menu-bar {
+  background: #ebebeb; /* Fundo claro para a barra de menu */
+  padding: 5px 10px;
+}
+
+.menu-bar li {
+  margin-right: 10px;
+}
+
+.menu-bar a {
+  color: black;
+  text-decoration: none; /* Remove sublinhado */
+}
+
+.profile-pic {
+  width: 100%; /* Ajusta largura dentro do painel */
+  max-width: 300px; /* Limita a largura máxima */
+  height: auto; /* Mantém a proporção */
+  border-radius: 5px; /* Cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+  filter: contrast(150%) brightness(90%); /* Filtro para melhor visibilidade */
 }
 
 .icon-list {
-    list-style: none;
-    padding: 0;
+  list-style: none; /* Remove estilos de lista */
+  padding: 0;
 }
 
 .icon-list li {
-    display: inline-block;
-    margin-right: 10px;
-    text-align: center;
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center; /* Centraliza os ícones */
 }
 
 .icon-list img {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: auto; /* Centraliza imagens horizontalmente */
 }
 
 @media (max-width: 768px) {
-    .window-body {
-      flex-direction: column;
-  
-      .left-panel, .right-panel {
-        width: 100%; /* Each panel takes full width on small screens */
-      }
-    }
+  .window-body {
+      flex-direction: column; /* Organiza os painéis em coluna em telas menores */
   }
-  
+
+  .left-panel, .right-panel {
+      width: 100%; /* Ajusta para ocupar a largura total em telas menores */
+  }
+}
