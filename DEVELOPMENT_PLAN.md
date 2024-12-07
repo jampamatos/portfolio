@@ -8,9 +8,9 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 ## **Setup and Initial Organization**
 
 - [X] Create the project directory: `win311-portfolio`.
-- [ ] Initialize a Git repository in the project directory.
-- [ ] Create an empty GitHub repository and link it to the local project.
-- [ ] Set up GitHub Projects (Kanban board) for task management.
+- [X] Initialize a Git repository in the project directory.
+- [X] Create an empty GitHub repository and link it to the local project.
+- [X] Set up GitHub Projects (Kanban board) for task management.
 - [X] Install Docker and Docker Compose on the development machine.
 - [ ] Set up WSL with all necessary dependencies:
   - [ ] Node.js and npm.
