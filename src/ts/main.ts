@@ -254,61 +254,145 @@ let windowOffsetY = 20; // Posição inicial do deslocamento vertical
 const openWindows: string[] = [];
 
 function createWindow(title: string, content: string) {
-    // Verifica se a janela já está aberta
     if (openWindows.includes(title)) {
         console.log(`A window with the title "${title}" is already open.`);
         return;
     }
 
-    // Adiciona o título da janela à lista de janelas abertas
     openWindows.push(title);
 
-    // Seleciona o template
     const template = document.getElementById('window-template') as HTMLTemplateElement;
-
-    // Clona o conteúdo do template
     const clone = template.content.cloneNode(true) as HTMLElement;
 
-    // Configura a nova janela
     const windowElement = clone.querySelector('.window') as HTMLElement;
     const titleElement = clone.querySelector('.title') as HTMLElement;
     const contentElement = clone.querySelector('.content') as HTMLElement;
 
-    // Define o título e o conteúdo
     titleElement.textContent = title;
     contentElement.innerHTML = content;
 
-    // Adiciona evento para remover a janela da lista ao fechar
+    // Inicializa estado minimizado
+    let isMinimized = false;
+
+    // Botão Minimizar
+    const minimizeButton = windowElement.querySelector('.controls button:first-child') as HTMLElement;
+    minimizeButton.addEventListener('click', () => {
+        if (!isMinimized) {
+            // Store current inline styles
+            windowElement.dataset.originalWidth = windowElement.style.width;
+            windowElement.dataset.originalHeight = windowElement.style.height;
+            // We still store top and left if we need them upon restore
+            windowElement.dataset.originalLeft = windowElement.style.left;
+            windowElement.dataset.originalTop = windowElement.style.top;
+    
+            // Remove only width and height so .minimized can apply
+            // Keep the left and top so position stays the same
+            windowElement.style.width = '';
+            windowElement.style.height = '';
+            // DO NOT REMOVE LEFT AND TOP
+            // windowElement.style.left = '';
+            // windowElement.style.top = '';
+    
+            // Add minimized class
+            windowElement.classList.add('minimized');
+            isMinimized = true;
+        } else {
+            // Restore inline styles when unminimizing
+            windowElement.style.width = windowElement.dataset.originalWidth || '';
+            windowElement.style.height = windowElement.dataset.originalHeight || '';
+            windowElement.style.left = windowElement.dataset.originalLeft || '';
+            windowElement.style.top = windowElement.dataset.originalTop || '';
+    
+            windowElement.classList.remove('minimized');
+            isMinimized = false;
+        }
+    });
+
+    // Botão Fechar
     const closeButton = windowElement.querySelector('.controls button:last-child') as HTMLElement;
     closeButton.addEventListener('click', () => {
-        // Remove a janela do DOM
         windowElement.remove();
-        // Remove o título da janela da lista de janelas abertas
         const index = openWindows.indexOf(title);
         if (index !== -1) {
             openWindows.splice(index, 1);
         }
     });
 
-    // Aplica o deslocamento inicial
     windowElement.style.left = `${windowOffsetX}px`;
     windowElement.style.top = `${windowOffsetY}px`;
 
-    // Incrementa o deslocamento para a próxima janela
     windowOffsetX += 20;
     windowOffsetY += 20;
 
-    // Reseta o deslocamento se sair do viewport
-    if (windowOffsetX > window.innerWidth - 230) windowOffsetX = 20; // Respeita largura mínima
-    if (windowOffsetY > window.innerHeight - 200) windowOffsetY = 20; // Respeita altura mínima
+    if (windowOffsetX > window.innerWidth - 230) windowOffsetX = 20;
+    if (windowOffsetY > window.innerHeight - 200) windowOffsetY = 20;
 
-    // Adiciona a nova janela ao DOM
     document.getElementById('program-manager')?.appendChild(windowElement);
 
-    // Reaplica funcionalidades
-    applyDrag(windowElement); // Movimentação
-    applyResize(windowElement); // Redimensionamento
+    applyDrag(windowElement);
+    applyResize(windowElement);
 }
+
+// Lógica para a janela principal (program-manager)
+function setupProgramManagerControls() {
+    const programManager = document.getElementById('program-manager') as HTMLElement;
+    const mainWindow = programManager.querySelector('.window') as HTMLElement;
+    const titleBar = mainWindow.querySelector('.title-bar') as HTMLElement;
+    const minimizeButton = titleBar.querySelector('.controls button:first-child') as HTMLElement;
+    const closeButton = titleBar.querySelector('.controls button:last-child') as HTMLElement;
+
+    const exitPopup = document.getElementById('exit-popup') as HTMLElement;
+    const exitYes = document.getElementById('exit-yes') as HTMLElement;
+    const exitNo = document.getElementById('exit-no') as HTMLElement;
+    
+    let isMinimized = false;
+
+    // Botão Minimizar (Main Window)
+    minimizeButton.addEventListener('click', () => {
+        if (!isMinimized) {
+            // Store the main window's current dimensions and position
+            mainWindow.dataset.originalWidth = mainWindow.style.width;
+            mainWindow.dataset.originalHeight = mainWindow.style.height;
+            mainWindow.dataset.originalLeft = mainWindow.style.left;
+            mainWindow.dataset.originalTop = mainWindow.style.top;
+
+            // Remove dimensions so minimized class can apply proper minimal view
+            mainWindow.style.width = '';
+            mainWindow.style.height = '';
+            
+            // Add minimized class
+            mainWindow.classList.add('minimized');
+            isMinimized = true;
+        } else {
+            // Restore the main window's original dimensions and position
+            mainWindow.style.width = mainWindow.dataset.originalWidth || '';
+            mainWindow.style.height = mainWindow.dataset.originalHeight || '';
+            mainWindow.style.left = mainWindow.dataset.originalLeft || '';
+            mainWindow.style.top = mainWindow.dataset.originalTop || '';
+
+            mainWindow.classList.remove('minimized');
+            isMinimized = false;
+        }
+    });
+
+    // Botão Fechar (Main Window)
+    closeButton.addEventListener('click', () => {
+        exitPopup.classList.remove('hidden');
+    });
+
+    // Fechar o popup ao clicar em "No"
+    exitNo.addEventListener('click', () => {
+        exitPopup.classList.add('hidden');
+    });
+
+    // Redirecionar ao clicar em "Yes"
+    exitYes.addEventListener('click', () => {
+        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    });
+}
+
+// Chamar a função para configurar os controles da janela principal
+setupProgramManagerControls();
 
 document.querySelectorAll('#menu-projects, #icon-projects').forEach((element) => {
     element.addEventListener('click', () => {

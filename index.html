@@ -21,9 +21,9 @@
             <div class="title-bar">
                 <span class="title">Jampa's Portfolio</span>
                 <div class="controls">
-                    <button>_</button>
-                    <button>□</button>
-                    <button>×</button>
+                    <button class="minimize">_</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
                 </div>
             </div>
             <div class="content">
@@ -43,6 +43,26 @@
         </div>
     </div>
 
+    <div id="exit-popup" class="window hidden">
+        <div class="title-bar">
+            <span class="title">Exit Confirmation</span>
+            <div class="controls">
+                <button class="close">×</button>
+            </div>
+        </div>
+        <div class="content">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <img src="src/assets/msg_warning-0.png" alt="Warning" style="width: 32px; height: 32px;">
+                <p>Are you sure you want to leave the site?</p>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="exit-yes" class="popup-button">Yes</button>
+                <button id="exit-no" class="popup-button">No</button>
+            </div>
+        </div>
+    </div>
+    
+    
     <template id="window-template">
         <div class="window">
             <div class="resize-handle top"></div>
