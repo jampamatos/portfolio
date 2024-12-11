@@ -6,12 +6,14 @@ body {
 }
 
 #program-manager {
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: #008080;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 100vw;
 }
 
 .menu-bar {
@@ -48,14 +50,15 @@ body {
 }
 
 .window {
+    position: absolute;
     border: 2px solid black;
     box-shadow: 2px 2px #808080, -2px -2px white;
     background-color: #c3c7cb;
     width: 600px;
     height: 400px;
     margin: 0;
-    max-width: 90%;
-    max-height: 90%;
+    min-width: 230px;
+    min-height: 200px;
 }
 
 .title-bar {
@@ -112,20 +115,81 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 5px;
+    border: 2px dotted transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.icon:hover {
+    background-color: #000080;
+    border-color: white;
+    color: white;
 }
 
 .icon img {
     width: 48px;
     height: 48px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s ease;
 }
 
 .icon span {
     font-size: 12px;
     text-align: center;
+    background-color: transparent;
+    padding: 2px;
 }
+
+.icon:hover img {
+    background-color: #000080;
+    border-radius: 5px;
+}
+
+.icon:hover span {
+    background-color: #000080;
+    color: white;
+}
+
 .content {
     padding: 10px;
     display: flex;
     gap: 20px;
     align-items: center;
+    overflow: auto;
+}
+
+.resize-handle.top-left,
+.resize-handle.top-right,
+.resize-handle.bottom-left,
+.resize-handle.bottom-right {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    z-index: 10;
+}
+
+.resize-handle.top-left {
+    top: 0;
+    left: 0;
+    cursor: nwse-resize; /* Cursor diagonal para redimensionar */
+}
+
+.resize-handle.top-right {
+    top: 0;
+    right: 0;
+    cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+    bottom: 0;
+    left: 0;
+    cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
 }

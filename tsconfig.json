@@ -7,10 +7,10 @@
 
     /* Modules */
     "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDir": "src",                                    /* Specify the root folder within your source files. */
+    "rootDir": "src/ts",                                    /* Specify the root folder within your source files. */
 
     /* Emit */
-    "outDir": "dist",                                    /* Specify an output folder for all emitted files. */
+    "outDir": "src/js",                                    /* Specify an output folder for all emitted files. */
     
     /* Interop Constraints */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
@@ -22,6 +22,6 @@
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*"],
+  "include": ["src/ts/**/*.ts"],
   "exclude": ["node_modules"]
 }
