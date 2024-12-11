@@ -12,11 +12,11 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 - [X] Create an empty GitHub repository and link it to the local project.
 - [X] Set up GitHub Projects (Kanban board) for task management.
 - [X] Install Docker and Docker Compose on the development machine.
-- [ ] Set up WSL with all necessary dependencies:
-  - [ ] Node.js and npm.
-  - [ ] Docker.
+- [X] Set up WSL with all necessary dependencies:
+  - [X] Node.js and npm.
+  - [X] Docker.
   - [X] Editor integration (e.g., VS Code).
-- [ ] Add `.gitignore` to exclude unnecessary files (e.g., `node_modules`, Docker files).
+- [X] Add `.gitignore` to exclude unnecessary files (e.g., `node_modules`, Docker files).
 
 ---
 
@@ -24,25 +24,25 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Docker**
 
-- [ ] Create a `Dockerfile` to containerize the development environment.
-- [ ] Add a `docker-compose.yml` for easier management.
-- [ ] Test the containerized environment locally.
+- [X] Create a `Dockerfile` to containerize the development environment.
+- [X] Add a `docker-compose.yml` for easier management.
+- [X] Test the containerized environment locally.
 
 ---
 
 ## **Backlog Creation**
 
-- [ ] Create the initial backlog in GitHub Projects.
+- [X] Create the initial backlog in GitHub Projects.
   - **To Do**:
-    - [ ] Set up HTML/CSS for the Program Manager layout.
-    - [ ] Create CSS styles for Windows 3.11 aesthetic.
-    - [ ] Add logic to open/close/minimize/maximize windows.
-    - [ ] Design icons and sections for "Main".
+    - [X] Set up HTML/CSS for the Program Manager layout.
+    - [X] Create CSS styles for Windows 3.11 aesthetic.
+    - [X] Add logic to open/close/minimize/maximize windows.
+    - [X] Design icons and sections for "Main".
   - **In Progress**:
-    - [ ] Add interactivity to the terminal (MS-DOS simulator).
-    - [ ] Implement navigation between sections.
+    - [X] Add interactivity to the terminal (MS-DOS simulator).
+    - [X] Implement navigation between sections.
   - **Done**:
-    - [ ] Ensure main layout and navigation is functional.
+    - [X] Ensure main layout and navigation is functional.
 
 ---
 
@@ -50,10 +50,10 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Phase 1: Layout**
 
-- [ ] Create the `index.html` file and set up the basic HTML structure.
-- [ ] Add a basic CSS file to define the layout and retro aesthetic.
-- [ ] Set up the "Program Manager" window and the "Main" section.
-- [ ] Add placeholders for icons (About Me, Projects, Contact, etc.).
+- [X] Create the `index.html` file and set up the basic HTML structure.
+- [X] Add a basic CSS file to define the layout and retro aesthetic.
+- [X] Set up the "Program Manager" window and the "Main" section.
+- [X] Add placeholders for icons (About Me, Projects, Contact, etc.).
 
 ### **Phase 2: Interactivity**
 

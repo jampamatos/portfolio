@@ -1,0 +1,131 @@
+body {
+    background-color: #008080;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+}
+
+#program-manager {
+    display: flex;
+    flex-direction: column;
+    background-color: #008080;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.menu-bar {
+    background-color: #c3c7cb;
+    border-bottom: 2px solid black;
+    box-shadow: inset -1px -1px #808080, inset 1px 1px white;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu-bar li {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    padding: 2px 5px;
+    border: 1px solid transparent;
+}
+
+.menu-bar li:hover {
+    background-color: #000080;
+    color: white;
+    border: 1px solid black;
+}
+
+.window {
+    border: 2px solid black;
+    box-shadow: 2px 2px #808080, -2px -2px white;
+    background-color: #c3c7cb;
+    width: 600px;
+    height: 400px;
+    margin: 0;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.title-bar {
+    background-color: #000080;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+}
+
+.title-bar .title {
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    gap: 2px;
+}
+
+.controls button {
+    all: unset;
+    background-color: #c3c7cb;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+    border: none;
+}
+
+.controls button:hover {
+    background-color: #808080;
+    box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+}
+
+.controls button:active {
+    box-shadow: inset -1px -1px white, inset 1px 1px #808080;
+    background-color: #808080;
+    color: black;
+}
+
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icon img {
+    width: 48px;
+    height: 48px;
+}
+
+.icon span {
+    font-size: 12px;
+    text-align: center;
+}
+.content {
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
