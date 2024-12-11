@@ -89,3 +89,52 @@ document.querySelectorAll('.resize-handle').forEach((handle) => {
         event.preventDefault();
     });
 });
+
+document.querySelectorAll('.title-bar').forEach((titleBar) => {
+    titleBar.addEventListener('mousedown', (event) => {
+        const e = event as MouseEvent;
+        const windowElement = (e.target as HTMLElement).closest('.window') as HTMLElement;
+
+        const initialX = e.clientX; // Posição inicial do mouse (X)
+        const initialY = e.clientY; // Posição inicial do mouse (Y)
+        const initialLeft = windowElement.offsetLeft; // Posição inicial da janela (X)
+        const initialTop = windowElement.offsetTop; // Posição inicial da janela (Y)
+
+        // Dimensões do viewport
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Dimensões da janela
+        const windowWidth = windowElement.offsetWidth;
+        const windowHeight = windowElement.offsetHeight;
+
+        const moveWindow = (event: MouseEvent) => {
+            const deltaX = event.clientX - initialX; // Movimento no eixo X
+            const deltaY = event.clientY - initialY; // Movimento no eixo Y
+
+            // Calcula novos valores de posição
+            const newLeft = Math.min(
+                Math.max(0, initialLeft + deltaX), // Não ultrapassa o lado esquerdo
+                viewportWidth - windowWidth // Não ultrapassa o lado direito
+            );
+            const newTop = Math.min(
+                Math.max(0, initialTop + deltaY), // Não ultrapassa o topo
+                viewportHeight - windowHeight // Não ultrapassa a parte inferior
+            );
+
+            // Atualiza a posição da janela
+            windowElement.style.left = `${newLeft}px`;
+            windowElement.style.top = `${newTop}px`;
+        };
+
+        const stopMoving = () => {
+            document.removeEventListener('mousemove', moveWindow);
+            document.removeEventListener('mouseup', stopMoving);
+        };
+
+        document.addEventListener('mousemove', moveWindow); // Listener para arrastar
+        document.addEventListener('mouseup', stopMoving); // Listener para parar de arrastar
+
+        event.preventDefault(); // Evita comportamento padrão, como seleção de texto
+    });
+});

@@ -70,6 +70,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 20px;
+    cursor: move; /* Estilo de cursor para arrastar */
 }
 
 .title-bar .title {
@@ -159,37 +160,72 @@ body {
     overflow: auto;
 }
 
+.resize-handle {
+    position: absolute;
+    background: transparent;
+    z-index: 10;
+    pointer-events: auto; /* Garante que o mouse detecte a área */
+}
+
+.resize-handle.top,
+.resize-handle.bottom {
+    height: 10px; /* Área clicável maior */
+    width: 100%;
+    cursor: ns-resize;
+}
+
+.resize-handle.top {
+    top: -5px; /* Expande 5px para fora da janela */
+}
+
+.resize-handle.bottom {
+    bottom: -5px; /* Expande 5px para fora da janela */
+}
+
+.resize-handle.left,
+.resize-handle.right {
+    width: 10px; /* Área clicável maior */
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.resize-handle.left {
+    left: -5px; /* Expande 5px para fora da janela */
+}
+
+.resize-handle.right {
+    right: -5px; /* Expande 5px para fora da janela */
+}
+
 .resize-handle.top-left,
 .resize-handle.top-right,
 .resize-handle.bottom-left,
 .resize-handle.bottom-right {
-    position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 15px; /* Área clicável maior para quinas */
+    height: 15px;
     background: transparent;
-    z-index: 10;
 }
 
 .resize-handle.top-left {
-    top: 0;
-    left: 0;
-    cursor: nwse-resize; /* Cursor diagonal para redimensionar */
+    top: -5px;
+    left: -5px;
+    cursor: nwse-resize;
 }
 
 .resize-handle.top-right {
-    top: 0;
-    right: 0;
+    top: -5px;
+    right: -5px;
     cursor: nesw-resize;
 }
 
 .resize-handle.bottom-left {
-    bottom: 0;
-    left: 0;
+    bottom: -5px;
+    left: -5px;
     cursor: nesw-resize;
 }
 
 .resize-handle.bottom-right {
-    bottom: 0;
-    right: 0;
+    bottom: -5px;
+    right: -5px;
     cursor: nwse-resize;
 }
