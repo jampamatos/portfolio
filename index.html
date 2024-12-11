@@ -26,6 +26,42 @@
                     <button>×</button>
                 </div>
             </div>
+            <div class="content">
+                <div id="icon-about" class="icon">
+                    <img src="src/assets/computer_user_pencil-0.png" alt="About">
+                    <span>About Me</span>
+                </div>
+                <div id="icon-projects" class="icon">
+                    <img src="src/assets/directory_explorer-0.png" alt="Projects">
+                    <span>Projects</span>
+                </div>
+                <div id="icon-contact" class="icon">
+                    <img src="src/assets/mailbox_world-2.png" alt="Contact">
+                    <span>Contact</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="window-template">
+        <div class="window">
+            <div class="resize-handle top"></div>
+            <div class="resize-handle right"></div>
+            <div class="resize-handle bottom"></div>
+            <div class="resize-handle left"></div>
+            <div class="resize-handle top-left"></div>
+            <div class="resize-handle top-right"></div>
+            <div class="resize-handle bottom-left"></div>
+            <div class="resize-handle bottom-right"></div>
+    
+            <div class="title-bar">
+                <span class="title">New Window</span>
+                <div class="controls">
+                    <button class="minimize">_</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
+                </div>
+            </div>
             <div class="menu-bar">
                 <ul>
                     <li id="menu-about">About Me</li>
@@ -34,21 +70,11 @@
                 </ul>
             </div>
             <div class="content">
-                <div class="icon">
-                    <img src="src/assets/computer_user_pencil-0.png" alt="About">
-                    <span>About Me</span>
-                </div>
-                <div class="icon">
-                    <img src="src/assets/directory_explorer-0.png" alt="Projects">
-                    <span>Projects</span>
-                </div>
-                <div class="icon">
-                    <img src="src/assets/mailbox_world-2.png" alt="Contact">
-                    <span>Contact</span>
-                </div>
+                <p>Window Content</p>
             </div>
         </div>
-    </div>
+    </template>
+    
     <script src="src/js/main.js" type="module"></script>
 </body>
 </html>
