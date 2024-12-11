@@ -57,9 +57,9 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Phase 2: Interactivity**
 
-- [ ] Write JavaScript to handle opening and closing windows.
-- [ ] Implement minimize and maximize functionality.
-- [ ] Add animations or transitions to mimic Windows 3.11 behavior.
+- [X] Write JavaScript to handle opening and closing windows.
+- [X] Implement minimize and maximize functionality.
+- [X] Add animations or transitions to mimic Windows 3.11 behavior.
 
 ### **Phase 3: MS-DOS Simulator**
 

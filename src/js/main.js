@@ -214,10 +214,23 @@ function applyResize(windowElement) {
         });
     });
 }
-let windowOffsetX = 20; // Posição inicial do deslocamento horizontal
-let windowOffsetY = 20; // Posição inicial do deslocamento vertical
-// Lista para rastrear janelas abertas
+let windowOffsetX = 20; // Initial horizontal offset
+let windowOffsetY = 20; // Initial vertical offset
+// Track open windows
 const openWindows = [];
+function restoreFromMinimized(windowElement) {
+    windowElement.style.width = windowElement.dataset.originalWidth || '';
+    windowElement.style.height = windowElement.dataset.originalHeight || '';
+    windowElement.style.left = windowElement.dataset.originalLeft || '';
+    windowElement.style.top = windowElement.dataset.originalTop || '';
+    windowElement.classList.remove('minimized');
+}
+function restoreFromMaximized(windowElement) {
+    windowElement.style.width = windowElement.dataset.originalWidth || '';
+    windowElement.style.height = windowElement.dataset.originalHeight || '';
+    windowElement.style.left = windowElement.dataset.originalLeft || '';
+    windowElement.style.top = windowElement.dataset.originalTop || '';
+}
 function createWindow(title, content) {
     var _a;
     if (openWindows.includes(title)) {
@@ -232,67 +245,80 @@ function createWindow(title, content) {
     const contentElement = clone.querySelector('.content');
     titleElement.textContent = title;
     contentElement.innerHTML = content;
-    // Inicializa estado minimizado
+    // State flags
     let isMinimized = false;
     let isMaximized = false;
-    // Botão Minimizar
-    const minimizeButton = windowElement.querySelector('.controls button:first-child');
+    const minimizeButton = windowElement.querySelector('.controls .minimize');
+    const maximizeButton = windowElement.querySelector('.controls .maximize');
+    const closeButton = windowElement.querySelector('.controls .close');
     minimizeButton.addEventListener('click', () => {
-        if (!isMinimized) {
-            // Store current inline styles
+        if (!isMinimized && !isMaximized) {
+            // Normal => Minimized
             windowElement.dataset.originalWidth = windowElement.style.width;
             windowElement.dataset.originalHeight = windowElement.style.height;
-            // We still store top and left if we need them upon restore
             windowElement.dataset.originalLeft = windowElement.style.left;
             windowElement.dataset.originalTop = windowElement.style.top;
-            // Remove only width and height so .minimized can apply
-            // Keep the left and top so position stays the same
             windowElement.style.width = '';
             windowElement.style.height = '';
-            // DO NOT REMOVE LEFT AND TOP
-            // windowElement.style.left = '';
-            // windowElement.style.top = '';
-            // Add minimized class
             windowElement.classList.add('minimized');
             isMinimized = true;
         }
-        else {
-            // Restore inline styles when unminimizing
-            windowElement.style.width = windowElement.dataset.originalWidth || '';
-            windowElement.style.height = windowElement.dataset.originalHeight || '';
-            windowElement.style.left = windowElement.dataset.originalLeft || '';
-            windowElement.style.top = windowElement.dataset.originalTop || '';
-            windowElement.classList.remove('minimized');
+        else if (isMinimized) {
+            // Minimized => Normal
+            restoreFromMinimized(windowElement);
             isMinimized = false;
         }
-    });
-    // Maximize Button
-    const maximizeButton = windowElement.querySelector('.controls .maximize');
-    maximizeButton.addEventListener('click', () => {
-        if (!isMaximized) {
-            // Store current size and position
+        else if (isMaximized) {
+            // Maximized => Minimized
+            // First restore from maximized
+            restoreFromMaximized(windowElement);
+            isMaximized = false;
+            // Now minimize
             windowElement.dataset.originalWidth = windowElement.style.width;
             windowElement.dataset.originalHeight = windowElement.style.height;
             windowElement.dataset.originalLeft = windowElement.style.left;
             windowElement.dataset.originalTop = windowElement.style.top;
-            // Maximize to full viewport
-            windowElement.style.left = '0px';
-            windowElement.style.top = '0px';
-            windowElement.style.width = `${window.innerWidth}px`;
-            windowElement.style.height = `${window.innerHeight}px`;
-            isMaximized = true;
-        }
-        else {
-            // Restore from maximized
-            windowElement.style.width = windowElement.dataset.originalWidth || '';
-            windowElement.style.height = windowElement.dataset.originalHeight || '';
-            windowElement.style.left = windowElement.dataset.originalLeft || '';
-            windowElement.style.top = windowElement.dataset.originalTop || '';
-            isMaximized = false;
+            windowElement.style.width = '';
+            windowElement.style.height = '';
+            windowElement.classList.add('minimized');
+            isMinimized = true;
         }
     });
-    // Botão Fechar
-    const closeButton = windowElement.querySelector('.controls button:last-child');
+    maximizeButton.addEventListener('click', () => {
+        if (!isMaximized && !isMinimized) {
+            // Normal => Maximized
+            windowElement.dataset.originalWidth = windowElement.style.width;
+            windowElement.dataset.originalHeight = windowElement.style.height;
+            windowElement.dataset.originalLeft = windowElement.style.left;
+            windowElement.dataset.originalTop = windowElement.style.top;
+            windowElement.style.left = '0px';
+            windowElement.style.top = '0px';
+            windowElement.style.width = `${window.innerWidth - 4}px`;
+            windowElement.style.height = `${window.innerHeight - 4}px`;
+            isMaximized = true;
+        }
+        else if (isMaximized) {
+            // Maximized => Normal
+            restoreFromMaximized(windowElement);
+            isMaximized = false;
+        }
+        else if (isMinimized) {
+            // Minimized => Maximized
+            // First restore from minimized
+            restoreFromMinimized(windowElement);
+            isMinimized = false;
+            // Now maximize
+            windowElement.dataset.originalWidth = windowElement.style.width;
+            windowElement.dataset.originalHeight = windowElement.style.height;
+            windowElement.dataset.originalLeft = windowElement.style.left;
+            windowElement.dataset.originalTop = windowElement.style.top;
+            windowElement.style.left = '0px';
+            windowElement.style.top = '0px';
+            windowElement.style.width = `${window.innerWidth - 4}px`;
+            windowElement.style.height = `${window.innerHeight - 4}px`;
+            isMaximized = true;
+        }
+    });
     closeButton.addEventListener('click', () => {
         windowElement.remove();
         const index = openWindows.indexOf(title);
@@ -300,6 +326,25 @@ function createWindow(title, content) {
             openWindows.splice(index, 1);
         }
     });
+    // Menu links (if any)
+    const menuAbout = windowElement.querySelector('#menu-about');
+    const menuProjects = windowElement.querySelector('#menu-projects');
+    const menuContact = windowElement.querySelector('#menu-contact');
+    if (menuAbout) {
+        menuAbout.addEventListener('click', () => {
+            createWindow('About Me', '<p>About me!</p>');
+        });
+    }
+    if (menuProjects) {
+        menuProjects.addEventListener('click', () => {
+            createWindow('Projects', '<p>Here are the projects!</p>');
+        });
+    }
+    if (menuContact) {
+        menuContact.addEventListener('click', () => {
+            createWindow('Contact', '<p>Let\'s talk!</p>');
+        });
+    }
     windowElement.style.left = `${windowOffsetX}px`;
     windowElement.style.top = `${windowOffsetY}px`;
     windowOffsetX += 20;
@@ -312,82 +357,86 @@ function createWindow(title, content) {
     applyDrag(windowElement);
     applyResize(windowElement);
 }
-// Lógica para a janela principal (program-manager)
+// For the main window, apply similar logic
 function setupProgramManagerControls() {
     const programManager = document.getElementById('program-manager');
     const mainWindow = programManager.querySelector('.window');
-    const titleBar = mainWindow.querySelector('.title-bar');
-    const minimizeButton = titleBar.querySelector('.controls .minimize');
-    const maximizeButton = titleBar.querySelector('.controls .maximize');
-    const closeButton = titleBar.querySelector('.controls .close');
+    const minimizeButton = mainWindow.querySelector('.controls .minimize');
+    const maximizeButton = mainWindow.querySelector('.controls .maximize');
+    const closeButton = mainWindow.querySelector('.controls .close');
     const exitPopup = document.getElementById('exit-popup');
     const exitYes = document.getElementById('exit-yes');
     const exitNo = document.getElementById('exit-no');
     let isMinimized = false;
     let isMaximized = false;
-    // Botão Minimizar (Main Window)
     minimizeButton.addEventListener('click', () => {
-        if (!isMinimized) {
-            // Store the main window's current dimensions and position
+        if (!isMinimized && !isMaximized) {
             mainWindow.dataset.originalWidth = mainWindow.style.width;
             mainWindow.dataset.originalHeight = mainWindow.style.height;
             mainWindow.dataset.originalLeft = mainWindow.style.left;
             mainWindow.dataset.originalTop = mainWindow.style.top;
-            // Remove dimensions so minimized class can apply proper minimal view
             mainWindow.style.width = '';
             mainWindow.style.height = '';
-            // Add minimized class
             mainWindow.classList.add('minimized');
             isMinimized = true;
         }
-        else {
-            // Restore the main window's original dimensions and position
-            mainWindow.style.width = mainWindow.dataset.originalWidth || '';
-            mainWindow.style.height = mainWindow.dataset.originalHeight || '';
-            mainWindow.style.left = mainWindow.dataset.originalLeft || '';
-            mainWindow.style.top = mainWindow.dataset.originalTop || '';
-            mainWindow.classList.remove('minimized');
+        else if (isMinimized) {
+            restoreFromMinimized(mainWindow);
             isMinimized = false;
         }
-    });
-    // Botão Maximizar (Main Window)
-    maximizeButton.addEventListener('click', () => {
-        if (!isMaximized) {
-            // Store current size and position
+        else if (isMaximized) {
+            restoreFromMaximized(mainWindow);
+            isMaximized = false;
             mainWindow.dataset.originalWidth = mainWindow.style.width;
             mainWindow.dataset.originalHeight = mainWindow.style.height;
             mainWindow.dataset.originalLeft = mainWindow.style.left;
             mainWindow.dataset.originalTop = mainWindow.style.top;
-            // Maximize to viewport
-            mainWindow.style.left = '0px';
-            mainWindow.style.top = '0px';
-            mainWindow.style.width = `${window.innerWidth}px`;
-            mainWindow.style.height = `${window.innerHeight}px`;
-            isMaximized = true;
-        }
-        else {
-            // Restore from maximized
-            mainWindow.style.width = mainWindow.dataset.originalWidth || '';
-            mainWindow.style.height = mainWindow.dataset.originalHeight || '';
-            mainWindow.style.left = mainWindow.dataset.originalLeft || '';
-            mainWindow.style.top = mainWindow.dataset.originalTop || '';
-            isMaximized = false;
+            mainWindow.style.width = '';
+            mainWindow.style.height = '';
+            mainWindow.classList.add('minimized');
+            isMinimized = true;
         }
     });
-    // Botão Fechar (Main Window)
+    maximizeButton.addEventListener('click', () => {
+        if (!isMaximized && !isMinimized) {
+            mainWindow.dataset.originalWidth = mainWindow.style.width;
+            mainWindow.dataset.originalHeight = mainWindow.style.height;
+            mainWindow.dataset.originalLeft = mainWindow.style.left;
+            mainWindow.dataset.originalTop = mainWindow.style.top;
+            mainWindow.style.left = '0px';
+            mainWindow.style.top = '0px';
+            mainWindow.style.width = `${window.innerWidth - 4}px`;
+            mainWindow.style.height = `${window.innerHeight - 4}px`;
+            isMaximized = true;
+        }
+        else if (isMaximized) {
+            restoreFromMaximized(mainWindow);
+            isMaximized = false;
+        }
+        else if (isMinimized) {
+            restoreFromMinimized(mainWindow);
+            isMinimized = false;
+            mainWindow.dataset.originalWidth = mainWindow.style.width;
+            mainWindow.dataset.originalHeight = mainWindow.style.height;
+            mainWindow.dataset.originalLeft = mainWindow.style.left;
+            mainWindow.dataset.originalTop = mainWindow.style.top;
+            mainWindow.style.left = '0px';
+            mainWindow.style.top = '0px';
+            mainWindow.style.width = `${window.innerWidth - 4}px`;
+            mainWindow.style.height = `${window.innerHeight - 4}px`;
+            isMaximized = true;
+        }
+    });
     closeButton.addEventListener('click', () => {
         exitPopup.classList.remove('hidden');
     });
-    // Fechar o popup ao clicar em "No"
     exitNo.addEventListener('click', () => {
         exitPopup.classList.add('hidden');
     });
-    // Redirecionar ao clicar em "Yes"
     exitYes.addEventListener('click', () => {
         window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
     });
 }
-// Chamar a função para configurar os controles da janela principal
 setupProgramManagerControls();
 document.querySelectorAll('#menu-about, #icon-about').forEach((element) => {
     element.addEventListener('click', () => {
