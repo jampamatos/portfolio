@@ -234,6 +234,7 @@ function createWindow(title, content) {
     contentElement.innerHTML = content;
     // Inicializa estado minimizado
     let isMinimized = false;
+    let isMaximized = false;
     // Botão Minimizar
     const minimizeButton = windowElement.querySelector('.controls button:first-child');
     minimizeButton.addEventListener('click', () => {
@@ -265,6 +266,31 @@ function createWindow(title, content) {
             isMinimized = false;
         }
     });
+    // Maximize Button
+    const maximizeButton = windowElement.querySelector('.controls .maximize');
+    maximizeButton.addEventListener('click', () => {
+        if (!isMaximized) {
+            // Store current size and position
+            windowElement.dataset.originalWidth = windowElement.style.width;
+            windowElement.dataset.originalHeight = windowElement.style.height;
+            windowElement.dataset.originalLeft = windowElement.style.left;
+            windowElement.dataset.originalTop = windowElement.style.top;
+            // Maximize to full viewport
+            windowElement.style.left = '0px';
+            windowElement.style.top = '0px';
+            windowElement.style.width = `${window.innerWidth}px`;
+            windowElement.style.height = `${window.innerHeight}px`;
+            isMaximized = true;
+        }
+        else {
+            // Restore from maximized
+            windowElement.style.width = windowElement.dataset.originalWidth || '';
+            windowElement.style.height = windowElement.dataset.originalHeight || '';
+            windowElement.style.left = windowElement.dataset.originalLeft || '';
+            windowElement.style.top = windowElement.dataset.originalTop || '';
+            isMaximized = false;
+        }
+    });
     // Botão Fechar
     const closeButton = windowElement.querySelector('.controls button:last-child');
     closeButton.addEventListener('click', () => {
@@ -291,12 +317,14 @@ function setupProgramManagerControls() {
     const programManager = document.getElementById('program-manager');
     const mainWindow = programManager.querySelector('.window');
     const titleBar = mainWindow.querySelector('.title-bar');
-    const minimizeButton = titleBar.querySelector('.controls button:first-child');
-    const closeButton = titleBar.querySelector('.controls button:last-child');
+    const minimizeButton = titleBar.querySelector('.controls .minimize');
+    const maximizeButton = titleBar.querySelector('.controls .maximize');
+    const closeButton = titleBar.querySelector('.controls .close');
     const exitPopup = document.getElementById('exit-popup');
     const exitYes = document.getElementById('exit-yes');
     const exitNo = document.getElementById('exit-no');
     let isMinimized = false;
+    let isMaximized = false;
     // Botão Minimizar (Main Window)
     minimizeButton.addEventListener('click', () => {
         if (!isMinimized) {
@@ -322,6 +350,30 @@ function setupProgramManagerControls() {
             isMinimized = false;
         }
     });
+    // Botão Maximizar (Main Window)
+    maximizeButton.addEventListener('click', () => {
+        if (!isMaximized) {
+            // Store current size and position
+            mainWindow.dataset.originalWidth = mainWindow.style.width;
+            mainWindow.dataset.originalHeight = mainWindow.style.height;
+            mainWindow.dataset.originalLeft = mainWindow.style.left;
+            mainWindow.dataset.originalTop = mainWindow.style.top;
+            // Maximize to viewport
+            mainWindow.style.left = '0px';
+            mainWindow.style.top = '0px';
+            mainWindow.style.width = `${window.innerWidth}px`;
+            mainWindow.style.height = `${window.innerHeight}px`;
+            isMaximized = true;
+        }
+        else {
+            // Restore from maximized
+            mainWindow.style.width = mainWindow.dataset.originalWidth || '';
+            mainWindow.style.height = mainWindow.dataset.originalHeight || '';
+            mainWindow.style.left = mainWindow.dataset.originalLeft || '';
+            mainWindow.style.top = mainWindow.dataset.originalTop || '';
+            isMaximized = false;
+        }
+    });
     // Botão Fechar (Main Window)
     closeButton.addEventListener('click', () => {
         exitPopup.classList.remove('hidden');
@@ -337,8 +389,18 @@ function setupProgramManagerControls() {
 }
 // Chamar a função para configurar os controles da janela principal
 setupProgramManagerControls();
+document.querySelectorAll('#menu-about, #icon-about').forEach((element) => {
+    element.addEventListener('click', () => {
+        createWindow('About Me', '<p>About me!</p>');
+    });
+});
 document.querySelectorAll('#menu-projects, #icon-projects').forEach((element) => {
     element.addEventListener('click', () => {
         createWindow('Projects', '<p>Here are the projects!</p>');
+    });
+});
+document.querySelectorAll('#menu-contact, #icon-contact').forEach((element) => {
+    element.addEventListener('click', () => {
+        createWindow('Contact', '<p>Let\'s talk!</p>');
     });
 });
