@@ -1,3 +1,5 @@
+declare const emailjs: any;
+
 document.querySelectorAll('.resize-handle').forEach((handle) => {
     handle.addEventListener('mousedown', (event) => {
         const e = event as MouseEvent;
@@ -269,7 +271,7 @@ function restoreFromMaximized(windowElement: HTMLElement) {
     windowElement.style.top = windowElement.dataset.originalTop || '';
 }
 
-function createWindow(title: string, content: string) {
+function createWindow(title: string, content: string, initialWidth = 600, initialHeight = 400) {
     if (openWindows.includes(title)) {
         console.log(`A window with the title "${title}" is already open.`);
         return;
@@ -286,6 +288,9 @@ function createWindow(title: string, content: string) {
 
     titleElement.textContent = title;
     contentElement.innerHTML = content;
+
+    windowElement.style.width = `${initialWidth}px`;
+    windowElement.style.height = `${initialHeight}px`;
 
     // State flags
     let isMinimized = false;
@@ -384,7 +389,21 @@ function createWindow(title: string, content: string) {
 
     if (menuAbout) {
         menuAbout.addEventListener('click', () => {
-            createWindow('About Me', '<p>About me!</p>');
+            const template = document.getElementById('about-me-template') as HTMLTemplateElement;
+
+            if (!template) {
+                console.error('Template not found: about-me-template');
+                return;
+            }
+
+            const contentElement = template.content.querySelector('.content') as HTMLElement;
+
+            if (!contentElement) {
+                console.error('Content not found in template: about-me-template');
+                return;
+            }
+
+            createWindow('About Me', contentElement.outerHTML, 1100, 600); // Defina as dimensões iniciais
         });
     }
 
@@ -396,7 +415,39 @@ function createWindow(title: string, content: string) {
 
     if (menuContact) {
         menuContact.addEventListener('click', () => {
-            createWindow('Contact', '<p>Let\'s talk!</p>');
+            const template = document.getElementById('contact-template') as HTMLTemplateElement;
+            const contentElement = template.content.querySelector('.content') as HTMLElement;
+
+            if (!contentElement) {
+                console.error('Content not found in template: about-me-template');
+                return;
+            }
+
+            createWindow('Contact', contentElement.outerHTML, 560, 515); // Renderiza o template
+
+            const form = document.getElementById('contact-form') as HTMLFormElement;
+            const status = document.getElementById('form-status') as HTMLElement;
+
+            // Inicializa o EmailJS com sua chave pública
+            emailjs.init('X6AgiUWnj6pe7fYLf'); // Substitua pelo seu PUBLIC_KEY
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                status.textContent = 'Sending...';
+
+                try {
+                    const result = await emailjs.sendForm(
+                        'portfolio_contact',  // Substitua pelo seu SERVICE_ID
+                        'template_ebyt5cb', // Substitua pelo seu TEMPLATE_ID
+                        form
+                    );
+                    status.textContent = 'Message sent successfully!';
+                    form.reset();
+                } catch (error) {
+                    status.textContent = 'Failed to send message. Try again later.';
+                    console.error('EmailJS error:', error);
+                }
+            });
         });
     }
 
@@ -509,7 +560,21 @@ setupProgramManagerControls();
 
 document.querySelectorAll('#menu-about, #icon-about').forEach((element) => {
     element.addEventListener('click', () => {
-        createWindow('About Me', '<p>About me!</p>');
+        const template = document.getElementById('about-me-template') as HTMLTemplateElement;
+
+        if (!template) {
+            console.error('Template not found: about-me-template');
+            return;
+        }
+
+        const contentElement = template.content.querySelector('.content') as HTMLElement;
+
+        if (!contentElement) {
+            console.error('Content not found in template: about-me-template');
+            return;
+        }
+
+        createWindow('About Me', contentElement.outerHTML, 1100, 600); // Defina as dimensões iniciais
     });
 });
 
@@ -521,6 +586,39 @@ document.querySelectorAll('#menu-projects, #icon-projects').forEach((element) =>
 
 document.querySelectorAll('#menu-contact, #icon-contact').forEach((element) => {
     element.addEventListener('click', () => {
-        createWindow('Contact', '<p>Let\'s talk!</p>');
+        const template = document.getElementById('contact-template') as HTMLTemplateElement;
+        const contentElement = template.content.querySelector('.content') as HTMLElement;
+
+        if (!contentElement) {
+            console.error('Content not found in template: about-me-template');
+            return;
+        }
+
+        createWindow('Contact', contentElement.outerHTML, 560, 515); // Renderiza o template
+
+        const form = document.getElementById('contact-form') as HTMLFormElement;
+        const status = document.getElementById('form-status') as HTMLElement;
+
+        // Inicializa o EmailJS com sua chave pública
+        emailjs.init('X6AgiUWnj6pe7fYLf'); // Substitua pelo seu PUBLIC_KEY
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = 'Sending...';
+
+            try {
+                const result = await emailjs.sendForm(
+                    'portfolio_contact',  // Substitua pelo seu SERVICE_ID
+                    'template_ebyt5cb', // Substitua pelo seu TEMPLATE_ID
+                    form
+                );
+                status.textContent = 'Message sent successfully!';
+                form.reset();
+            } catch (error) {
+                status.textContent = 'Failed to send message. Try again later.';
+                console.error('EmailJS error:', error);
+            }
+        });
     });
 });
+

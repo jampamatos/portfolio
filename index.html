@@ -93,7 +93,119 @@
             </div>
         </div>
     </template>
+
+    <template id="about-me-template">
+        <div class="window about-me-window">
+            <div class="resize-handle top"></div>
+            <div class="resize-handle right"></div>
+            <div class="resize-handle bottom"></div>
+            <div class="resize-handle left"></div>
+            <div class="resize-handle top-left"></div>
+            <div class="resize-handle top-right"></div>
+            <div class="resize-handle bottom-left"></div>
+            <div class="resize-handle bottom-right"></div>
+    
+            <div class="title-bar">
+                <span class="title">About Me</span>
+                <div class="controls">
+                    <button class="minimize">_</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <ul>
+                    <li id="menu-about">About Me</li>
+                    <li id="menu-projects">Projects</li>
+                    <li id="menu-contact">Contact</li>
+                </ul>
+            </div>
+            <div class="content about-me-content">
+                <div class="text-content">
+                    <h2>About Me 🕹️💻🐾</h2>
+                    <p>Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short. I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges that keep me learning and growing.</p>
+
+                    <h3>Skills & Tools 🔧</h3>
+                    <ul>
+                        <li><strong>Backend Development:</strong> Ruby on Rails, Flask</li>
+                        <li><strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark</li>
+                        <li><strong>Game Development:</strong> Unity, LöVE2D</li>
+                        <li><strong>Frontend Fun:</strong> HTML, CSS, JavaScript</li>
+                        <li><strong>Bonus:</strong> I’m learning TypeScript and deep diving into AI & ML!</li>
+                    </ul>
+
+                    <h3>Fun Facts About Me 🎮🐕🍕</h3>
+                    <ul>
+                        <li>I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>, and I dream of creating unforgettable multiplayer experiences.</li>
+                        <li>I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, and <strong>Luna the Dalmatian</strong> -- who keep life interesting!</li>
+                        <li>I’m fluent in Portuguese, advanced in English, and know a little Spanish – so feel free to reach out in any of these!</li>
+                        <li>When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, or perfecting my cooking skills.</li>
+                        <br>
+                    </ul>
+                    <p>You can <a href="resume.pdf" download>download my résumé</a> here for more details!</p>
+                </div>
+                <div class="image-content">
+                    <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="contact-template">
+        <div class="window contact-window">
+            <div class="resize-handle top"></div>
+            <div class="resize-handle right"></div>
+            <div class="resize-handle bottom"></div>
+            <div class="resize-handle left"></div>
+            <div class="resize-handle top-left"></div>
+            <div class="resize-handle top-right"></div>
+            <div class="resize-handle bottom-left"></div>
+            <div class="resize-handle bottom-right"></div>
+        
+            <div class="title-bar">
+                <span class="title">Contact</span>
+                <div class="controls">
+                    <button class="minimize">_</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <ul>
+                    <li id="menu-about">About Me</li>
+                    <li id="menu-projects">Projects</li>
+                    <li id="menu-contact">Contact</li>
+                </ul>
+            </div>
+            <div class="content contact-content">
+                <h2>Contact Me 📧</h2>
+                <p>You can find me on:</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/jampamatos/">
+                        <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+                    </a>
+                    <a href="mailto:jp.coutm@gmail.com">
+                        <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge"/>
+                    </a>
+                    <a href="https://bsky.app/profile/jampamatos.jampa.br">
+                        <img src="https://img.shields.io/badge/Bluesky-blue?style=for-the-badge&logo=bluesky&logoColor=white" alt="Bluesky Badge"/>
+                    </a>
+                    <a href="https://github.com/jampamatos">
+                        <img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Bluesky Badge"/>
+                    </a>
+                </div>
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+                <p id="status-message"></p>
+            </div>
+        </div>
+    </template>
     
     <script src="src/js/main.js" type="module"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </body>
 </html>

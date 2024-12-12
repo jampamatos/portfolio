@@ -76,15 +76,25 @@ body {
 }
 
 .window {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     border: 2px solid black;
     box-shadow: 2px 2px #808080, -2px -2px white;
     background-color: #c3c7cb;
-    width: 600px;
-    height: 400px;
-    margin: 0;
-    min-width: 230px;
-    min-height: 200px;
+    overflow: hidden; /* Impede que elementos extravasem a janela */
+    resize: both; /* Permite redimensionamento */
+    width: 500px;
+    height: 300px;
+    min-width: 230px; /* Tamanho mínimo da janela */
+    min-height: 200px; /* Altura mínima da janela */
+}
+
+.content {
+    overflow: auto; /* Gera barras de rolagem quando necessário */
+    max-height: 100%; /* Certifica-se de que respeita a altura da janela */
+    padding: 10px; /* Adicione algum espaçamento para o conteúdo */
+    box-sizing: border-box; /* Inclui o padding no cálculo do tamanho total */
 }
 
 .window.minimized {
@@ -332,4 +342,139 @@ body {
 .popup-button:active {
     box-shadow: inset 1px 1px #808080, inset -1px -1px white;
     background-color: #808080;
+}
+
+.about-me-window {
+    width: 800px;
+    height: 500px;
+}
+
+.about-me-content {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+}
+
+.text-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.text-content p {
+    margin: 0 0 10px;
+}
+
+.text-content a {
+    color: #000080;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text-content a:hover {
+    text-decoration: underline;
+}
+
+.image-content {
+    flex: 0 0 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-content img {
+    width: 100%;
+    max-width: 200px;
+    border: 2px solid black;
+    filter: contrast(1.2) brightness(0.9); /* Simula um efeito retrô */
+}
+
+.about-me-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Alinha ao topo */
+}
+
+.image-content img {
+    width: 100%; /* Ajuste o tamanho como necessário */
+    max-height: 300px; /* Limite máximo */
+    object-fit: cover; /* Garante que a imagem preencha o espaço */
+    border: 2px solid black;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    width: 90%; /* Ajuste para ocupar mais largura */
+    height: 100%; /* Ajuste para ocupar mais altura */
+    max-width: 600px; /* Limite de largura máxima */
+    overflow-y: auto; /* Garante barras de rolagem, se necessário */
+}
+
+.contact-content h2 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.contact-content p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a img {
+    transition: transform 0.2s ease;
+}
+
+.social-links a img:hover {
+    transform: scale(1.1);
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #808080;
+    font-size: 14px;
+    resize: none;
+    box-shadow: inset -1px -1px #c3c7cb, inset 1px 1px #ffffff;
+}
+
+#contact-form button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #c3c7cb;
+    border: 1px solid #808080;
+    cursor: pointer;
+    box-shadow: inset -1px -1px #c3c7cb, inset 1px 1px #ffffff;
+}
+
+#contact-form button:hover {
+    background-color: #000080;
+    color: white;
+}
+
+#status-message {
+    font-size: 14px;
+    color: #008080;
+    text-align: center;
 }

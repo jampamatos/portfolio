@@ -55,11 +55,22 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 - [X] Set up the "Program Manager" window and the "Main" section.
 - [X] Add placeholders for icons (About Me, Projects, Contact, etc.).
 
-### **Phase 2: Interactivity**
+#### **Phase 2: Interactivity**
 
 - [X] Write JavaScript to handle opening and closing windows.
 - [X] Implement minimize and maximize functionality.
 - [X] Add animations or transitions to mimic Windows 3.11 behavior.
+
+### **Phase 2.1: Content Creation**
+
+- [ ] Create content for the "About Me" page
+- [ ] Create content for the "Contact" page
+- [ ] Create the "Projects" page
+
+### **Phase 2.2: Starting Windows Splash Screen**
+
+- [ ] Create "splash screen" to simulate starting Windows as the site loads.
+- [ ] Add little chimes when "Windows" starts
 
 ### **Phase 3: MS-DOS Simulator**
 
@@ -75,8 +86,8 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Phase 4: Games**
 
-- [ ] Implement a simple Solitaire game using HTML5 Canvas or plain JavaScript.
-- [ ] Add other optional games or surprises (e.g., Minesweeper).
+- [ ] Add PONG
+- [ ] Add Fifty Bird
 
 ---
 
