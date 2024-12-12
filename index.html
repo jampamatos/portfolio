@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/styles.css" />
     <title>Jampa Matos' Portfolio</title>
 </head>
 <body>
+    <!-- Main Program Manager Container -->
+    <!-- This acts as the main "desktop" area for the Windows 98 style UI -->
     <div id="program-manager">
-        <div class="window">
+        <!-- Primary (Main) Window representing the desktop environment -->
+        <div class="window main-window">
+            <!-- Resize Handles for the main window -->
             <div class="resize-handle top"></div>
             <div class="resize-handle right"></div>
             <div class="resize-handle bottom"></div>
@@ -18,6 +22,7 @@
             <div class="resize-handle bottom-left"></div>
             <div class="resize-handle bottom-right"></div>
         
+            <!-- Title Bar with window controls -->
             <div class="title-bar">
                 <span class="title">Jampa's Portfolio</span>
                 <div class="controls">
@@ -26,23 +31,27 @@
                     <button class="close">×</button>
                 </div>
             </div>
+            
+            <!-- Main desktop icons (About, Projects, Contact) -->
             <div class="content">
                 <div id="icon-about" class="icon">
-                    <img src="src/assets/computer_user_pencil-0.png" alt="About">
+                    <img src="src/assets/computer_user_pencil-0.png" alt="About" />
                     <span>About Me</span>
                 </div>
                 <div id="icon-projects" class="icon">
-                    <img src="src/assets/directory_explorer-0.png" alt="Projects">
+                    <img src="src/assets/directory_explorer-0.png" alt="Projects" />
                     <span>Projects</span>
                 </div>
                 <div id="icon-contact" class="icon">
-                    <img src="src/assets/mailbox_world-2.png" alt="Contact">
+                    <img src="src/assets/mailbox_world-2.png" alt="Contact" />
                     <span>Contact</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Exit Confirmation Popup -->
+    <!-- Appears when user attempts to close the main window, asking for confirmation -->
     <div id="exit-popup" class="window hidden">
         <div class="title-bar">
             <span class="title">Exit Confirmation</span>
@@ -52,7 +61,7 @@
         </div>
         <div class="content">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-                <img src="src/assets/msg_warning-0.png" alt="Warning" style="width: 32px; height: 32px;">
+                <img src="src/assets/msg_warning-0.png" alt="Warning" style="width: 32px; height: 32px;" />
                 <p>Are you sure you want to leave the site?</p>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
@@ -62,8 +71,10 @@
         </div>
     </div>
     
+    <!-- Template for a generic window (used to create new windows dynamically) -->
     <template id="window-template">
         <div class="window">
+            <!-- Resize Handles -->
             <div class="resize-handle top"></div>
             <div class="resize-handle right"></div>
             <div class="resize-handle bottom"></div>
@@ -73,6 +84,7 @@
             <div class="resize-handle bottom-left"></div>
             <div class="resize-handle bottom-right"></div>
     
+            <!-- Title Bar -->
             <div class="title-bar">
                 <span class="title">New Window</span>
                 <div class="controls">
@@ -81,6 +93,8 @@
                     <button class="close">×</button>
                 </div>
             </div>
+            
+            <!-- Menu Bar with default menu items -->
             <div class="menu-bar">
                 <ul>
                     <li id="menu-about">About Me</li>
@@ -88,14 +102,19 @@
                     <li id="menu-contact">Contact</li>
                 </ul>
             </div>
+            
+            <!-- Default content area -->
             <div class="content">
                 <p>Window Content</p>
             </div>
         </div>
     </template>
 
+    <!-- About Me Window Template -->
+    <!-- Provides structure and content for the About Me window -->
     <template id="about-me-template">
         <div class="window about-me-window">
+            <!-- Resize Handles -->
             <div class="resize-handle top"></div>
             <div class="resize-handle right"></div>
             <div class="resize-handle bottom"></div>
@@ -113,6 +132,8 @@
                     <button class="close">×</button>
                 </div>
             </div>
+            
+            <!-- Menu Bar specific to the About Me window -->
             <div class="menu-bar">
                 <ul>
                     <li id="menu-about">About Me</li>
@@ -120,10 +141,17 @@
                     <li id="menu-contact">Contact</li>
                 </ul>
             </div>
+            
+            <!-- About Me content section -->
             <div class="content about-me-content">
                 <div class="text-content">
                     <h2>About Me 🕹️💻🐾</h2>
-                    <p>Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short. I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges that keep me learning and growing.</p>
+                    <p>
+                        Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short.
+                        I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend
+                        systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges
+                        that keep me learning and growing.
+                    </p>
 
                     <h3>Skills & Tools 🔧</h3>
                     <ul>
@@ -136,23 +164,40 @@
 
                     <h3>Fun Facts About Me 🎮🐕🍕</h3>
                     <ul>
-                        <li>I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>, and I dream of creating unforgettable multiplayer experiences.</li>
-                        <li>I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, and <strong>Luna the Dalmatian</strong> -- who keep life interesting!</li>
-                        <li>I’m fluent in Portuguese, advanced in English, and know a little Spanish – so feel free to reach out in any of these!</li>
-                        <li>When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, or perfecting my cooking skills.</li>
+                        <li>
+                            I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>,
+                            and I dream of creating unforgettable multiplayer experiences.
+                        </li>
+                        <li>
+                            I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, 
+                            and <strong>Luna the Dalmatian</strong> -- who keep life interesting!
+                        </li>
+                        <li>
+                            I’m fluent in Portuguese, advanced in English, and know a little Spanish – 
+                            so feel free to reach out in any of these!
+                        </li>
+                        <li>
+                            When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, 
+                            or perfecting my cooking skills.
+                        </li>
                         <br>
                     </ul>
-                    <p>You can <a href="resume.pdf" download>download my résumé</a> here for more details!</p>
+                    <p>
+                        You can <a href="resume.pdf" download>download my résumé</a> here for more details!
+                    </p>
                 </div>
                 <div class="image-content">
-                    <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo">
+                    <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo" />
                 </div>
             </div>
         </div>
     </template>
 
+    <!-- Contact Window Template -->
+    <!-- Provides structure for the Contact window with a form and social links -->
     <template id="contact-template">
         <div class="window contact-window">
+            <!-- Resize Handles -->
             <div class="resize-handle top"></div>
             <div class="resize-handle right"></div>
             <div class="resize-handle bottom"></div>
@@ -170,6 +215,7 @@
                     <button class="close">×</button>
                 </div>
             </div>
+            
             <div class="menu-bar">
                 <ul>
                     <li id="menu-about">About Me</li>
@@ -177,26 +223,41 @@
                     <li id="menu-contact">Contact</li>
                 </ul>
             </div>
+            
             <div class="content contact-content">
                 <h2>Contact Me 📧</h2>
                 <p>You can find me on:</p>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/jampamatos/">
-                        <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+                    <a href="https://www.linkedin.com/in/jampamatos/" target="_blank">
+                        <img 
+                            src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" 
+                            alt="LinkedIn Badge"
+                        />
                     </a>
                     <a href="mailto:jp.coutm@gmail.com">
-                        <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge"/>
+                        <img 
+                            src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white" 
+                            alt="Email Badge"
+                        />
                     </a>
-                    <a href="https://bsky.app/profile/jampamatos.jampa.br">
-                        <img src="https://img.shields.io/badge/Bluesky-blue?style=for-the-badge&logo=bluesky&logoColor=white" alt="Bluesky Badge"/>
+                    <a href="https://bsky.app/profile/jampamatos.jampa.br" target="_blank">
+                        <img 
+                            src="https://img.shields.io/badge/Bluesky-blue?style=for-the-badge&logo=bluesky&logoColor=white" 
+                            alt="Bluesky Badge"
+                        />
                     </a>
-                    <a href="https://github.com/jampamatos">
-                        <img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Bluesky Badge"/>
+                    <a href="https://github.com/jampamatos" target="_blank">
+                        <img 
+                            src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" 
+                            alt="Github Badge"
+                        />
                     </a>
                 </div>
+
+                <!-- Contact Form -->
                 <form id="contact-form">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="name" placeholder="Name" required />
+                    <input type="email" name="email" placeholder="Email" required />
                     <textarea name="message" placeholder="Message" required></textarea>
                     <button type="submit">Send</button>
                 </form>
@@ -204,7 +265,44 @@
             </div>
         </div>
     </template>
+
+    <!-- Projects Window Template -->
+    <!-- Structure for the Projects window which dynamically loads project items -->
+    <template id="projects-template">
+        <div class="projects-window">
+            <div class="content">
+                <div class="project-grid">
+                    <!-- Projects will be appended here dynamically -->
+                </div>
+            </div>
+        </div>
+    </template>
     
+    <!-- Project Details Template -->
+    <!-- Structure for a single project's detailed view -->
+    <template id="project-details-template">
+        <div class="window project-details-window">
+            <div class="title-bar">
+                <span class="title">Project Details</span>
+                <div class="controls">
+                    <button class="close">×</button>
+                </div>
+            </div>
+            <div class="content project-details-content">
+                <img src="placeholder.jpg" alt="Project Image" class="project-image" />
+                <h3>Project Title</h3>
+                <p>Detailed description of the project goes here. It can span multiple lines and provide insights about the purpose and functionality of the project.</p>
+                <a href="#" target="_blank" class="project-link">
+                    <img 
+                        src="https://img.shields.io/badge/Check%20it%20on%20Github-black?style=for-the-badge&logo=github&logoColor=white" 
+                        alt="View it on Github"
+                    />
+                </a>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Main Script and EmailJS -->
     <script src="src/js/main.js" type="module"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </body>

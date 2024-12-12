@@ -1,3 +1,17 @@
+:root {
+    /* Primary Colors and Common Values */
+    --color-primary: #008080;        /* Main background color */
+    --color-secondary: #c3c7cb;      /* Secondary background (window bg) */
+    --color-accent: #000080;         /* Accent color (title bars, hovers) */
+    --color-shadow: #808080;         /* Shadow and border color */
+    --color-text: black;             /* Main text color */
+    --color-text-inverse: white;     /* Inverse text color for dark backgrounds */
+    
+    --border-size: 2px;
+    --title-bar-height: 20px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -5,34 +19,41 @@ html, body {
 }
 
 body {
-    background-color: #008080;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
+    background-color: var(--color-primary);
+    font-family: var(--font-family);
+    color: var(--color-text);
 }
 
+/* Main Program Manager (like a desktop) */
 #program-manager {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #008080;
+    background-color: var(--color-primary);
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
 }
 
-/* Garantir que a janela minimizada não suba */
+/* Main window content alignment */
+.main-window > .content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Minimized window state */
 #program-manager .window.minimized {
-    position: absolute; /* Garante que mantenha sua posição */
-    top: 0; /* Fixa no topo, ou ajuste conforme necessário */
-    left: 0; /* Fixa à esquerda, ou ajuste conforme necessário */
+    position: absolute;
+    top: 0;
+    left: 0;
     min-width: 0 !important;
     min-height: 0 !important;
     width: auto;
     height: auto;
     overflow: hidden;
-    border: 2px solid black;
+    border: var(--border-size) solid var(--color-text);
     box-shadow: none;
 }
 
@@ -42,11 +63,12 @@ body {
     display: none;
 }
 
+/* Menu Bar styling */
 .menu-bar {
-    background-color: #c3c7cb;
-    border-bottom: 1px solid #808080; /* Linha externa mais escura */
-    box-shadow: inset -1px -1px #c3c7cb;
-    padding: 3px 5px; /* Ajusta o espaçamento interno */
+    background-color: var(--color-secondary);
+    border-bottom: 1px solid var(--color-shadow);
+    box-shadow: inset -1px -1px var(--color-secondary);
+    padding: 3px 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -57,53 +79,56 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 15px; /* Ajusta o espaçamento entre os itens */
+    gap: 15px;
 }
 
 .menu-bar li {
     font-size: 12px;
     font-weight: bold;
-    color: black;
+    color: var(--color-text);
     cursor: pointer;
     padding: 2px 5px;
-    border: none; /* Remove bordas externas */
-    background-color: transparent; /* Fundo padrão */
+    border: none;
+    background-color: transparent;
 }
 
 .menu-bar li:hover {
-    background-color: #000080; /* Fundo azul escuro no hover */
-    color: white; /* Texto branco no hover */
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
 }
 
+/* Generic window styling */
 .window {
     display: flex;
     flex-direction: column;
     position: absolute;
-    border: 2px solid black;
-    box-shadow: 2px 2px #808080, -2px -2px white;
-    background-color: #c3c7cb;
-    overflow: hidden; /* Impede que elementos extravasem a janela */
-    resize: both; /* Permite redimensionamento */
+    border: var(--border-size) solid var(--color-text);
+    box-shadow: 2px 2px var(--color-shadow), -2px -2px var(--color-text-inverse);
+    background-color: var(--color-secondary);
+    overflow: hidden;
+    resize: both;
     width: 500px;
     height: 300px;
-    min-width: 230px; /* Tamanho mínimo da janela */
-    min-height: 200px; /* Altura mínima da janela */
+    min-width: 230px;
+    min-height: 200px;
 }
 
+/* Generic content area */
 .content {
-    overflow: auto; /* Gera barras de rolagem quando necessário */
-    max-height: 100%; /* Certifica-se de que respeita a altura da janela */
-    padding: 10px; /* Adicione algum espaçamento para o conteúdo */
-    box-sizing: border-box; /* Inclui o padding no cálculo do tamanho total */
+    overflow: auto;
+    max-height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
+/* Minimized state inside the window */
 .window.minimized {
     min-width: 0 !important;
     min-height: 0 !important;
     width: auto;
     height: auto;
     overflow: hidden;
-    border: 2px solid black; /* optional, if you want a small border line */
+    border: var(--border-size) solid var(--color-text);
     box-shadow: none;
 }
 
@@ -113,24 +138,25 @@ body {
     display: none;
 }
 
+/* Title Bar styling */
 .title-bar {
-    background-color: #000080;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 20px;        /* Keep a strict height */
-    line-height: 20px;   /* Ensure text aligns in that 20px */
-    padding: 0 5px;      /* No top/bottom padding */
+    height: var(--title-bar-height);
+    line-height: var(--title-bar-height);
+    padding: 2px 5px;
     cursor: move;
-    padding: 2px;
 }
 
 .title-bar .title {
     text-align: center;
 }
 
+/* Controls (minimize, maximize, close) */
 .controls {
     display: flex;
     gap: 2px;
@@ -138,8 +164,8 @@ body {
 
 .controls button {
     all: unset;
-    background-color: #c3c7cb;
-    color: black;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -148,23 +174,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+    box-shadow: inset 1px 1px var(--color-text-inverse), inset -1px -1px var(--color-shadow);
     border: none;
 }
 
 .controls button:hover {
-    background-color: #808080;
-    box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+    background-color: var(--color-shadow);
+    box-shadow: inset 1px 1px var(--color-text-inverse), inset -1px -1px var(--color-shadow);
 }
 
 .controls button:active {
-    box-shadow: inset -1px -1px white, inset 1px 1px #808080;
-    background-color: #808080;
-    color: black;
+    box-shadow: inset -1px -1px var(--color-text-inverse), inset 1px 1px var(--color-shadow);
+    background-color: var(--color-shadow);
+    color: var(--color-text);
 }
 
-
+/* Desktop icons */
 .icon {
     display: flex;
     flex-direction: column;
@@ -177,9 +202,9 @@ body {
 }
 
 .icon:hover {
-    background-color: #000080;
-    border-color: white;
-    color: white;
+    background-color: var(--color-accent);
+    border-color: var(--color-text-inverse);
+    color: var(--color-text-inverse);
 }
 
 .icon img {
@@ -191,71 +216,63 @@ body {
 
 .icon span {
     font-size: 12px;
-    text-align: center;
     background-color: transparent;
     padding: 2px;
 }
 
 .icon:hover img {
-    background-color: #000080;
+    background-color: var(--color-accent);
     border-radius: 5px;
 }
 
 .icon:hover span {
-    background-color: #000080;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
 }
 
-.content {
-    padding: 10px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    overflow: auto;
-}
-
+/* Resize handles */
 .resize-handle {
     position: absolute;
     background: transparent;
     z-index: 10;
-    pointer-events: auto; /* Garante que o mouse detecte a área */
+    pointer-events: auto;
 }
 
 .resize-handle.top,
 .resize-handle.bottom {
-    height: 10px; /* Área clicável maior */
+    height: 10px;
     width: 100%;
     cursor: ns-resize;
 }
 
 .resize-handle.top {
-    top: -5px; /* Expande 5px para fora da janela */
+    top: -5px;
 }
 
 .resize-handle.bottom {
-    bottom: -5px; /* Expande 5px para fora da janela */
+    bottom: -5px;
 }
 
 .resize-handle.left,
 .resize-handle.right {
-    width: 10px; /* Área clicável maior */
+    width: 10px;
     height: 100%;
     cursor: ew-resize;
 }
 
 .resize-handle.left {
-    left: -5px; /* Expande 5px para fora da janela */
+    left: -5px;
 }
 
 .resize-handle.right {
-    right: -5px; /* Expande 5px para fora da janela */
+    right: -5px;
 }
 
 .resize-handle.top-left,
 .resize-handle.top-right,
 .resize-handle.bottom-left,
 .resize-handle.bottom-right {
-    width: 15px; /* Área clicável maior para quinas */
+    width: 15px;
     height: 15px;
     background: transparent;
 }
@@ -288,6 +305,7 @@ body {
     display: none;
 }
 
+/* Exit popup window */
 #exit-popup {
     width: auto;
     height: auto;
@@ -295,17 +313,17 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid black;
-    background-color: #c3c7cb;
-    box-shadow: 2px 2px #808080, -2px -2px white;
+    border: var(--border-size) solid var(--color-text);
+    background-color: var(--color-secondary);
+    box-shadow: 2px 2px var(--color-shadow), -2px -2px var(--color-text-inverse);
     z-index: 1000;
 }
 
 #exit-popup .content {
     display: flex;
-    flex-direction: column; /* Alinha os elementos na vertical */
-    align-items: center; /* Centraliza os elementos */
-    gap: 20px; /* Espaçamento entre o texto e os botões */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 #exit-popup .content div:first-child {
@@ -318,32 +336,34 @@ body {
 #exit-popup .content div:last-child {
     display: flex;
     gap: 10px;
-    justify-content: center; /* Centraliza os botões */
+    justify-content: center;
 }
 
+/* Popup buttons */
 .popup-button {
     all: unset;
-    background-color: #c3c7cb;
-    color: black;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
     font-size: 14px;
     font-weight: bold;
     text-align: center;
     padding: 5px 15px;
-    border: 2px solid #808080;
-    box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+    border: 2px solid var(--color-shadow);
+    box-shadow: inset 1px 1px var(--color-text-inverse), inset -1px -1px var(--color-shadow);
     cursor: pointer;
 }
 
 .popup-button:hover {
-    background-color: #000080;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
 }
 
 .popup-button:active {
-    box-shadow: inset 1px 1px #808080, inset -1px -1px white;
-    background-color: #808080;
+    box-shadow: inset 1px 1px var(--color-shadow), inset -1px -1px var(--color-text-inverse);
+    background-color: var(--color-shadow);
 }
 
+/* About Me window specifics */
 .about-me-window {
     width: 800px;
     height: 500px;
@@ -366,7 +386,7 @@ body {
 }
 
 .text-content a {
-    color: #000080;
+    color: var(--color-accent);
     text-decoration: none;
     font-weight: bold;
 }
@@ -385,33 +405,34 @@ body {
 .image-content img {
     width: 100%;
     max-width: 200px;
-    border: 2px solid black;
-    filter: contrast(1.2) brightness(0.9); /* Simula um efeito retrô */
+    border: 2px solid var(--color-text);
+    filter: contrast(1.2) brightness(0.9);
 }
 
 .about-me-content {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* Alinha ao topo */
+    align-items: flex-start;
 }
 
 .image-content img {
-    width: 100%; /* Ajuste o tamanho como necessário */
-    max-height: 300px; /* Limite máximo */
-    object-fit: cover; /* Garante que a imagem preencha o espaço */
-    border: 2px solid black;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border: 2px solid var(--color-text);
 }
 
+/* Contact window specifics */
 .contact-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 20px;
-    width: 90%; /* Ajuste para ocupar mais largura */
-    height: 100%; /* Ajuste para ocupar mais altura */
-    max-width: 600px; /* Limite de largura máxima */
-    overflow-y: auto; /* Garante barras de rolagem, se necessário */
+    width: 90%;
+    height: 100%;
+    max-width: 600px;
+    overflow-y: auto;
 }
 
 .contact-content h2 {
@@ -453,28 +474,117 @@ body {
 #contact-form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #808080;
+    border: 1px solid var(--color-shadow);
     font-size: 14px;
     resize: none;
-    box-shadow: inset -1px -1px #c3c7cb, inset 1px 1px #ffffff;
+    box-shadow: inset -1px -1px var(--color-secondary), inset 1px 1px var(--color-text-inverse);
 }
 
 #contact-form button {
     padding: 10px 20px;
     font-size: 14px;
-    background-color: #c3c7cb;
-    border: 1px solid #808080;
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-shadow);
     cursor: pointer;
-    box-shadow: inset -1px -1px #c3c7cb, inset 1px 1px #ffffff;
+    box-shadow: inset -1px -1px var(--color-secondary), inset 1px 1px var(--color-text-inverse);
 }
 
 #contact-form button:hover {
-    background-color: #000080;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
 }
 
 #status-message {
     font-size: 14px;
-    color: #008080;
+    color: var(--color-primary);
     text-align: center;
+}
+
+/* Projects window specifics */
+.projects-window .content {
+    display: block;
+    overflow-y: auto;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.projects-window {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.projects-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.grid-item {
+    border: 1px solid var(--color-text);
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.grid-item:hover {
+    background-color: var(--color-secondary);
+}
+
+.grid-item img {
+    max-width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+/* Project details content stacks elements vertically */
+.project-details-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.grid-item h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--color-text);
+}
+
+.grid-item p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.project-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.project-link {
+    margin-top: 10px;
+    text-decoration: none;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.project-link:hover {
+    text-decoration: underline;
 }
