@@ -364,7 +364,7 @@ function createWindow(
                 return;
             }
 
-            createWindow('Contact', contactContent.outerHTML, 560, 515);
+            createWindow('Contact', contactContent.outerHTML, 460, 550);
 
             const form = document.getElementById('contact-form') as HTMLFormElement;
             const status = document.getElementById('form-status') as HTMLElement;
@@ -488,7 +488,7 @@ document.querySelectorAll('#menu-contact, #icon-contact').forEach((element) => {
             return;
         }
 
-        createWindow('Contact', contactContent.outerHTML, 560, 515);
+        createWindow('Contact', contactContent.outerHTML, 460, 550);
 
         const form = document.getElementById('contact-form') as HTMLFormElement;
         const status = document.getElementById('form-status') as HTMLElement;

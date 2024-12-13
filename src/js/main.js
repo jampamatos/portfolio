@@ -296,7 +296,7 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
                 console.error('Content not found in template: contact-template');
                 return;
             }
-            createWindow('Contact', contactContent.outerHTML, 560, 515);
+            createWindow('Contact', contactContent.outerHTML, 460, 550);
             const form = document.getElementById('contact-form');
             const status = document.getElementById('form-status');
             // Initialize EmailJS for the contact form
@@ -402,7 +402,7 @@ document.querySelectorAll('#menu-contact, #icon-contact').forEach((element) => {
             console.error('Content not found in template: contact-template');
             return;
         }
-        createWindow('Contact', contactContent.outerHTML, 560, 515);
+        createWindow('Contact', contactContent.outerHTML, 460, 550);
         const form = document.getElementById('contact-form');
         const status = document.getElementById('form-status');
         emailjs.init('X6AgiUWnj6pe7fYLf');
