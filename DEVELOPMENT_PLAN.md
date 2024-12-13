@@ -63,9 +63,9 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Phase 2.1: Content Creation**
 
-- [ ] Create content for the "About Me" page
-- [ ] Create content for the "Contact" page
-- [ ] Create the "Projects" page
+- [X] Create content for the "About Me" page
+- [X] Create content for the "Contact" page
+- [X] Create the "Projects" page
 
 ### **Phase 2.2: Starting Windows Splash Screen**
 
@@ -88,28 +88,6 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 - [ ] Add PONG
 - [ ] Add Fifty Bird
-
----
-
-## **Scrapbook**
-
-### **Phase 1: Frontend**
-
-- [ ] Create a form for name, email, and message input.
-- [ ] Add validation for fields (e.g., required fields, valid email format).
-- [ ] Display submitted messages in a "scrapbook" section.
-
-### **Phase 2: Backend**
-
-- [ ] Set up a backend (Flask or Rails) to handle:
-  - [ ] Receiving and storing messages.
-  - [ ] Sending emails to your inbox for moderation.
-  - [ ] Deleting messages via an admin interface.
-
-### **Phase 3: Deployment**
-
-- [ ] Test the scrapbook functionality locally.
-- [ ] Deploy backend functionality along with the frontend.
 
 ---
 
@@ -150,8 +128,8 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ## **Deployment**
 
-- [ ] Deploy the site to GitHub Pages or Vercel.
-- [ ] Verify that all functionalities work in production.
+- [X] Deploy the site to GitHub Pages or Vercel.
+- [X] Verify that all functionalities work in production.
 
 ---
 
