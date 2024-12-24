@@ -601,6 +601,62 @@ body {
     text-decoration: underline;
 }
 
+/* Splash Screen Styling */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo-container img {
+    max-width: 80%;
+    max-height: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.loading-message-container {
+    text-align: center;
+}
+
+#loading-message {
+    font-size: 16px;
+    color: var(--color-text);
+    font-family: var(--font-family);
+    animation: fade-in 1s ease-out;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 /* Phones: fill the screen entirely */
 @media (max-width: 768px) {
@@ -614,6 +670,21 @@ body {
         box-shadow: none;
         border-radius: 0;
     }
+    
+    .splash-content{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-container img {
+        max-width: 70%;
+        max-height: 200px;
+    }
+
+    #loading-message {
+        font-size: 14px;
+    }
 }
 
 /* Tablets: nearly full screen, so some green background is visible */
@@ -625,6 +696,21 @@ body {
         /* Center it by adjusting left/top */
         left: 5vw !important;
         top: 5vh !important;
+    }
+
+    .splash-content{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .logo-container img {
+        max-width: 60%;
+        max-height: 250px;
+    }
+
+    #loading-message {
+        font-size: 16px;
     }
 }
 

@@ -730,3 +730,39 @@ function openProjectDetails(project: Project) {
         newWindow.classList.add('project-details-window');
     }
 }
+
+// Hide the splash screen after 2 seconds
+window.addEventListener('load', () => {
+    const splashScreen = document.getElementById('splash-screen') as HTMLElement;
+    const loadingMessage = document.getElementById('loading-message') as HTMLElement;
+
+    // List of loading messages to cycle through
+    const messages = [
+        "Initializing Jampindows 98 Environment...",
+        "Starting Very Modern UI...",
+        "Loading Icons and Shortcuts...",
+        "Connecting to the Webs...",
+        "Syncing Nostalgia Levels...",
+        "Ready to Explore!"
+    ];
+
+    let index = 0;
+
+    const updateMessage = () => {
+        if (loadingMessage) {
+            loadingMessage.textContent = messages[index];
+            index = (index + 1) % messages.length;
+        }
+    };
+
+    const interval = setInterval(updateMessage, 1000);
+
+    // Remove splash screen after 7 seconds
+    if (splashScreen) {
+        setTimeout(() => {
+            clearInterval(interval);
+            splashScreen.classList.add('hidden');
+            setTimeout(() => splashScreen.remove(), 1000);
+        }, 6000);
+    }
+});
