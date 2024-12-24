@@ -20,6 +20,13 @@ let windowOffsetX = INITIAL_WINDOW_OFFSET_X;
 let windowOffsetY = INITIAL_WINDOW_OFFSET_Y;
 const openWindows = [];
 /**
+ * Checks if the window width is below a certain breakpoint to determine a mobile layout.
+ * @returns {boolean} - Returns true if the viewport width is below 768px; otherwise false.
+ */
+function isMobileView() {
+    return window.innerWidth < 1024;
+}
+/**
  * Starts the window resizing process.
  * Dynamically updates window dimensions and position as the mouse moves.
  */
@@ -227,6 +234,23 @@ function applyResize(windowElement) {
  */
 function createWindow(title, content, initialWidth = 600, initialHeight = 400, options = {}) {
     var _a;
+    // If we are on mobile, remove any existing non-main windows
+    if (isMobileView()) {
+        const allWindows = document.querySelectorAll('.window');
+        allWindows.forEach((window) => {
+            // Skip the main window (the one with class .main-window)
+            if (!window.classList.contains('main-window') && window.id !== 'exit-popup') {
+                window.remove();
+            }
+        });
+        // Clear the openWindows array except for "Program Manager"
+        const indexOfMain = openWindows.indexOf('Program Manager');
+        openWindows.splice(0, openWindows.length);
+        if (indexOfMain !== -1) {
+            // Put "Program Manager" back in the array
+            openWindows.push('Program Manager');
+        }
+    }
     const { showMenuBar = true, showMinMax = true } = options;
     if (openWindows.includes(title)) {
         console.log(`A window with the title "${title}" is already open.`);
@@ -236,11 +260,24 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
     const template = document.getElementById('window-template');
     const clone = template.content.cloneNode(true);
     const windowElement = clone.querySelector('.window');
+    if (isMobileView()) {
+        windowElement.classList.add('mobile-fullscreen-window');
+    }
     const titleElement = windowElement.querySelector('.title');
     const contentElement = windowElement.querySelector('.content');
     const menuBar = windowElement.querySelector('.menu-bar');
     const minimizeButton = windowElement.querySelector('.controls .minimize');
     const maximizeButton = windowElement.querySelector('.controls .maximize');
+    // If the user explicitly sets showMinMax = false, remove them
+    if (!showMinMax) {
+        minimizeButton === null || minimizeButton === void 0 ? void 0 : minimizeButton.remove();
+        maximizeButton === null || maximizeButton === void 0 ? void 0 : maximizeButton.remove();
+    }
+    // Also remove them on mobile
+    if (isMobileView()) {
+        minimizeButton === null || minimizeButton === void 0 ? void 0 : minimizeButton.remove();
+        maximizeButton === null || maximizeButton === void 0 ? void 0 : maximizeButton.remove();
+    }
     const closeButton = windowElement.querySelector('.controls .close');
     if (titleElement)
         titleElement.textContent = title;
@@ -264,10 +301,39 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
         ({ isMinimized, isMaximized } = maximizeWindow(windowElement, isMinimized, isMaximized));
     });
     closeButton.addEventListener('click', () => {
-        windowElement.remove();
-        const index = openWindows.indexOf(title);
-        if (index !== -1) {
-            openWindows.splice(index, 1);
+        if (!isMobileView()) {
+            // DESKTOP: do the normal close behavior
+            windowElement.remove();
+            const index = openWindows.indexOf(title);
+            if (index !== -1) {
+                openWindows.splice(index, 1);
+            }
+        }
+        else {
+            // MOBILE: override close behavior
+            if (title === 'Program Manager') {
+                // IF main window, show exit popup, and Rick Roll if user confirms
+                const exitPopup = document.getElementById('exit-popup');
+                exitPopup.classList.remove('hidden');
+            }
+            else if (windowElement.classList.contains('project-details-window')) {
+                // If a project detail window, remove it & open (or reopen) the Projects window
+                windowElement.remove();
+                const idx = openWindows.indexOf(title);
+                if (idx !== -1) {
+                    openWindows.splice(idx, 1);
+                }
+                // Reopen the Projects window
+                loadProjects();
+            }
+            else {
+                // Otherwise, just remove the window & go back to main window
+                windowElement.remove();
+                const idx = openWindows.indexOf(title);
+                if (idx !== -1) {
+                    openWindows.splice(idx, 1);
+                }
+            }
         }
     });
     // Set up menu actions if menu bar is present
@@ -332,6 +398,7 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
     (_a = document.getElementById('program-manager')) === null || _a === void 0 ? void 0 : _a.appendChild(windowElement);
     applyDrag(windowElement);
     applyResize(windowElement);
+    return windowElement;
 }
 /** Sets up controls (minimize, maximize, close) for the main window and exit popup */
 function setupProgramManagerControls() {
@@ -352,6 +419,7 @@ function setupProgramManagerControls() {
         ({ isMinimized, isMaximized } = maximizeWindow(mainWindow, isMinimized, isMaximized));
     });
     closeButton.addEventListener('click', () => {
+        console.log("Main window close button clicked!");
         exitPopup.classList.remove('hidden');
     });
     exitNo.addEventListener('click', () => {
@@ -361,6 +429,10 @@ function setupProgramManagerControls() {
         // Redirect user (simulating exiting the site)
         window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
     });
+    if (isMobileView()) {
+        minimizeButton === null || minimizeButton === void 0 ? void 0 : minimizeButton.remove();
+        maximizeButton === null || maximizeButton === void 0 ? void 0 : maximizeButton.remove();
+    }
 }
 // Initialize main window controls
 setupProgramManagerControls();
@@ -538,5 +610,8 @@ function openProjectDetails(project) {
     linkElement.href = project.github;
     const detailsContent = windowElement.querySelector('.project-details-content');
     // Create the project details window without menu bar or min/max buttons
-    createWindow(project.title, detailsContent.outerHTML, 800, 500, { showMenuBar: false, showMinMax: false });
+    const newWindow = createWindow(project.title, detailsContent.outerHTML, 800, 500, { showMenuBar: false, showMinMax: false });
+    if (newWindow) {
+        newWindow.classList.add('project-details-window');
+    }
 }

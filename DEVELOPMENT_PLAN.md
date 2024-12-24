@@ -95,14 +95,13 @@ This file serves as a guide and checklist for the development of the Windows 3.1
 
 ### **Phase 1: Basic Adaptation**
 
-- [ ] Use media queries to adjust the layout for tablets and mobile devices.
-- [ ] Remove maximize/minimize buttons for small screens.
-- [ ] Replace the '-' button with a hamburger menu that opens the main navigation.
+- [X] Use media queries to adjust the layout for tablets and mobile devices.
+- [X] Remove maximize/minimize buttons for small screens.
 
 ### **Phase 2: Testing and Refinements**
 
-- [ ] Test the site on different devices (desktop, tablet, mobile).
-- [ ] Refine the layout to ensure a consistent experience across screen sizes.
+- [X] Test the site on different devices (desktop, tablet, mobile).
+- [X] Refine the layout to ensure a consistent experience across screen sizes.
 
 ---
 

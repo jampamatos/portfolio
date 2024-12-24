@@ -316,7 +316,7 @@ body {
     border: var(--border-size) solid var(--color-text);
     background-color: var(--color-secondary);
     box-shadow: 2px 2px var(--color-shadow), -2px -2px var(--color-text-inverse);
-    z-index: 1000;
+    z-index: 9999;
 }
 
 #exit-popup .content {
@@ -587,4 +587,31 @@ body {
 
 .project-link:hover {
     text-decoration: underline;
+}
+
+
+/* Phones: fill the screen entirely */
+@media (max-width: 768px) {
+    .window.main-window,
+    .window.mobile-fullscreen-window {
+        width: 100vw !important;
+        height: 100vh !important;
+        left: 0 !important;
+        top: 0 !important;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+
+/* Tablets: nearly full screen, so some green background is visible */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .window.main-window,
+    .window.mobile-fullscreen-window {
+        width: 90vw !important;
+        height: 90vh !important;
+        /* Center it by adjusting left/top */
+        left: 5vw !important;
+        top: 5vh !important;
+    }
 }
