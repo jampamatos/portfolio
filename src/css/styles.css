@@ -372,13 +372,23 @@ body {
 .about-me-content {
     display: flex;
     gap: 20px;
+    align-items: flex-start;
     padding: 15px;
 }
 
+.text-and-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1.5;
+}
+
 .text-content {
-    flex: 1;
-    font-size: 14px;
+    flex: 2.5;
+    font-size: 16px;
     line-height: 1.5;
+    text-align: justify;
 }
 
 .text-content p {
@@ -396,17 +406,19 @@ body {
 }
 
 .image-content {
-    flex: 0 0 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    align-self: center;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
 }
 
 .image-content img {
     width: 100%;
-    max-width: 200px;
+    max-width: 350px;
+    height: auto;
     border: 2px solid var(--color-text);
     filter: contrast(1.2) brightness(0.9);
+    margin-bottom: 20px;
 }
 
 .about-me-content {
@@ -613,5 +625,33 @@ body {
         /* Center it by adjusting left/top */
         left: 5vw !important;
         top: 5vh !important;
+    }
+}
+
+/* Phones and Tablets: fixing "About Me" image and content */
+@media (max-width: 1024px) {
+    .about-me-content {
+        flex-direction: column;
+    }
+
+    .text-and-image {
+        flex-direction: column;
+    }
+
+    .text-content {
+        font-size: 16px;
+        order: 3;
+    }
+
+    .image-content {
+        order: 2;
+        align-self: center;
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .image-content img {
+        max-width: 300px;
+        max-height: 300px;
     }
 }
