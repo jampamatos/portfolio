@@ -33,6 +33,8 @@ Whether you're here to learn more about my background, explore my projects, or s
 This portfolio website is designed with a Windows 98-inspired interface, offering the following features:
 
 - **Interactive Windows UI**: Movable, resizable, minimizable, and maximizable windows, mimicking the classic Windows 98 experience.
+- **Dynamic Splash Screen**: A custom Windows-inspired splash screen with rotating loading messages, creating a nostalgic boot sequence while the site loads.
+- **Responsive Design**: The site is optimized for desktop, tablet, and mobile devices, ensuring the layout adapts gracefully to different screen sizes.
 - **Dynamic Project Display**: Projects are dynamically loaded and displayed with detailed information, including images, summaries, and links to GitHub repositories.
 - **Interactive Desktop Icons**: Desktop icons for key sections: About Me, Projects, and Contact, allowing easy navigation.
 - **Email Integration**: A fully functional contact form powered by EmailJS for sending messages directly from the website.
@@ -118,11 +120,10 @@ With these steps, you can test or modify the project locally to explore its feat
 
 This portfolio is an ongoing project, with exciting features and improvements planned for the future:
 
-1. **Responsive Design**: Adapt the site for optimal viewing across devices, including tablets and mobile phones.
-2. **Localization**: Provide language support for English, Portuguese, and Spanish to reach a broader audience.
-3. **Windows-Inspired Features**: Add a splash screen reminiscent of Windows 98 during site boot. Also, implement a Start Menu and taskbar for a more immersive retro experience.
-4. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
-5. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
+1. **Localization**: Provide language support for English, Portuguese, and Spanish to reach a broader audience.
+2. **Windows-Inspired Features**: Add a splash screen reminiscent of Windows 98 during site boot. Also, implement a Start Menu and taskbar for a more immersive retro experience.
+3. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
+4. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
 
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
 
@@ -133,6 +134,7 @@ This portfolio wouldn't have been possible without the inspiration and contribut
 - **Icons**: Classic Windows 98 icons sourced from [Alex Meub's Win98 Icons](https://win98icons.alexmeub.com/).
 - **Badges**: Custom badges created using [Shields.io](https://shields.io/).
 - **Email Integration**: Contact form functionality powered by [EmailJS](https://www.emailjs.com/).
+- **Splash Screen Design**: Inspired by the boot sequence of Windows 98, with creative input for loading animations.
 - **Inspiration**: The nostalgia of the Windows 98 interface and the fun challenge of recreating its interactive features.
 
 A huge thank you to the creators of these resources for making this project possible!
