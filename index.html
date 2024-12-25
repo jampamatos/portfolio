@@ -27,6 +27,7 @@
             <div class="title-bar">
                 <span class="title">Jampa's Portfolio</span>
                 <div class="controls">
+                    <button class="localization-button" title="Change Language">🌍</button>
                     <button class="minimize">_</button>
                     <button class="maximize">□</button>
                     <button class="close">×</button>
@@ -71,6 +72,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Language Selection Popup -->
+    <!-- Appears when user clicks on the language change button -->
+     <div id="localization-popup" class="window hidden localization-popup">
+        <div class="title-bar">
+            <span class="title">Select Language</span>
+            <div class="controls">
+                <button class="close">×</button>
+            </div>
+        </div>
+
+        <div class="content language-popup-content">
+            <p>Choose your language:</p>
+            <div class="language-options">
+                <button class="localization-option popup-button" data-lang="en">English</button>
+                <button class="localization-option popup-button" data-lang="pt">Português</button>
+                <button class="localization-option popup-button" data-lang="es">Español</button>
+            </div>
+        </div>
+     </div>
     
     <!-- Template for a generic window (used to create new windows dynamically) -->
     <template id="window-template">

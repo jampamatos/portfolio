@@ -436,6 +436,7 @@ function setupProgramManagerControls() {
 }
 // Initialize main window controls
 setupProgramManagerControls();
+setupLocalizationControls();
 /**
  * Open the About Me window via desktop icon or menu item.
  * Reuses the About Me template content.
@@ -615,7 +616,64 @@ function openProjectDetails(project) {
         newWindow.classList.add('project-details-window');
     }
 }
-// Hide the splash screen after 2 seconds
+/**
+ * Fetches the JSON file containing translations for the specified language.
+ * @param {string} language - The language code (e.g., 'en', 'es', 'pt').
+ * @returns {Promise<any>} - A Promise resolving to the translation object.
+ */
+function fetchTranslations(language) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(`src/locales/${language}.json`);
+        if (!response.ok) {
+            throw new Error(`Could not load ${language} translations.`);
+        }
+        return response.json();
+    });
+}
+/**
+ * Sets up the event listeners for localization functionality.
+ * - Show the popup when the globe (🌍) button is clicked.
+ * - Closes the popup on the "×" button.
+ * - Fetches the chosen language's JSON file when a language button is clicked.
+ */
+function setupLocalizationControls() {
+    // Get the "Localization button from the main window's controls
+    const localizationButton = document.querySelector('.window.main-window .localization-button');
+    // Get the #localization-popup and its close button
+    const localizationPopup = document.getElementById('localization-popup');
+    const popupCloseBtn = localizationPopup === null || localizationPopup === void 0 ? void 0 : localizationPopup.querySelector('.controls .close');
+    // Show the popup when the localization button is clicked
+    if (localizationButton) {
+        localizationButton.addEventListener('click', () => {
+            localizationPopup.classList.remove('hidden');
+        });
+    }
+    // Hide popup on the popup's close button
+    if (popupCloseBtn) {
+        popupCloseBtn.addEventListener('click', () => {
+            localizationPopup.classList.add('hidden');
+        });
+    }
+    // Add click event to each language button
+    const languageButtons = localizationPopup.querySelectorAll('.localization-option');
+    languageButtons.forEach((button) => {
+        button.addEventListener('click', (event) => __awaiter(this, void 0, void 0, function* () {
+            const target = event.currentTarget;
+            const lang = target.dataset.lang;
+            // Attempt to fetch translations from JSON
+            try {
+                const translations = yield fetchTranslations(lang);
+                console.log(`Loaded ${lang} translations:`, translations);
+                // We'll apply these translations later, for now, just log them and hide the popup
+                localizationPopup.classList.add('hidden');
+            }
+            catch (error) {
+                console.error('Error fetching translations:', error);
+            }
+        }));
+    });
+}
+// Setup on load
 window.addEventListener('load', () => {
     const splashScreen = document.getElementById('splash-screen');
     const loadingMessage = document.getElementById('loading-message');
