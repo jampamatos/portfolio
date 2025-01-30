@@ -1,3 +1,85 @@
 {
-    "testMessage": "Hello from English JSON!"
+    "mainWindow": {
+      "titleBar": "Jampa's Portfolio",
+      "exitConfirmation": "Exit Confirmation",
+      "exitMessage": "Are you sure you want to leave the site?",
+      "exitYes": "Yes",
+      "exitNo": "No"
+    },
+    "labels": {
+      "aboutMe": "About Me",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "popupLocalization": {
+      "title": "Select Language",
+      "chooseLanguage": "Choose your language:"
+    },
+    "aboutMeWindow": {
+        "abotMeHeader": "About Me 🕹️💻🐾",
+        "firstParagraph": "Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short. I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges that keep me learning and growing.",
+        "skillsAndTools": "Skills & Tools 🔧",
+        "backend": "<strong>Backend Development:</strong> Ruby on Rails, Flask",
+        "dataEngineering": "<strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark",
+        "gameDevelopment": "<strong>Game Development:</strong> Unity, LöVE2D",
+        "frontEnd": "<strong>Frontend Fun:</strong> HTML, CSS, JavaScript",
+        "bonus": "<strong>Bonus:</strong> I’m learning React, TypeScript and deep diving into AI & ML!",
+        "funFact": "Fun Facts About Me 🎮🐕🍕",
+        "li1": "I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>, and I dream of creating unforgettable multiplayer experiences.",
+        "li2": "I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, and <strong>Luna the Dalmatian</strong> -- who keep life interesting!",
+        "li3": "I’m fluent in Portuguese, advanced in English, and know a little Spanish – so feel free to reach out in any of these!",
+        "li4": "When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, or perfecting my cooking skills.",
+        "resume": "You can <a href='resume.pdf' download>download my résumé</a> here for more details!"
+    },
+    "contactWindow": {
+        "label": "Contact Me 📧",
+        "p": "You can find me on:",
+        "namePlaceholder": "Name",
+        "emailPlaceholder": "Email",
+        "messagePlaceholder": "Message",
+        "sendButton": "Send"
+    },
+    "projects": {
+        "jampaPortfolio": {
+            "title": "Jampa Matos' Portfolio (This site!)",
+            "summary": "A Windows 98-inspired personal website and portfolio.",
+            "details": "This portfolio is a unique web project designed to resemble a classic Windows 98 environment. It includes a Program Manager and interactive desktop icons that open draggable and resizable windows. Users can explore projects, read about the developer, and send messages through an embedded contact form. The site is fully responsive, adapting to mobile screens with a single active window system. More little stuff to come!"
+        },
+        "waveOfTheFist": {
+            "title": "Wave of the Fist (Incomplete)",
+            "summary": "A 16-bit style beat 'em up game with multiplayer support for 1-4 players.",
+            "details": "This project focuses on creating a retro-inspired beat 'em up game in Unity. Features include cooperative and versus modes, progressive difficulty, and stage hazards."
+        },
+        "catsVsDogs": {
+            "title": "Cats vs Dogs Transfer Learning",
+            "summary": "A deep learning project classifying images of cats and dogs using transfer learning.",
+            "details": "This project implements transfer learning to classify images of cats and dogs. It showcases skills in TensorFlow and deep learning, leveraging pre-trained models for efficient training and high accuracy."
+        },
+        "flaskInvoice": {
+            "title": "Flask XML Invoice Parser",
+            "summary": "A Flask app for calculating costs and selling prices based on XML invoice data.",
+            "details": "This application parses XML invoices, calculates costs, and determines selling prices. It was deployed on Heroku and uses Python for backend logic."
+        },
+        "rubyNotification": {
+            "title": "Ruby on Rails Notification System",
+            "summary": "A notification system developed as part of a coding challenge.",
+            "details": "This project demonstrates backend skills using Ruby on Rails, implementing an efficient and scalable notification system."
+        },
+        "dataEngineeringPortfolio": {
+            "title": "Data Engineering Portfolio",
+            "summary": "A collection of data engineering projects showcasing Python and PySpark skills.",
+            "details": "This portfolio includes projects like analyzing bike rental data, Stack Overflow survey insights, automated pipeline processing, and Wikipedia clickstream analysis using PySpark."
+        },
+        "jampong": {
+            "title": "JamPong!",
+            "summary": "A fun Pong-inspired game developed in LöVE2D.",
+            "details": "This project explores procedural game design and animation in LöVE2D, building on the fundamentals of classic Pong with enhancements."
+        },
+        "fiftyBird": {
+            "title": "Fifty Bird",
+            "summary": "A Flappy Bird-inspired game focusing on procedural generation.",
+            "details": "Developed in LöVE2D, this game highlights procedural generation and sprite animation, showcasing classic arcade-style mechanics."
+        }
+    }
 }
+  
