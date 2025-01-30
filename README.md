@@ -39,6 +39,7 @@ This portfolio website is designed with a Windows 98-inspired interface, offerin
 - **Interactive Desktop Icons**: Desktop icons for key sections: About Me, Projects, and Contact, allowing easy navigation.
 - **Email Integration**: A fully functional contact form powered by EmailJS for sending messages directly from the website.
 - **Custom Styling and Modularity**: Modular codebase with reusable components for easier maintenance and extensibility.
+- **Localization for English, Portuguese, and Spanish Languages**: The site is now completely localized, with translations for Portuguese, English, and Spanish languages, It also checks for the browser's language and localizes based on that (defaults to English).
 
 ### Upcoming Features
 
@@ -66,13 +67,13 @@ This portfolio leverages a variety of modern and retro-inspired tools and techno
 
 ## Live Demo
 
-The portfolio website is live and accessible at [jampamatos.jampa.br](https://jampamatos.jampa.br). It is hosted on **GitHub Pages**, ensuring high availability and seamless performance.
+The portfolio website is live and accessible at [jampamatos.jampa.br](https://www.jampamatos.jampa.br). It is hosted on **GitHub Pages**, ensuring high availability and seamless performance.
 
 Feel free to explore the site to learn more about me, view my projects, and get in touch through the interactive contact form!
 
 ## Setup Instructions
 
-While the portfolio is live and can be accessed directly at [jampamatos.jampa.br](https://jampamatos.jampa.br), you can also set it up locally for development or testing purposes. Follow these steps:
+While the portfolio is live and can be accessed directly at [jampamatos.jampa.br](https://www.jampamatos.jampa.br), you can also set it up locally for development or testing purposes. Follow these steps:
 
 ### Prerequisites
 
@@ -120,10 +121,9 @@ With these steps, you can test or modify the project locally to explore its feat
 
 This portfolio is an ongoing project, with exciting features and improvements planned for the future:
 
-1. **Localization**: Provide language support for English, Portuguese, and Spanish to reach a broader audience.
-2. **Windows-Inspired Features**: Add a splash screen reminiscent of Windows 98 during site boot. Also, implement a Start Menu and taskbar for a more immersive retro experience.
-3. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
-4. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
+1. **Windows-Inspired Features**: Add a splash screen reminiscent of Windows 98 during site boot. Also, implement a Start Menu and taskbar for a more immersive retro experience.
+2. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
+3. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
 
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
 
