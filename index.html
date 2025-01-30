@@ -25,8 +25,9 @@
         
             <!-- Title Bar with window controls -->
             <div class="title-bar">
-                <span class="title">Jampa's Portfolio</span>
+                <span class="title" data-i18n="mainWindow.titleBar">Jampa's Portfolio</span>
                 <div class="controls">
+                    <button class="localization-button" title="Change Language">🌍</button>
                     <button class="minimize">_</button>
                     <button class="maximize">□</button>
                     <button class="close">×</button>
@@ -37,15 +38,15 @@
             <div class="content">
                 <div id="icon-about" class="icon">
                     <img src="src/assets/computer_user_pencil-0.png" alt="About" />
-                    <span>About Me</span>
+                    <span data-i18n="labels.aboutMe">About Me</span>
                 </div>
                 <div id="icon-projects" class="icon">
                     <img src="src/assets/directory_explorer-0.png" alt="Projects" />
-                    <span>Projects</span>
+                    <span data-i18n="labels.projects">Projects</span>
                 </div>
                 <div id="icon-contact" class="icon">
                     <img src="src/assets/mailbox_world-2.png" alt="Contact" />
-                    <span>Contact</span>
+                    <span data-i18n="labels.contact">Contact</span>
                 </div>
             </div>
         </div>
@@ -55,7 +56,7 @@
     <!-- Appears when user attempts to close the main window, asking for confirmation -->
     <div id="exit-popup" class="window hidden">
         <div class="title-bar">
-            <span class="title">Exit Confirmation</span>
+            <span class="title" data-i18n="mainWindow.exitConfirmation">Exit Confirmation</span>
             <div class="controls">
                 <button class="close">×</button>
             </div>
@@ -63,14 +64,34 @@
         <div class="content">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
                 <img src="src/assets/msg_warning-0.png" alt="Warning" style="width: 32px; height: 32px;" />
-                <p>Are you sure you want to leave the site?</p>
+                <p data-i18n="mainWindow.exitMessage">Are you sure you want to leave the site?</p>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px;">
-                <button id="exit-yes" class="popup-button">Yes</button>
-                <button id="exit-no" class="popup-button">No</button>
+                <button id="exit-yes" class="popup-button" data-i18n="mainWindow.exitYes">Yes</button>
+                <button id="exit-no" class="popup-button" data-i18n="mainWindow.exitNo">No</button>
             </div>
         </div>
     </div>
+
+    <!-- Language Selection Popup -->
+    <!-- Appears when user clicks on the language change button -->
+     <div id="localization-popup" class="window hidden localization-popup">
+        <div class="title-bar">
+            <span class="title" data-i18n="popupLocalization.title">Select Language</span>
+            <div class="controls">
+                <button class="close">×</button>
+            </div>
+        </div>
+
+        <div class="content language-popup-content">
+            <p data-i18n="popupLocalization.chooseLanguage">Choose your language:</p>
+            <div class="language-options">
+                <button class="localization-option popup-button" data-lang="en">English</button>
+                <button class="localization-option popup-button" data-lang="pt">Português</button>
+                <button class="localization-option popup-button" data-lang="es">Español</button>
+            </div>
+        </div>
+     </div>
     
     <!-- Template for a generic window (used to create new windows dynamically) -->
     <template id="window-template">
@@ -98,9 +119,9 @@
             <!-- Menu Bar with default menu items -->
             <div class="menu-bar">
                 <ul>
-                    <li id="menu-about">About Me</li>
-                    <li id="menu-projects">Projects</li>
-                    <li id="menu-contact">Contact</li>
+                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
+                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
+                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
                 </ul>
             </div>
             
@@ -126,7 +147,7 @@
             <div class="resize-handle bottom-right"></div>
     
             <div class="title-bar">
-                <span class="title">About Me</span>
+                <span class="title" data-i18n="labels.aboutMe">About Me</span>
                 <div class="controls">
                     <button class="minimize">_</button>
                     <button class="maximize">□</button>
@@ -137,58 +158,58 @@
             <!-- Menu Bar specific to the About Me window -->
             <div class="menu-bar">
                 <ul>
-                    <li id="menu-about">About Me</li>
-                    <li id="menu-projects">Projects</li>
-                    <li id="menu-contact">Contact</li>
+                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
+                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
+                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
                 </ul>
             </div>
             
             <!-- About Me content section -->
             <div class="content about-me-content">
                 <div class="text-and-image">
-                    <h2>About Me 🕹️💻🐾</h2>
+                    <h2 data-i18n="aboutMeWindow.abotMeHeader">About Me 🕹️💻🐾</h2>
                     <div class="image-content">
                         <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo" />
                     </div>
                 </div>
                 <div class="text-content">
-                    <p>
+                    <p data-i18n="aboutMeWindow.firstParagraph">
                         Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short.
                         I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend
                         systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges
                         that keep me learning and growing.
                     </p>
 
-                    <h3>Skills & Tools 🔧</h3>
+                    <h3 data-i18n="aboutMeWindow.skillsAndTools">Skills & Tools 🔧</h3>
                     <ul>
-                        <li><strong>Backend Development:</strong> Ruby on Rails, Flask</li>
-                        <li><strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark</li>
-                        <li><strong>Game Development:</strong> Unity, LöVE2D</li>
-                        <li><strong>Frontend Fun:</strong> HTML, CSS, JavaScript</li>
-                        <li><strong>Bonus:</strong> I’m learning TypeScript and deep diving into AI & ML!</li>
+                        <li data-i18n="aboutMeWindow.backend"><strong>Backend Development:</strong> Ruby on Rails, Flask</li>
+                        <li data-i18n="aboutMeWindow.dataEngineering"><strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark</li>
+                        <li data-i18n="aboutMeWindow.gameDevelopment"><strong>Game Development:</strong> Unity, LöVE2D</li>
+                        <li data-i18n="aboutMeWindow.frontEnd"><strong>Frontend Fun:</strong> HTML, CSS, JavaScript</li>
+                        <li data-i18n="aboutMeWindow.bonus"><strong>Bonus:</strong> I’m learning TypeScript and deep diving into AI & ML!</li>
                     </ul>
 
-                    <h3>Fun Facts About Me 🎮🐕🍕</h3>
+                    <h3 data-i18n="aboutMeWindow.funFact">Fun Facts About Me 🎮🐕🍕</h3>
                     <ul>
-                        <li>
+                        <li data-i18n="aboutMeWindow.li1">
                             I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>,
                             and I dream of creating unforgettable multiplayer experiences.
                         </li>
-                        <li>
+                        <li data-i18n="aboutMeWindow.li2">
                             I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, 
                             and <strong>Luna the Dalmatian</strong> -- who keep life interesting!
                         </li>
-                        <li>
+                        <li data-i18n="aboutMeWindow.li3">
                             I’m fluent in Portuguese, advanced in English, and know a little Spanish – 
                             so feel free to reach out in any of these!
                         </li>
-                        <li>
+                        <li data-i18n="aboutMeWindow.li4">
                             When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, 
                             or perfecting my cooking skills.
                         </li>
                         <br>
                     </ul>
-                    <p>
+                    <p data-i18n="aboutMeWindow.resume">
                         You can <a href="resume.pdf" download>download my résumé</a> here for more details!
                     </p>
                 </div>
@@ -211,7 +232,7 @@
             <div class="resize-handle bottom-right"></div>
         
             <div class="title-bar">
-                <span class="title">Contact</span>
+                <span class="title" data-i18n="labels.contact">Contact</span>
                 <div class="controls">
                     <button class="minimize">_</button>
                     <button class="maximize">□</button>
@@ -221,19 +242,19 @@
             
             <div class="menu-bar">
                 <ul>
-                    <li id="menu-about">About Me</li>
-                    <li id="menu-projects">Projects</li>
-                    <li id="menu-contact">Contact</li>
+                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
+                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
+                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
                 </ul>
             </div>
             
             <div class="content contact-content">
-                <h2>Contact Me 📧</h2>
-                <p>You can find me on:</p>
+                <h2 data-i18n="contactWindow.label">Contact Me 📧</h2>
+                <p data-i18n="contactWindow.p">You can find me on:</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/jampamatos/" target="_blank">
                         <img 
-                            src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" 
+                            src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=INSPIRE&logoColor=white" 
                             alt="LinkedIn Badge"
                         />
                     </a>
@@ -267,10 +288,29 @@
 
                 <!-- Contact Form -->
                 <form id="contact-form">
-                    <input type="text" name="name" placeholder="Name" required />
-                    <input type="email" name="email" placeholder="Email" required />
-                    <textarea name="message" placeholder="Message" required></textarea>
-                    <button type="submit">Send</button>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        data-i18n-placeholder="contactWindow.namePlaceholder" 
+                    />
+                    <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        data-i18n-placeholder="contactWindow.emailPlaceholder" 
+                    />
+                    <textarea 
+                        name="message" 
+                        required
+                        data-i18n-placeholder="contactWindow.messagePlaceholder">
+                    </textarea>
+                    <button 
+                        type="submit" 
+                        data-i18n="contactWindow.sendButton">
+                        Send
+                    </button>
+
                 </form>
                 <p id="status-message"></p>
             </div>
@@ -294,15 +334,15 @@
     <template id="project-details-template">
         <div class="window project-details-window">
             <div class="title-bar">
-                <span class="title">Project Details</span>
+                <span class="title" data-i18n="projectDetails.title">Project Details</span>
                 <div class="controls">
                     <button class="close">×</button>
                 </div>
             </div>
             <div class="content project-details-content">
                 <img src="placeholder.jpg" alt="Project Image" class="project-image" />
-                <h3>Project Title</h3>
-                <p>Detailed description of the project goes here. It can span multiple lines and provide insights about the purpose and functionality of the project.</p>
+                <h3 data-i18n="projectDetails.projectTitle">Project Title</h3>
+                <p data-i18n="projectDetails.projectDescription">Detailed description of the project goes here.</p>
                 <a href="#" target="_blank" class="project-link">
                     <img 
                         src="https://img.shields.io/badge/Check%20it%20on%20Github-black?style=for-the-badge&logo=github&logoColor=white" 

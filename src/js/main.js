@@ -18,7 +18,10 @@ const INITIAL_WINDOW_OFFSET_Y = 20;
 /** Global state tracking */
 let windowOffsetX = INITIAL_WINDOW_OFFSET_X;
 let windowOffsetY = INITIAL_WINDOW_OFFSET_Y;
+let currentTranslations = null;
 const openWindows = [];
+/** Supported languages */
+const SUPPORTED_LANGUAGES = ['en', 'pt', 'es'];
 /**
  * Checks if the window width is below a certain breakpoint to determine a mobile layout.
  * @returns {boolean} - Returns true if the viewport width is below 768px; otherwise false.
@@ -398,6 +401,9 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
     (_a = document.getElementById('program-manager')) === null || _a === void 0 ? void 0 : _a.appendChild(windowElement);
     applyDrag(windowElement);
     applyResize(windowElement);
+    if (currentTranslations) {
+        applyLocalization(currentTranslations);
+    }
     return windowElement;
 }
 /** Sets up controls (minimize, maximize, close) for the main window and exit popup */
@@ -436,6 +442,7 @@ function setupProgramManagerControls() {
 }
 // Initialize main window controls
 setupProgramManagerControls();
+setupLocalizationControls();
 /**
  * Open the About Me window via desktop icon or menu item.
  * Reuses the About Me template content.
@@ -496,59 +503,170 @@ document.querySelectorAll('#menu-contact, #icon-contact').forEach((element) => {
         }));
     });
 });
-/** Mock Data for Projects */
-const projects = [
-    {
-        title: "Wave of the Fist (Incomplete)",
-        summary: "A 16-bit style beat 'em up game with multiplayer support for 1-4 players.",
-        details: "This project focuses on creating a retro-inspired beat 'em up game in Unity. Features include cooperative and versus modes, progressive difficulty, and stage hazards. The game was developed using modular code and includes mechanics like dodging, running, and combo-based attacks.",
-        image: "src/assets/projects/wave-of-the-fist.png",
-        github: "https://github.com/jampamatos/wave_of_the_fist",
-    },
-    {
-        title: "Cats vs Dogs Transfer Learning",
-        summary: "A deep learning project classifying images of cats and dogs using transfer learning.",
-        details: "This project implements transfer learning to classify images of cats and dogs. It showcases skills in TensorFlow and deep learning, leveraging pre-trained models for efficient training and high accuracy.",
-        image: "src/assets/projects/cats_vs_dogs_tl.png",
-        github: "https://github.com/jampamatos/cats_vs_dogs_tl",
-    },
-    {
-        title: "Flask XML Invoice Parser",
-        summary: "A Flask app for calculating costs and selling prices based on XML invoice data.",
-        details: "This application parses XML invoices, calculates costs, and determines selling prices. It was deployed on Heroku and uses Python for backend logic.",
-        image: "src/assets/projects/flask_invoice_parser.png",
-        github: "https://github.com/jampamatos/CauzinPrecos",
-    },
-    {
-        title: "Ruby on Rails Notification System",
-        summary: "A notification system developed as part of a coding challenge.",
-        details: "This project demonstrates backend skills using Ruby on Rails, implementing an efficient and scalable notification system.",
-        image: "src/assets/projects/rails_notification_system.png",
-        github: "https://github.com/jampamatos/beezen_alert_system",
-    },
-    {
-        title: "Data Engineering Portfolio",
-        summary: "A collection of data engineering projects showcasing Python and PySpark skills.",
-        details: "This portfolio includes projects like analyzing bike rental data, Stack Overflow survey insights, automated pipeline processing, and Wikipedia clickstream analysis using PySpark.",
-        image: "src/assets/projects/data_engineering_portfolio.png",
-        github: "https://github.com/jampamatos/codecademy_stuff/tree/main/Data",
-    },
-    {
-        title: "JamPong!",
-        summary: "A fun Pong-inspired game developed in LöVE2D.",
-        details: "This project explores procedural game design and animation in LöVE2D, building on the fundamentals of classic Pong with enhancements.",
-        image: "src/assets/projects/jampong.png",
-        github: "https://github.com/jampamatos/pong",
-    },
-    {
-        title: "Fifty Bird",
-        summary: "A Flappy Bird-inspired game focusing on procedural generation.",
-        details: "Developed in LöVE2D, this game highlights procedural generation and sprite animation, showcasing classic arcade-style mechanics.",
-        image: "src/assets/projects/fifty_bird.png",
-        github: "https://github.com/jampamatos/pong",
-    },
-    // Add more projects as needed
-];
+// Dynamic Project Data
+let projects = [];
+/**
+ * Loads the localized projects dynamically.
+ * @param {Record<string, any>} translations - The loaded translation object.
+ */
+function loadLocalizedProjects(translations) {
+    projects = [
+        {
+            id: "jampaPortfolio",
+            title: translations.projects.jampaPortfolio.title,
+            summary: translations.projects.jampaPortfolio.summary,
+            details: translations.projects.jampaPortfolio.details,
+            image: "src/assets/projects/jampa_portfolio.png",
+            github: "https://github.com/jampamatos/portfolio",
+        },
+        {
+            id: "waiveOfTheFist",
+            title: translations.projects.waveOfTheFist.title,
+            summary: translations.projects.waveOfTheFist.summary,
+            details: translations.projects.waveOfTheFist.details,
+            image: "src/assets/projects/wave-of-the-fist.png",
+            github: "https://github.com/jampamatos/wave_of_the_fist",
+        },
+        {
+            id: "catsVsDogs",
+            title: translations.projects.catsVsDogs.title,
+            summary: translations.projects.catsVsDogs.summary,
+            details: translations.projects.catsVsDogs.details,
+            image: "src/assets/projects/cats_vs_dogs_tl.png",
+            github: "https://github.com/jampamatos/cats_vs_dogs_tl",
+        },
+        {
+            id: "flaskInvoice",
+            title: translations.projects.flaskInvoice.title,
+            summary: translations.projects.flaskInvoice.summary,
+            details: translations.projects.flaskInvoice.details,
+            image: "src/assets/projects/flask_invoice_parser.png",
+            github: "https://github.com/jampamatos/CauzinPrecos",
+        },
+        {
+            id: "rubyNotification",
+            title: translations.projects.rubyNotification.title,
+            summary: translations.projects.rubyNotification.summary,
+            details: translations.projects.rubyNotification.details,
+            image: "src/assets/projects/rails_notification_system.png",
+            github: "https://github.com/jampamatos/beezen_alert_system",
+        },
+        {
+            id: "dataEngineeringPortfolio",
+            title: translations.projects.dataEngineeringPortfolio.title,
+            summary: translations.projects.dataEngineeringPortfolio.summary,
+            details: translations.projects.dataEngineeringPortfolio.details,
+            image: "src/assets/projects/data_engineering_portfolio.png",
+            github: "https://github.com/jampamatos/codecademy_stuff/tree/main/Data",
+        },
+        {
+            id: "jampong",
+            title: translations.projects.jampong.title,
+            summary: translations.projects.jampong.summary,
+            details: translations.projects.jampong.details,
+            image: "src/assets/projects/jampong.png",
+            github: "https://github.com/jampamatos/pong",
+        },
+        {
+            id: "fiftyBird",
+            title: translations.projects.fiftyBird.title,
+            summary: translations.projects.fiftyBird.summary,
+            details: translations.projects.fiftyBird.details,
+            image: "src/assets/projects/fifty_bird.png",
+            github: "https://github.com/jampamatos/flappy",
+        },
+        // Add more projects as needed
+    ];
+}
+/**
+ * Fetches and applies translations, including localized project data.
+ * @param {string} language - The selected language.
+ */
+function applyLocalizedContent(language) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            // 1. Fetch new translations
+            currentTranslations = yield fetchTranslations(language);
+            if (currentTranslations) {
+                // 2. Update projects array
+                loadLocalizedProjects(currentTranslations);
+                // 3. Apply text changes to the entire DOM
+                applyLocalization(currentTranslations);
+                // 4. If "Projects" is open, refresh it with the newly updated projects array
+                if (openWindows.includes("Projects")) {
+                    updateOpenProjectsWindow();
+                }
+            }
+            console.log(`Localization applied: ${language}`);
+        }
+        catch (error) {
+            console.error("Error applying localization:", error);
+        }
+    });
+}
+/** Updates open Project window to repopulate it with updated translations */
+function updateOpenProjectsWindow() {
+    const projectWindow = document.getElementById("projects-window");
+    if (!projectWindow)
+        return;
+    // Update the window title from translations
+    const titleElement = projectWindow.querySelector(".title");
+    titleElement.textContent = (currentTranslations === null || currentTranslations === void 0 ? void 0 : currentTranslations.labels.projects) || "Projects";
+    // Clear the grid
+    const gridElement = projectWindow.querySelector(".project-grid");
+    if (!gridElement)
+        return;
+    gridElement.innerHTML = "";
+    // Re-append project items
+    projects.forEach((project) => {
+        const projectItem = document.createElement("div");
+        projectItem.classList.add("grid-item");
+        const projectImage = document.createElement("img");
+        projectImage.src = project.image;
+        projectImage.alt = project.title;
+        projectImage.style.width = "100%";
+        const projectTitle = document.createElement("h4");
+        projectTitle.textContent = project.title;
+        const projectSummary = document.createElement("p");
+        projectSummary.textContent = project.summary;
+        projectItem.appendChild(projectImage);
+        projectItem.appendChild(projectTitle);
+        projectItem.appendChild(projectSummary);
+        // Open project details on click
+        projectItem.addEventListener("click", () => openProjectDetails(project));
+        gridElement.appendChild(projectItem);
+    });
+    console.log("Projects window updated with new language.");
+    // **New Code: Update Open Project Detail Windows**
+    const openDetailWindows = document.querySelectorAll('.project-details-window');
+    openDetailWindows.forEach((detailWin) => {
+        const projectId = detailWin.getAttribute('data-project-id');
+        if (!projectId)
+            return;
+        const project = projects.find(p => p.id === projectId);
+        if (!project)
+            return;
+        const imageElement = detailWin.querySelector(".project-image");
+        const titleElement = detailWin.querySelector("h3");
+        const descriptionElement = detailWin.querySelector("p");
+        const linkElement = detailWin.querySelector(".project-link");
+        // Update the content with the new localized text
+        if (imageElement) {
+            imageElement.src = project.image;
+            imageElement.alt = project.title;
+        }
+        if (titleElement) {
+            titleElement.textContent = project.title;
+        }
+        if (descriptionElement) {
+            descriptionElement.textContent = project.details;
+        }
+        if (linkElement) {
+            linkElement.href = project.github;
+        }
+    });
+    console.log("All open project detail windows updated with new language.");
+}
 /** Load the Projects window and dynamically append project items */
 function loadProjects() {
     if (openWindows.includes('Projects')) {
@@ -556,7 +674,11 @@ function loadProjects() {
         return;
     }
     // Create a Projects window with an empty grid placeholder
-    createWindow("Projects", '<div class="project-grid"></div>', 800, 600, { showMenuBar: true, showMinMax: true });
+    const newWindow = createWindow("Projects", '<div class="project-grid"></div>', 800, 600, { showMenuBar: true, showMinMax: true });
+    if (!newWindow)
+        return;
+    // Set a stable ID or data attribute
+    newWindow.setAttribute("id", "projects-window");
     // Find the newly created Projects window
     const windows = document.querySelectorAll('.window');
     const projectWindow = Array.from(windows).find(win => {
@@ -608,15 +730,138 @@ function openProjectDetails(project) {
     titleElement.textContent = project.title;
     descriptionElement.textContent = project.details;
     linkElement.href = project.github;
+    // Assign the project ID to the window for future reference
+    windowElement.setAttribute("data-project-id", project.id);
     const detailsContent = windowElement.querySelector('.project-details-content');
     // Create the project details window without menu bar or min/max buttons
     const newWindow = createWindow(project.title, detailsContent.outerHTML, 800, 500, { showMenuBar: false, showMinMax: false });
     if (newWindow) {
         newWindow.classList.add('project-details-window');
+        newWindow.setAttribute("data-project-id", project.id); // Ensure the attribute is set
     }
+    // Add the project title to openWindows to prevent duplicate windows
+    openWindows.push(project.title);
 }
-// Hide the splash screen after 2 seconds
-window.addEventListener('load', () => {
+/**
+ * Fetches the JSON file containing translations for the specified language.
+ * @param {string} language - The language code (e.g., 'en', 'es', 'pt').
+ * @returns {Promise<any>} - A Promise resolving to the translation object.
+ */
+function fetchTranslations(language) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(`src/locales/${language}.json`);
+        if (!response.ok) {
+            throw new Error(`Could not load ${language} translations.`);
+        }
+        return response.json();
+    });
+}
+/**
+ * Sets up the event listeners for localization functionality.
+ * - Show the popup when the globe (🌍) button is clicked.
+ * - Closes the popup on the "×" button.
+ * - Fetches the chosen language's JSON file when a language button is clicked.
+ */
+function setupLocalizationControls() {
+    // Get the "Localization button from the main window's controls
+    const localizationButton = document.querySelector('.window.main-window .localization-button');
+    // Get the #localization-popup and its close button
+    const localizationPopup = document.getElementById('localization-popup');
+    const popupCloseBtn = localizationPopup === null || localizationPopup === void 0 ? void 0 : localizationPopup.querySelector('.controls .close');
+    // Show the popup when the localization button is clicked
+    if (localizationButton) {
+        localizationButton.addEventListener('click', () => {
+            localizationPopup.classList.remove('hidden');
+        });
+    }
+    // Hide popup on the popup's close button
+    if (popupCloseBtn) {
+        popupCloseBtn.addEventListener('click', () => {
+            localizationPopup.classList.add('hidden');
+        });
+    }
+    // Add click event to each language button
+    const languageButtons = localizationPopup.querySelectorAll('.localization-option');
+    languageButtons.forEach((button) => {
+        button.addEventListener('click', (event) => __awaiter(this, void 0, void 0, function* () {
+            const target = event.currentTarget;
+            const lang = target.dataset.lang;
+            // Attempt to apply localized content
+            try {
+                yield applyLocalizedContent(lang); // Reload everything dynamically
+                localizationPopup.classList.add('hidden');
+            }
+            catch (error) {
+                console.error('Error fetching translations:', error);
+            }
+        }));
+    });
+}
+/**
+ * Applies the specified translations to all elements with a [data-i18n] attribute.
+ * @param {Record<string, any>} translations - The loaded translations object (from JSON).
+ */
+function applyLocalization(translations) {
+    if (!translations) {
+        return; // Immediately return if no translations
+    }
+    // Find all elements with the [data-i18n] attribute
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    i18nElements.forEach((element) => {
+        const keyPath = element.getAttribute('data-i18n');
+        // Retrieve the translated text via the key path
+        const textValue = getNestedValue(translations, keyPath);
+        // If found, update textContent
+        if (textValue) {
+            element.innerHTML = textValue;
+        }
+    });
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach((element) => {
+        const keyPath = element.getAttribute('data-i18n-placeholder');
+        const textValue = getNestedValue(translations, keyPath);
+        if (textValue) {
+            element.placeholder = textValue;
+        }
+    });
+}
+/**
+ * Safely retrieves a nested value from an object given a dot-notated path, e.g. "mainWindow.title".
+ * @param {Record<string, any>} obj - The object containing translations.
+ * @param {string} path - The dotted path string (e.g. "mainWindow.title").
+ * @returns {string | undefined} - The nested value if found, otherwise undefined.
+ */
+function getNestedValue(obj, path) {
+    let result = obj;
+    const keys = path.split('.');
+    for (const key of keys) {
+        // If result is falsy or doesn't have this key, return undefined
+        if (!result || !(key in result)) {
+            return undefined;
+        }
+        result = result[key];
+    }
+    // We only want to return a string, otherwise undefined
+    return typeof result === 'string' ? result : undefined;
+}
+/**
+ * Detects the user's preferred language and matches it to the supported list.
+ * Defaults to English if no match is found.
+ * @returns {string} - The detected or default language.
+ */
+function detectUserLanguage() {
+    const userLang = navigator.language.split('-')[0]; // Extract base language (e.g., "pt" from "pt-BR")
+    return SUPPORTED_LANGUAGES.includes(userLang) ? userLang : 'en'; // Defaults to English
+}
+// Setup on load
+window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const detectedLanguage = detectUserLanguage();
+        yield applyLocalizedContent(detectedLanguage);
+    }
+    catch (error) {
+        console.error("Error applying localization:", error);
+    }
     const splashScreen = document.getElementById('splash-screen');
     const loadingMessage = document.getElementById('loading-message');
     // List of loading messages to cycle through
@@ -644,4 +889,4 @@ window.addEventListener('load', () => {
             setTimeout(() => splashScreen.remove(), 1000);
         }, 6000);
     }
-});
+}));

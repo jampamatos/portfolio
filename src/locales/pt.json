@@ -1,0 +1,85 @@
+{
+    "mainWindow": {
+      "titleBar": "Portfólio do Jampa",
+      "exitConfirmation": "Confirmação de Saída",
+      "exitMessage": "Tem certeza que deseja sair do site?",
+      "exitYes": "Sim",
+      "exitNo": "Não"
+    },
+    "labels": {
+      "aboutMe": "Sobre Mim",
+      "projects": "Projetos",
+      "contact": "Contato"
+    },
+    "popupLocalization": {
+      "title": "Selecionar idioma",
+      "chooseLanguage": "Escolha seu idioma:"
+    },
+    "aboutMeWindow": {
+        "abotMeHeader": "Sobre mim 🕹️💻🐾",
+        "firstParagraph": "Olá! Sou <strong>João Paulo Coutinho de Matos</strong> – ou apenas <strong>Jampa</strong>, para abreviar. Sou um entusiasta de tecnologia, jogador e solucionador de problemas de Cataguases, Brasil. Seja construindo sistemas de backend, criando pipelines de dados ou projetando jogos, adoro explorar desafios criativos e técnicos que me fazem continuar aprendendo e crescendo.",
+        "skillsAndTools": "Habilidades e ferramentas 🔧",
+        "backend": "<strong>Desenvolvimento de backend:</strong> Ruby on Rails, Flask",
+        "dataEngineering": "<strong>Engenharia de dados:</strong> Python, SQL, Pandas, PySpark",
+        "gameDevelopment": "<strong>Desenvolvimento de jogos:</strong> Unity, LöVE2D",
+        "frontEnd": "<strong>Diversão de Frontend:</strong> HTML, CSS, JavaScript",
+        "bonus": "<strong>Bônus:</strong> Estou aprendendo React, TypeScript e me aprofundando em IA e ML!",
+        "funFact": "Fatos divertidos sobre mim 🎮🐕🍕",
+        "li1": "Eu criei jogos como <strong>Flappy Bird</strong> e <strong>JamPong!</strong>, e sonho em criar experiências multijogador inesquecíveis.",
+        "li2": "Eu moro com dois cachorros enormes e adoráveis ​​-- <strong>Mike, o Border Collie</strong>, e <strong>Luna, a Dálmata</strong> -- que mantêm a vida interessante!",
+        "li3": "Sou fluente em português, avançado em inglês e sei um pouco de espanhol - então sinta-se à vontade para entrar em contato em qualquer um deles!",
+        "li4": "Quando não estou codificando, você pode me encontrar curtindo jogos retrô, mexendo com novas tecnologias ou aperfeiçoando minhas habilidades culinárias.",
+        "resume": "Você pode <a href='resume.pdf' download>baixar meu currículo</a> aqui (em inglês) para mais detalhes!"
+    },
+    "contactWindow": {
+        "label": "Entre em contato comigo 📧",
+        "p": "Você pode me encontrar em:",
+        "namePlaceholder": "Nome",
+        "emailPlaceholder": "E-mail",
+        "messagePlaceholder": "Mensagem",
+        "sendButton": "Enviar"
+    },
+    "projects": {
+        "jampaPortfolio": {
+            "title": "Portfólio de Jampa Matos (Este site!)",
+            "summary": "Um site pessoal e portfólio inspirado no Windows 98.",
+            "details": "Este portfólio é um projeto web exclusivo, projetado para se assemelhar a um ambiente clássico do Windows 98. Ele inclui um Gerenciador de Programas e ícones interativos da área de trabalho que abrem janelas arrastáveis e redimensionáveis. Os usuários podem explorar projetos, ler sobre o desenvolvedor e enviar mensagens por meio de um formulário de contato incorporado. O site é totalmente responsivo, adaptando-se a telas de dispositivos móveis com um único sistema de janela ativa. Mais pequenas coisas por vir!"
+        },
+        "waveOfTheFist": {
+            "title": "Wave of the Fist (Incompleto)",
+            "summary": "Um jogo de beat 'em up de 16 bits com suporte multijogador para 1 a 4 jogadores.",
+            "details": "Este projeto se concentra na criação de um jogo de beat 'em up de inspiração retrô no Unity. Os recursos incluem modos cooperativo e versus, dificuldade progressiva e perigos de fase."
+        },
+        "catsVsDogs": {
+            "title": "Aprendizado de transferência de gatos vs. cães",
+            "summary": "Um projeto de aprendizado profundo que classifica imagens de gatos e cães usando aprendizado de transferência.",
+            "details": "Este projeto implementa aprendizado de transferência para classificar imagens de gatos e cães. Ele demonstra habilidades em TensorFlow e aprendizado profundo, aproveitando modelos pré-treinados para treinamento eficiente e alta precisão."
+        },
+        "flaskInvoice": {
+            "title": "Flask XML Invoice Parser",
+            "summary": "Um aplicativo Flask para calcular custos e preços de venda com base em dados de faturas XML.",
+            "details": "Este aplicativo analisa faturas XML, calcula custos e determina preços de venda. Ele foi implantado no Heroku e usa Python para lógica de backend."
+        },
+        "rubyNotification": {
+            "title": "Sistema de notificação Ruby on Rails",
+            "summary": "Um sistema de notificação desenvolvido como parte de um desafio de codificação.",
+            "details": "Este projeto demonstra habilidades de backend usando Ruby on Rails, implementando um sistema de notificação eficiente e escalável."
+        },
+        "dataEngineeringPortfolio": {
+            "title": "Portfólio de engenharia de dados",
+            "summary": "Uma coleção de projetos de engenharia de dados que mostram habilidades em Python e PySpark.",
+            "details": "Este portfólio inclui projetos como análise de dados de aluguel de bicicletas, insights de pesquisa do Stack Overflow, processamento automatizado de pipeline e análise de fluxo de cliques da Wikipedia usando PySpark."
+        },
+        "jampong": {
+            "title": "JamPong!",
+            "summary": "Um jogo divertido inspirado em Pong desenvolvido em LöVE2D.",
+            "details": "Este projeto explora design e animação de jogos procedurais em LöVE2D, com base nos fundamentos do Pong clássico com melhorias."
+        },
+        "fiftyBird": {
+            "title": "Fifty Bird",
+            "summary": "Um jogo inspirado em Flappy Bird com foco em geração procedural.",
+            "details": "Desenvolvido em LöVE2D, este jogo destaca a geração procedural e animação de sprites, exibindo mecânicas clássicas de estilo arcade."
+        }
+    }
+}
+  

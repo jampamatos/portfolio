@@ -1,0 +1,85 @@
+{
+    "mainWindow": {
+      "titleBar": "Portafolio de Jampa",
+      "exitConfirmation": "Confirmación de salida",
+      "exitMessage": "¿Estás seguro de que quieres abandonar el sitio?",
+      "exitYes": "Sí",
+      "exitNo": "No"
+    },
+    "labels": {
+      "aboutMe": "Acerca de mí",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "popupLocalization": {
+      "title": "Seleccionar idioma",
+      "chooseLanguage": "Elige tu idioma:"
+    },
+    "aboutMeWindow": {
+        "abotMeHeader": "Acerca de mí 🕹️💻🐾",
+        "firstParagraph": "¡Hola! Soy <strong>João Paulo Coutinho de Matos</strong>, o simplemente <strong>Jampa</strong>, para abreviar. Soy un entusiasta de la tecnología, un jugador y un solucionador de problemas de Cataguases, Brasil. Ya sea que esté construyendo sistemas backend, creando canales de datos o diseñando juegos, me encanta explorar desafíos creativos y técnicos que me permitan seguir aprendiendo y creciendo.",
+        "skillsAndTools": "Habilidades y herramientas 🔧",
+        "backend": "<strong>Desarrollo de backend:</strong> Ruby on Rails, Flask",
+        "dataEngineering": "<strong>Ingeniería de datos:</strong> Python, SQL, Pandas, PySpark",
+        "gameDevelopment": "<strong>Desarrollo de juegos:</strong> Unity, LöVE2D",
+        "frontEnd": "<strong>Diversión con el frontend:</strong> HTML, CSS, JavaScript",
+        "bonus": "<strong>Bonus:</strong> ¡Estoy aprendiendo React, TypeScript y profundizando en IA y ML!",
+        "funFact": "Datos curiosos sobre mí 🎮🐕🍕",
+        "li1": "He creado juegos como <strong>Flappy Bird</strong> y <strong>JamPong!</strong>, y sueño con crear experiencias multijugador inolvidables.",
+        "li2": "Vivo con dos perros enormes y adorables: <strong>Mike el Border Collie</strong> y <strong>Luna la Dálmata</strong>, ¡que hacen que la vida sea interesante!",
+        "li3": "Hablo portugués con fluidez, tengo un nivel avanzado de inglés y sé un poco de español, ¡así que no dudes en comunicarte conmigo en cualquiera de estos medios!",
+        "li4": "Cuando no estoy programando, puedes encontrarme disfrutando de juegos retro, experimentando con nuevas tecnologías, o a perfeccionar mis habilidades culinarias.",
+        "resume": "Puedes <a href='resume.pdf' download>descargar mi currículum</a> aquí (en inglés) para obtener más detalles ."
+    },
+    "contactWindow": {
+        "label": "Contáctame 📧",
+        "p": "Puedes encontrarme en:",
+        "namePlaceholder": "Nombre",
+        "emailPlaceholder": "Correo electrónico",
+        "messagePlaceholder": "Mensaje",
+        "sendButton": "Enviar"
+    },
+    "projects": {
+        "jampaPortfolio": {
+            "title": "Portafolio de Jampa Matos (¡Este sitio!)",
+            "summary": "Un sitio web y un portafolio personal inspirados en Windows 98.",
+            "details": "Este portafolio es un proyecto web único diseñado para parecerse a un entorno clásico de Windows 98. Incluye un Administrador de programas e iconos de escritorio interactivos que abren ventanas arrastrables y redimensionables. Los usuarios pueden explorar proyectos, leer sobre el desarrollador y enviar mensajes a través de un formulario de contacto integrado. El sitio es totalmente responsivo y se adapta a pantallas móviles con un sistema de ventana activa única. ¡Pronto habrá más cosas pequeñas!"
+        },
+        "waveOfTheFist": {
+            "title": "Wave of the Fist (Incomplete)",
+            "summary": "Un juego beat 'em up de estilo de 16 bits con soporte multijugador para 1 a 4 jugadores.",
+            "details": "Este proyecto se centra en la creación de un juego beat 'em up de inspiración retro en Unity. Las características incluyen modos cooperativo y versus, dificultad progresiva y peligros en el escenario."
+        },
+        "catsVsDogs": {
+            "title": "Aprendizaje por transferencia de gatos y perros",
+            "summary": "Un proyecto de aprendizaje profundo que clasifica imágenes de gatos y perros mediante aprendizaje por transferencia.",
+            "details": "Este proyecto implementa el aprendizaje por transferencia para clasificar imágenes de gatos y perros. Muestra habilidades en TensorFlow y aprendizaje profundo, aprovechando modelos entrenados previamente para un entrenamiento eficiente y alta precisión."
+        },
+        "flaskInvoice": {
+            "title": "Analizador de facturas XML de Flask",
+            "summary": "Una aplicación Flask para calcular costos y precios de venta basados ​​en datos de facturas XML.",
+            "details": "Esta aplicación analiza facturas XML, calcula costos y determina precios de venta. Se implementó en Heroku y utiliza Python para la lógica de backend."
+        },
+        "rubyNotification": {
+            "title": "Sistema de notificaciones Ruby on Rails",
+            "summary": "Un sistema de notificaciones desarrollado como parte de un desafío de codificación.",
+            "details": "Este proyecto demuestra habilidades de backend usando Ruby on Rails, implementando un sistema de notificaciones eficiente y escalable."
+        },
+        "dataEngineeringPortfolio": {
+            "title": "Portafolio de ingeniería de datos",
+            "summary": "Una colección de proyectos de ingeniería de datos que muestran habilidades en Python y PySpark.",
+            "details": "Este portafolio incluye proyectos como análisis de datos de alquiler de bicicletas, información de encuestas de Stack Overflow, procesamiento automatizado de canalizaciones y análisis de flujo de clics de Wikipedia usando PySpark."
+        },
+        "jampong": {
+            "title": "JamPong!",
+            "summary": "Un divertido juego inspirado en Pong desarrollado en LöVE2D.",
+            "details": "Este proyecto explora el diseño y la animación de juegos procedimentales en LöVE2D, basándose en los fundamentos del clásico Pong con mejoras."
+        },
+        "fiftyBird": {
+            "title": "Fifty Bird",
+            "summary": "Un juego inspirado en Flappy Bird centrado en la generación procedimental.",
+            "details": "Este juego, desarrollado en LöVE2D, destaca la generación procedimental y la animación de sprites, mostrando mecánicas clásicas de estilo arcade."
+        }
+    }
+}
+  
