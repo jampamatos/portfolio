@@ -45,10 +45,6 @@ This portfolio website is designed with a Windows 98-inspired interface, offerin
 
 The portfolio is a work in progress, and future updates will include:
 
-- Full responsiveness to adapt to different devices and screen sizes.
-- Localization for English, Portuguese, and Spanish languages.
-- A Windows-like splash screen during site load.
-- Functionality for a Start Menu and taskbar.
 - A dedicated Games section with live demos of my LöVE2D projects.
 - A mock MS-DOS prompt as an Easter egg.
 
