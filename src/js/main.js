@@ -241,8 +241,8 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
     if (isMobileView()) {
         const allWindows = document.querySelectorAll('.window');
         allWindows.forEach((window) => {
-            // Skip the main window (the one with class .main-window)
-            if (!window.classList.contains('main-window') && window.id !== 'exit-popup') {
+            // Skip the main window, the exit popup and the localization popup
+            if (!window.classList.contains('main-window') && window.id !== 'exit-popup' && window.id !== 'localization-popup') {
                 window.remove();
             }
         });
