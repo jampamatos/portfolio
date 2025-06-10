@@ -117,9 +117,8 @@ With these steps, you can test or modify the project locally to explore its feat
 
 This portfolio is an ongoing project, with exciting features and improvements planned for the future:
 
-1. **Windows-Inspired Features**: Add a splash screen reminiscent of Windows 98 during site boot. Also, implement a Start Menu and taskbar for a more immersive retro experience.
-2. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
-3. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
+1. **Games Section**: Include a dedicated section with live demos of my LöVE2D games, playable directly on the website using `love.js`.
+2. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
 
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
 
