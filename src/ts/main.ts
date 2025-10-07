@@ -276,6 +276,18 @@ function applyResize(windowElement: HTMLElement) {
     });
 }
 
+/** 
+ * Brings a window element to the front by bumping its z-index and focusing it.
+ * @param {el} - The window HTMLElement to focus.
+ */
+function bringToFront(el: HTMLElement): void {
+    // Calculate biggest z-index and sums 1
+    const maxZ = Array.from(document.querySelectorAll<HTMLElement>('.window'))
+        .reduce((acc, w) => Math.max(acc, parseInt(getComputedStyle(w).zIndex || '1', 10) || 1), 1);
+    el.style.zIndex = String(maxZ + 1);
+    (el as HTMLElement).focus?.();
+}
+
 /**
  * Create a new window using the base window template.
  * - title: The title of the new window.
@@ -481,6 +493,17 @@ function createWindow(
 
     document.getElementById('program-manager')?.appendChild(windowElement);
 
+    // Set up a MutationObserver to track when the window is removed from the DOM
+    const observer = new MutationObserver(() => {
+        if (!document.body.contains(windowElement)) {
+            const idx = openWindows.indexOf(title);
+            if (idx !== -1) openWindows.splice(idx, 1);
+            observer.disconnect();
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Apply window behaviors
     applyDrag(windowElement);
     applyResize(windowElement);
     if (currentTranslations) {
@@ -838,8 +861,9 @@ function loadProjects() {
 
 /** Open a Project Details window for a specific project */
 function openProjectDetails(project: Project) {
-    if (openWindows.includes(project.title)) {
-        console.log(`Window for project "${project.title}" already open.`);
+    const existing = document.querySelector<HTMLElement>(`.project-details-window[data-project-id="${project.id}"]`);
+    if (existing) {
+        bringToFront(existing); // Focus/elevate existing window
         return;
     }
 
@@ -870,9 +894,6 @@ function openProjectDetails(project: Project) {
         newWindow.classList.add('project-details-window');
         newWindow.setAttribute("data-project-id", project.id); // Ensure the attribute is set
     }
-
-    // Add the project title to openWindows to prevent duplicate windows
-    openWindows.push(project.title);
 }
 
 /**

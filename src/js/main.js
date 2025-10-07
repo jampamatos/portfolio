@@ -229,6 +229,18 @@ function applyResize(windowElement) {
     });
 }
 /**
+ * Brings a window element to the front by bumping its z-index and focusing it.
+ * @param {el} - The window HTMLElement to focus.
+ */
+function bringToFront(el) {
+    var _a, _b;
+    // Calculate biggest z-index and sums 1
+    const maxZ = Array.from(document.querySelectorAll('.window'))
+        .reduce((acc, w) => Math.max(acc, parseInt(getComputedStyle(w).zIndex || '1', 10) || 1), 1);
+    el.style.zIndex = String(maxZ + 1);
+    (_b = (_a = el).focus) === null || _b === void 0 ? void 0 : _b.call(_a);
+}
+/**
  * Create a new window using the base window template.
  * - title: The title of the new window.
  * - content: The HTML content to be placed inside the window's .content area.
@@ -399,6 +411,17 @@ function createWindow(title, content, initialWidth = 600, initialHeight = 400, o
     if (windowOffsetY > window.innerHeight - MIN_WINDOW_HEIGHT)
         windowOffsetY = INITIAL_WINDOW_OFFSET_Y;
     (_a = document.getElementById('program-manager')) === null || _a === void 0 ? void 0 : _a.appendChild(windowElement);
+    // Set up a MutationObserver to track when the window is removed from the DOM
+    const observer = new MutationObserver(() => {
+        if (!document.body.contains(windowElement)) {
+            const idx = openWindows.indexOf(title);
+            if (idx !== -1)
+                openWindows.splice(idx, 1);
+            observer.disconnect();
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Apply window behaviors
     applyDrag(windowElement);
     applyResize(windowElement);
     if (currentTranslations) {
@@ -713,8 +736,9 @@ function loadProjects() {
 }
 /** Open a Project Details window for a specific project */
 function openProjectDetails(project) {
-    if (openWindows.includes(project.title)) {
-        console.log(`Window for project "${project.title}" already open.`);
+    const existing = document.querySelector(`.project-details-window[data-project-id="${project.id}"]`);
+    if (existing) {
+        bringToFront(existing); // Focus/elevate existing window
         return;
     }
     const detailsTemplate = document.getElementById("project-details-template");
@@ -739,8 +763,6 @@ function openProjectDetails(project) {
         newWindow.classList.add('project-details-window');
         newWindow.setAttribute("data-project-id", project.id); // Ensure the attribute is set
     }
-    // Add the project title to openWindows to prevent duplicate windows
-    openWindows.push(project.title);
 }
 /**
  * Fetches the JSON file containing translations for the specified language.
