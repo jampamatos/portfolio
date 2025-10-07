@@ -402,10 +402,6 @@ body {
     font-weight: bold;
 }
 
-.text-content a:hover {
-    text-decoration: underline;
-}
-
 .image-content {
     align-self: center;
     width: 100%;
@@ -572,6 +568,13 @@ body {
     padding: 20px;
 }
 
+.project-details-content .project-link {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .grid-item h4 {
     margin: 0;
     font-size: 1.2em;
@@ -598,8 +601,9 @@ body {
     font-weight: bold;
 }
 
-.project-link:hover {
-    text-decoration: underline;
+.project-link a,
+.project-link a:hover {
+  text-decoration: none;
 }
 
 /* Splash Screen Styling */
@@ -657,6 +661,39 @@ body {
     100% {
         opacity: 1;
     }
+}
+
+/* Project Badges */
+
+.badge {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.github-badge {
+  background-color: #24292e;
+  color: #fff;
+}
+
+.github-badge:hover {
+  background-color: #000;
+  transform: scale(1.05);
+}
+
+.live-badge {
+  background-color: #0078d7;
+  color: #fff;
+}
+
+.live-badge:hover {
+  background-color: #005fa3;
+  transform: scale(1.05);
 }
 
 /* Phones: fill the screen entirely */

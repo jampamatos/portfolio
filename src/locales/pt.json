@@ -40,6 +40,11 @@
         "sendButton": "Enviar"
     },
     "projects": {
+        "chaveXlsLp": {
+            "title": "Landing Page do ChaveXls",
+            "summary": "Uma landing page para o futuro micro SaaS ChaveXLS.",
+            "details": "Uma landing page para o futuro micro SaaS ChaveXLS, que apresenta duas variantes carregadas de forma preguiçosa e servidas 50/50 aleatoriamente ao visitante, preservando o teste A/B. Ambas mostram a promessa de converter XML de NF-e em planilhas fiscais verificáveis, com hero, fluxo, segurança LGPD e CTA de beta. O consentimento de analytics aciona GA4 só após opt-in e mantém eventos em fila. A nutrição de leads já conta com automações em pipelines Make registradas nas notas operacionais."
+        },
         "jampaPortfolio": {
             "title": "Portfólio de Jampa Matos (Este site!)",
             "summary": "Um site pessoal e portfólio inspirado no Windows 98.",

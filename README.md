@@ -6,6 +6,7 @@ Welcome to my portfolio website! This project is a Windows 98-inspired interacti
 
 - [JAMPA MATOS WIN98 PORTFOLIO](#jampa-matos-win98-portfolio)
   - [Table of Contents](#table-of-contents)
+  - [Changelog](#changelog)
   - [Introduction](#introduction)
   - [Features](#features)
     - [Upcoming Features](#upcoming-features)
@@ -17,8 +18,23 @@ Welcome to my portfolio website! This project is a Windows 98-inspired interacti
     - [Local Setup](#local-setup)
     - [Docker Setup (Optional)](#docker-setup-optional)
   - [Future Enhancements](#future-enhancements)
+  - [Recent Fixes and Technical Notes](#recent-fixes-and-technical-notes)
+    - [\[2025-10-07\] — Project Details Window Fix](#2025-10-07--project-details-window-fix)
+      - [Fix Summary](#fix-summary)
+      - [Result](#result)
   - [Credits](#credits)
   - [License](#license)
+
+## Changelog
+
+| Date | Type | Description |
+|------|------|--------------|
+| **2025-10-07** | 🐞 Fix | Resolved issue preventing project detail windows from reopening after being closed. Improved window tracking logic and added DOM cleanup via `MutationObserver`. |
+| **2025-09-15** | ✨ Feature | Added full localization support (English, Portuguese, and Spanish) with automatic browser language detection. |
+| **2025-09-01** | 🎨 UX | Enhanced splash screen with dynamic rotating loading messages and smooth fade-out animation. |
+| **2025-08-25** | 🧱 Refactor | Modularized window logic for better readability and maintainability. |
+| **2025-08-10** | 🚀 Launch | Initial release of the Windows 98-inspired portfolio website. |
+
 
 ## Introduction
 
@@ -121,6 +137,27 @@ This portfolio is an ongoing project, with exciting features and improvements pl
 2. **Easter Egg**: Create a mock MS-DOS prompt as a fun, hidden feature for users to discover.
 
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
+
+## Recent Fixes and Technical Notes
+
+### [2025-10-07] — Project Details Window Fix
+
+A bug was identified where project detail windows could not be reopened after being closed, displaying the message:
+
+> "Window for project 'Wave of the Fist (Incompleto)' already open."
+
+This issue occurred because closed windows remained registered in the global `openWindows` array, preventing them from being recreated.
+
+#### Fix Summary
+
+- Replaced the title-based duplicate check with a DOM query using each project’s unique `data-project-id`.
+- Added a `bringToFront()` utility to focus and raise any already-open project window instead of blocking it.
+- Implemented a `MutationObserver` within `createWindow()` to automatically remove window titles from `openWindows` when their corresponding elements are removed from the DOM.
+
+#### Result
+
+Project detail windows can now be reopened normally after being closed, and the system correctly handles focusing existing windows without duplication. This change improves both **user experience** and **state consistency** across the desktop interface.
+
 
 ## Credits
 

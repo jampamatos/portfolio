@@ -40,6 +40,11 @@
         "sendButton": "Enviar"
     },
     "projects": {
+        "chaveXlsLp": {
+        "title": "Página de aterrizaje de ChaveXLS",
+        "summary": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS.",
+        "details": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS, con dos variantes que se cargan de forma diferida y se sirven 50/50 aleatoriamente al visitante para preservar el test A/B. Ambas muestran la propuesta de convertir XML de NF-e en planillas fiscales verificables, con sección hero, flujo, cumplimiento de la LGPD y un CTA de beta. El consentimiento de analíticas activa GA4 solo después del opt-in y mantiene los eventos en cola hasta entonces. La nutrición de leads ya utiliza automatizaciones en pipelines de Make, registradas en las notas operativas."
+      },
         "jampaPortfolio": {
             "title": "Portafolio de Jampa Matos (¡Este sitio!)",
             "summary": "Un sitio web y un portafolio personal inspirados en Windows 98.",

@@ -40,6 +40,11 @@
         "sendButton": "Send"
     },
     "projects": {
+        "chaveXlsLp": {
+            "title": "ChaveXLS Landing Page",
+            "summary": "A landing page for the upcoming ChaveXLS micro SaaS.",
+            "details": "A landing page for the upcoming ChaveXLS micro SaaS, featuring two variants that are lazily loaded and served 50/50 at random to visitors to preserve the A/B test. Both showcase the promise of converting Brazilian NF-e XML into verifiable tax spreadsheets, with a hero section, flow, LGPD-compliant privacy/security, and a beta CTA. Analytics consent triggers GA4 only after opt-in and queues events until then. Lead nurturing already uses Make pipeline automations, documented in the operational notes."
+        },
         "jampaPortfolio": {
             "title": "Jampa Matos' Portfolio (This site!)",
             "summary": "A Windows 98-inspired personal website and portfolio.",

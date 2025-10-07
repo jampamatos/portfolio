@@ -448,7 +448,6 @@ function setupProgramManagerControls() {
         ({ isMinimized, isMaximized } = maximizeWindow(mainWindow, isMinimized, isMaximized));
     });
     closeButton.addEventListener('click', () => {
-        console.log("Main window close button clicked!");
         exitPopup.classList.remove('hidden');
     });
     exitNo.addEventListener('click', () => {
@@ -535,12 +534,22 @@ let projects = [];
 function loadLocalizedProjects(translations) {
     projects = [
         {
+            id: "chaveXlsLp",
+            title: translations.projects.chaveXlsLp.title,
+            summary: translations.projects.chaveXlsLp.summary,
+            details: translations.projects.chaveXlsLp.details,
+            image: "src/assets/projects/chaveXlsLp.png",
+            github: "https://github.com/jampamatos/chavexls",
+            live: "https://chavexls.netlify.app/",
+        },
+        {
             id: "jampaPortfolio",
             title: translations.projects.jampaPortfolio.title,
             summary: translations.projects.jampaPortfolio.summary,
             details: translations.projects.jampaPortfolio.details,
             image: "src/assets/projects/jampa_portfolio.png",
             github: "https://github.com/jampamatos/portfolio",
+            live: "https://www.jampamatos.jampa.br/",
         },
         {
             id: "waiveOfTheFist",
@@ -634,7 +643,9 @@ function updateOpenProjectsWindow() {
         return;
     // Update the window title from translations
     const titleElement = projectWindow.querySelector(".title");
-    titleElement.textContent = (currentTranslations === null || currentTranslations === void 0 ? void 0 : currentTranslations.labels.projects) || "Projects";
+    if (titleElement) {
+        titleElement.textContent = (currentTranslations === null || currentTranslations === void 0 ? void 0 : currentTranslations.labels.projects) || "Projects";
+    }
     // Clear the grid
     const gridElement = projectWindow.querySelector(".project-grid");
     if (!gridElement)
@@ -659,8 +670,7 @@ function updateOpenProjectsWindow() {
         projectItem.addEventListener("click", () => openProjectDetails(project));
         gridElement.appendChild(projectItem);
     });
-    console.log("Projects window updated with new language.");
-    // **New Code: Update Open Project Detail Windows**
+    // **Update Open Project Detail Windows**
     const openDetailWindows = document.querySelectorAll('.project-details-window');
     openDetailWindows.forEach((detailWin) => {
         const projectId = detailWin.getAttribute('data-project-id');
@@ -672,7 +682,29 @@ function updateOpenProjectsWindow() {
         const imageElement = detailWin.querySelector(".project-image");
         const titleElement = detailWin.querySelector("h3");
         const descriptionElement = detailWin.querySelector("p");
-        const linkElement = detailWin.querySelector(".project-link");
+        const linkContainer = detailWin.querySelector(".project-link");
+        if (linkContainer) {
+            // Clear existing links
+            linkContainer.innerHTML = '';
+            if (project.github) {
+                const githubBadge = document.createElement("a");
+                githubBadge.href = project.github;
+                githubBadge.target = "_blank";
+                githubBadge.rel = "noopener noreferrer";
+                githubBadge.classList.add("badge", "github-badge");
+                githubBadge.textContent = "Check it on GitHub";
+                linkContainer.appendChild(githubBadge);
+            }
+            if (project.live) {
+                const liveBadge = document.createElement("a");
+                liveBadge.href = project.live;
+                liveBadge.target = "_blank";
+                liveBadge.rel = "noopener noreferrer";
+                liveBadge.classList.add("badge", "live-badge");
+                liveBadge.textContent = "Check it Live";
+                linkContainer.appendChild(liveBadge);
+            }
+        }
         // Update the content with the new localized text
         if (imageElement) {
             imageElement.src = project.image;
@@ -684,16 +716,16 @@ function updateOpenProjectsWindow() {
         if (descriptionElement) {
             descriptionElement.textContent = project.details;
         }
-        if (linkElement) {
-            linkElement.href = project.github;
-        }
     });
-    console.log("All open project detail windows updated with new language.");
 }
 /** Load the Projects window and dynamically append project items */
 function loadProjects() {
     if (openWindows.includes('Projects')) {
-        console.log("Projects window is already open.");
+        console.log("Projects window is already open — refreshing grid.");
+        updateOpenProjectsWindow(); // reconstrói a grid com o array `projects` atual
+        const projectWindow = document.getElementById("projects-window");
+        if (projectWindow)
+            bringToFront(projectWindow);
         return;
     }
     // Create a Projects window with an empty grid placeholder
@@ -714,10 +746,15 @@ function loadProjects() {
         return;
     }
     const gridElement = projectWindow.querySelector('.project-grid');
+    if (!gridElement) {
+        console.error("Project grid not found in Projects window.");
+        return;
+    }
     // Append project items to the grid
     projects.forEach((project) => {
         const projectItem = document.createElement("div");
         projectItem.classList.add("grid-item");
+        projectItem.setAttribute('data-project-id', project.id);
         const projectImage = document.createElement("img");
         projectImage.src = project.image;
         projectImage.alt = project.title;
@@ -736,33 +773,153 @@ function loadProjects() {
 }
 /** Open a Project Details window for a specific project */
 function openProjectDetails(project) {
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     const existing = document.querySelector(`.project-details-window[data-project-id="${project.id}"]`);
     if (existing) {
-        bringToFront(existing); // Focus/elevate existing window
+        bringToFront(existing);
         return;
     }
     const detailsTemplate = document.getElementById("project-details-template");
+    if (!detailsTemplate) {
+        console.error("Template not found: project-details-template");
+        return;
+    }
     const detailsFragment = detailsTemplate.content.cloneNode(true);
     const windowElement = detailsFragment.querySelector(".project-details-window");
-    const imageElement = windowElement.querySelector(".project-image");
-    const titleElement = windowElement.querySelector("h3");
-    const descriptionElement = windowElement.querySelector("p");
-    const linkElement = windowElement.querySelector(".project-link");
-    // Populate the project detail fields
-    imageElement.src = project.image;
-    imageElement.alt = project.title;
-    titleElement.textContent = project.title;
-    descriptionElement.textContent = project.details;
-    linkElement.href = project.github;
-    // Assign the project ID to the window for future reference
-    windowElement.setAttribute("data-project-id", project.id);
-    const detailsContent = windowElement.querySelector('.project-details-content');
-    // Create the project details window without menu bar or min/max buttons
-    const newWindow = createWindow(project.title, detailsContent.outerHTML, 800, 500, { showMenuBar: false, showMinMax: false });
-    if (newWindow) {
-        newWindow.classList.add('project-details-window');
-        newWindow.setAttribute("data-project-id", project.id); // Ensure the attribute is set
+    if (!windowElement) {
+        console.error("project-details-window element missing in template.");
+        return;
     }
+    // Escopo: usar o fragmento clonado da janela de detalhes
+    const detailsRoot = detailsFragment.querySelector('.project-details-window');
+    const contentRoot = detailsRoot.querySelector('.project-details-content');
+    // Preencher título e descrição DENTRO do fragmento
+    contentRoot.querySelector('.project-title').textContent = project.title;
+    contentRoot.querySelector('.project-description').textContent = project.details;
+    // Populate the fragment (best-effort)
+    const imageElement = windowElement.querySelector(".project-image");
+    const titleElement = windowElement.querySelector(".project-title");
+    const descriptionElement = windowElement.querySelector(".project-description");
+    const linksElement = windowElement.querySelector(".project-link");
+    if (imageElement) {
+        imageElement.src = project.image;
+        imageElement.alt = project.title;
+    }
+    if (titleElement) {
+        titleElement.textContent = project.title;
+    }
+    if (descriptionElement) {
+        descriptionElement.textContent = project.details;
+    }
+    if (linksElement) {
+        linksElement.innerHTML = "";
+        if (project.github) {
+            const githubLink = document.createElement("a");
+            githubLink.href = project.github;
+            githubLink.target = "_blank";
+            githubLink.rel = "noopener noreferrer";
+            githubLink.classList.add("badge", "github-badge");
+            githubLink.textContent = "Check it on GitHub";
+            linksElement.appendChild(githubLink);
+        }
+        if (project.live) {
+            const liveLink = document.createElement("a");
+            liveLink.href = project.live;
+            liveLink.target = "_blank";
+            liveLink.rel = "noopener noreferrer";
+            liveLink.classList.add("badge", "live-badge");
+            liveLink.textContent = "Check it Live";
+            linksElement.appendChild(liveLink);
+        }
+    }
+    // Assign the project ID to the fragment window
+    windowElement.setAttribute("data-project-id", project.id);
+    // Grab the inner content HTML from the prepared fragment
+    // Grab the prepared CONTENT NODE (not HTML string)
+    const detailsContent = windowElement.querySelector('.project-details-content');
+    if (!detailsContent) {
+        console.error("project-details-content missing in template.");
+        return;
+    }
+    // Create the project details window with a placeholder content container
+    const newWindow = createWindow(project.title, '<div class="project-details-content"></div>', 800, 500, { showMenuBar: false, showMinMax: false });
+    if (!newWindow)
+        return;
+    // Replace placeholder with the prepared node to preserve dynamic text
+    const newContentArea = newWindow.querySelector('.content');
+    newContentArea.innerHTML = '';
+    newContentArea.appendChild(detailsContent);
+    // Ensure it's marked as a project-details window and has the project id
+    newWindow.classList.add('project-details-window');
+    newWindow.setAttribute("data-project-id", project.id);
+    // --- IMPORTANT: update the actual elements inside the created window (defensive) ---
+    // Try multiple selectors as fallback: class, data-i18n, then tag order inside content
+    const createdImage = (_a = newWindow.querySelector(".project-image")) !== null && _a !== void 0 ? _a : newWindow.querySelector('img.project-image');
+    const createdTitle = ((_d = (_c = (_b = newWindow.querySelector(".project-title")) !== null && _b !== void 0 ? _b : newWindow.querySelector('[data-i18n="projectDetails.projectTitle"]')) !== null && _c !== void 0 ? _c : newWindow.querySelector('.project-details-content h3')) !== null && _d !== void 0 ? _d : newWindow.querySelector('.content h3'));
+    const createdDescription = ((_g = (_f = (_e = newWindow.querySelector(".project-description")) !== null && _e !== void 0 ? _e : newWindow.querySelector('[data-i18n="projectDetails.projectDescription"]')) !== null && _f !== void 0 ? _f : newWindow.querySelector('.project-details-content p')) !== null && _g !== void 0 ? _g : newWindow.querySelector('.content p'));
+    const createdLinks = (_h = newWindow.querySelector(".project-link")) !== null && _h !== void 0 ? _h : newWindow.querySelector('.project-details-content .project-link');
+    if (createdImage) {
+        createdImage.src = project.image;
+        createdImage.alt = project.title;
+    }
+    if (createdTitle) {
+        createdTitle.textContent = project.title;
+        // remove potential placeholder attribute to avoid confusion
+        createdTitle.removeAttribute('data-i18n');
+    }
+    if (createdDescription) {
+        createdDescription.textContent = project.details;
+        createdDescription.removeAttribute('data-i18n');
+    }
+    if (createdLinks) {
+        // ensure existing badges are replaced
+        // clear any anchors inside project-link container
+        createdLinks.innerHTML = "";
+        if (project.github) {
+            const githubLink = document.createElement("a");
+            githubLink.href = project.github;
+            githubLink.target = "_blank";
+            githubLink.rel = "noopener noreferrer";
+            githubLink.classList.add("badge", "github-badge");
+            githubLink.textContent = "Check it on GitHub";
+            createdLinks.appendChild(githubLink);
+        }
+        if (project.live) {
+            const liveLink = document.createElement("a");
+            liveLink.href = project.live;
+            liveLink.target = "_blank";
+            liveLink.rel = "noopener noreferrer";
+            liveLink.classList.add("badge", "live-badge");
+            liveLink.textContent = "Check it Live";
+            createdLinks.appendChild(liveLink);
+        }
+    }
+    else {
+        // if createdLinks container missing, append badges directly after content area (defensive)
+        const contentArea = newWindow.querySelector('.project-details-content');
+        if (contentArea) {
+            if (project.github) {
+                const githubBadge = document.createElement("a");
+                githubBadge.href = project.github;
+                githubBadge.target = "_blank";
+                githubBadge.rel = "noopener noreferrer";
+                githubBadge.classList.add("badge", "github-badge");
+                githubBadge.textContent = "Check it on GitHub";
+                contentArea.appendChild(githubBadge);
+            }
+            if (project.live) {
+                const liveBadge = document.createElement("a");
+                liveBadge.href = project.live;
+                liveBadge.target = "_blank";
+                liveBadge.rel = "noopener noreferrer";
+                liveBadge.classList.add("badge", "live-badge");
+                liveBadge.textContent = "Check it Live";
+                contentArea.appendChild(liveBadge);
+            }
+        }
+    }
+    // Bring the new window to front
+    bringToFront(newWindow);
 }
 /**
  * Fetches the JSON file containing translations for the specified language.
@@ -824,27 +981,27 @@ function setupLocalizationControls() {
  * @param {Record<string, any>} translations - The loaded translations object (from JSON).
  */
 function applyLocalization(translations) {
-    if (!translations) {
-        return; // Immediately return if no translations
-    }
-    // Find all elements with the [data-i18n] attribute
+    if (!translations)
+        return;
     const i18nElements = document.querySelectorAll('[data-i18n]');
     i18nElements.forEach((element) => {
-        const keyPath = element.getAttribute('data-i18n');
-        // Retrieve the translated text via the key path
+        const el = element;
+        if (el.closest('.project-details-window'))
+            return; // <- não sobrescrever detalhes
+        const keyPath = el.getAttribute('data-i18n');
         const textValue = getNestedValue(translations, keyPath);
-        // If found, update textContent
-        if (textValue) {
-            element.innerHTML = textValue;
-        }
+        if (textValue)
+            el.innerHTML = textValue;
     });
     const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
     placeholderElements.forEach((element) => {
-        const keyPath = element.getAttribute('data-i18n-placeholder');
+        const el = element;
+        if (el.closest('.project-details-window'))
+            return; // <- idem
+        const keyPath = el.getAttribute('data-i18n-placeholder');
         const textValue = getNestedValue(translations, keyPath);
-        if (textValue) {
-            element.placeholder = textValue;
-        }
+        if (textValue)
+            el.placeholder = textValue;
     });
 }
 /**
