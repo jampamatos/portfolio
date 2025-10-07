@@ -29,6 +29,7 @@ Welcome to my portfolio website! This project is a Windows 98-inspired interacti
 
 | Date | Type | Description |
 |------|------|--------------|
+| **2025-10-07** | ✨ Feature | Added the ChaveXLS landing page project, dynamic GitHub/Live badges, and tightened project detail rendering to respect localization. |
 | **2025-10-07** | 🐞 Fix | Resolved issue preventing project detail windows from reopening after being closed. Improved window tracking logic and added DOM cleanup via `MutationObserver`. |
 | **2025-09-15** | ✨ Feature | Added full localization support (English, Portuguese, and Spanish) with automatic browser language detection. |
 | **2025-09-01** | 🎨 UX | Enhanced splash screen with dynamic rotating loading messages and smooth fade-out animation. |
@@ -139,6 +140,12 @@ This portfolio is an ongoing project, with exciting features and improvements pl
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
 
 ## Recent Fixes and Technical Notes
+
+### [2025-10-07] — Project Details UI Refactor & ChaveXLS Launch
+
+- Added the **ChaveXLS Landing Page** to the projects grid, complete with localized copy, new artwork, and GitHub/Live call-to-action badges.
+- Refactored the project details window workflow to populate the template after rendering, preventing localization from overwriting dynamic text and ensuring badges rebuild correctly.
+- Hardened the template structure (`index.html`) and styling so the GitHub/Live badge stack renders consistently across languages and screen sizes.
 
 ### [2025-10-07] — Project Details Window Fix
 
