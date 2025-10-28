@@ -534,6 +534,15 @@ let projects = [];
 function loadLocalizedProjects(translations) {
     projects = [
         {
+            id: "dndCards",
+            title: translations.projects.dndCards.title,
+            summary: translations.projects.dndCards.summary,
+            details: translations.projects.dndCards.details,
+            image: "src/assets/projects/dndcards.png",
+            github: "https://github.com/jampamatos/dnd-cards",
+            live: "https://jampamatos.github.io/dnd-cards/",
+        },
+        {
             id: "chaveXlsLp",
             title: translations.projects.chaveXlsLp.title,
             summary: translations.projects.chaveXlsLp.summary,

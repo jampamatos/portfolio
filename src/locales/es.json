@@ -40,10 +40,15 @@
         "sendButton": "Enviar"
     },
     "projects": {
+        "dndCards": {
+            "title": "D&D Cards",
+            "summary": "Una aplicación React bilingüe que cataloga hechizos y rasgos de D&D 5e.",
+            "details": "Una aplicación React bilingüe que cataloga hechizos y rasgos de D&D 5e. Los usuarios pueden buscar por nivel, clase o etiquetas, crear paquetes persistentes en IndexedDB y generar páginas listas para imprimir con densidad controlada, columnas y un reverso reflejado. Funciona sin conexión como una PWA y mantiene las preferencias de idioma y tema."
+        },
         "chaveXlsLp": {
-        "title": "Página de aterrizaje de ChaveXLS",
-        "summary": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS.",
-        "details": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS, con dos variantes que se cargan de forma diferida y se sirven 50/50 aleatoriamente al visitante para preservar el test A/B. Ambas muestran la propuesta de convertir XML de NF-e en planillas fiscales verificables, con sección hero, flujo, cumplimiento de la LGPD y un CTA de beta. El consentimiento de analíticas activa GA4 solo después del opt-in y mantiene los eventos en cola hasta entonces. La nutrición de leads ya utiliza automatizaciones en pipelines de Make, registradas en las notas operativas."
+            "title": "Página de aterrizaje de ChaveXLS",
+            "summary": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS.",
+            "details": "Una página de aterrizaje para el futuro micro SaaS ChaveXLS, con dos variantes que se cargan de forma diferida y se sirven 50/50 aleatoriamente al visitante para preservar el test A/B. Ambas muestran la propuesta de convertir XML de NF-e en planillas fiscales verificables, con sección hero, flujo, cumplimiento de la LGPD y un CTA de beta. El consentimiento de analíticas activa GA4 solo después del opt-in y mantiene los eventos en cola hasta entonces. La nutrición de leads ya utiliza automatizaciones en pipelines de Make, registradas en las notas operativas."
       },
         "jampaPortfolio": {
             "title": "Portafolio de Jampa Matos (¡Este sitio!)",

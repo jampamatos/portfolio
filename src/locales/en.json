@@ -40,6 +40,11 @@
         "sendButton": "Send"
     },
     "projects": {
+        "dndCards": {
+            "title": "D&D Cards",
+            "summary": "A bilingual React application that catalogs D&D 5e spells and features.",
+            "details": "A bilingual React application that catalogs D&D 5e spells and features. Users can search by level, class, or tags, build persisted packages in IndexedDB, and generate print-ready pages with controlled density, columns, and a mirrored back. It works offline as a PWA and maintains language and theme preferences."
+        },
         "chaveXlsLp": {
             "title": "ChaveXLS Landing Page",
             "summary": "A landing page for the upcoming ChaveXLS micro SaaS.",
