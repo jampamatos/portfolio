@@ -19,6 +19,8 @@ Welcome to my portfolio website! This project is a Windows 98-inspired interacti
     - [Docker Setup (Optional)](#docker-setup-optional)
   - [Future Enhancements](#future-enhancements)
   - [Recent Fixes and Technical Notes](#recent-fixes-and-technical-notes)
+    - [\[2025-10-28\] — D\&D Cards Project Launch](#2025-10-28--dd-cards-project-launch)
+    - [\[2025-10-07\] — Project Details UI Refactor \& ChaveXLS Launch](#2025-10-07--project-details-ui-refactor--chavexls-launch)
     - [\[2025-10-07\] — Project Details Window Fix](#2025-10-07--project-details-window-fix)
       - [Fix Summary](#fix-summary)
       - [Result](#result)
@@ -140,6 +142,10 @@ This portfolio is an ongoing project, with exciting features and improvements pl
 These enhancements will continue to build on the nostalgic theme while adding modern functionality and interactivity. Stay tuned for updates!
 
 ## Recent Fixes and Technical Notes
+
+### [2025-10-28] — D&D Cards Project Launch
+
+- Added the **D&D Cards** to the projects grid, complete with localized copy, new artwork, and GitHub/Live call-to-action badges.
 
 ### [2025-10-07] — Project Details UI Refactor & ChaveXLS Launch
 
