@@ -1,0 +1,65 @@
+[
+    {
+        "id": "dndCards",
+        "order": 1,
+        "image": "src/assets/projects/dndcards.png",
+        "github": "https://github.com/jampamatos/dnd-cards",
+        "live": "https://jampamatos.github.io/dnd-cards/"
+    },
+    {
+        "id": "chaveXlsLp",
+        "order": 2,
+        "image": "src/assets/projects/chaveXlsLp.png",
+        "github": "https://github.com/jampamatos/chavexls",
+        "live": "https://chavexls.netlify.app/"
+    },
+    {
+        "id": "jampaPortfolio",
+        "order": 3,
+        "image": "src/assets/projects/jampa_portfolio.png",
+        "github": "https://github.com/jampamatos/portfolio",
+        "live": "https://www.jampamatos.jampa.br/"
+    },
+    {
+        "id": "waveOfTheFist",
+        "order": 4,
+        "image": "src/assets/projects/wave-of-the-fist.png",
+        "github": "https://github.com/jampamatos/wave_of_the_fist"
+    },
+    {
+        "id": "catsVsDogs",
+        "order": 5,
+        "image": "src/assets/projects/cats_vs_dogs_tl.png",
+        "github": "https://github.com/jampamatos/cats_vs_dogs_tl"
+    },
+    {
+        "id": "flaskInvoice",
+        "order": 6,
+        "image": "src/assets/projects/flask_invoice_parser.png",
+        "github": "https://github.com/jampamatos/CauzinPrecos"
+    },
+    {
+        "id": "rubyNotification",
+        "order": 7,
+        "image": "src/assets/projects/rails_notification_system.png",
+        "github": "https://github.com/jampamatos/beezen_alert_system"
+    },
+    {
+        "id": "dataEngineeringPortfolio",
+        "order": 8,
+        "image": "src/assets/projects/data_engineering_portfolio.png",
+        "github": "https://github.com/jampamatos/codecademy_stuff/tree/main/Data"
+    },
+    {
+        "id": "jampong",
+        "order": 9,
+        "image": "src/assets/projects/jampong.png",
+        "github": "https://github.com/jampamatos/pong"
+    },
+    {
+        "id": "fiftyBird",
+        "order": 10,
+        "image": "src/assets/projects/fifty_bird.png",
+        "github": "https://github.com/jampamatos/flappy"
+    }
+]

@@ -69,11 +69,11 @@
             </div>
         </div>
         <div class="content">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-                <img src="src/assets/msg_warning-0.png" alt="Warning" style="width: 32px; height: 32px;" />
+            <div class="dialog-message">
+                <img src="src/assets/msg_warning-0.png" alt="Warning" class="dialog-icon" />
                 <p data-i18n="mainWindow.exitMessage">Are you sure you want to leave the site?</p>
             </div>
-            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+            <div class="dialog-actions">
                 <button id="exit-yes" class="popup-button" data-i18n="mainWindow.exitYes">Yes</button>
                 <button id="exit-no" class="popup-button" data-i18n="mainWindow.exitNo">No</button>
             </div>
@@ -126,9 +126,9 @@
             <!-- Menu Bar with default menu items -->
             <div class="menu-bar">
                 <ul>
-                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
-                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
-                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
+                    <li data-window-action="about" data-i18n="labels.aboutMe">About Me</li>
+                    <li data-window-action="projects" data-i18n="labels.projects">Projects</li>
+                    <li data-window-action="contact" data-i18n="labels.contact">Contact</li>
                 </ul>
             </div>
             
@@ -142,84 +142,53 @@
     <!-- About Me Window Template -->
     <!-- Provides structure and content for the About Me window -->
     <template id="about-me-template">
-        <div class="window about-me-window">
-            <!-- Resize Handles -->
-            <div class="resize-handle top"></div>
-            <div class="resize-handle right"></div>
-            <div class="resize-handle bottom"></div>
-            <div class="resize-handle left"></div>
-            <div class="resize-handle top-left"></div>
-            <div class="resize-handle top-right"></div>
-            <div class="resize-handle bottom-left"></div>
-            <div class="resize-handle bottom-right"></div>
-    
-            <div class="title-bar">
-                <span class="title" data-i18n="labels.aboutMe">About Me</span>
-                <div class="controls">
-                    <button class="minimize">_</button>
-                    <button class="maximize">□</button>
-                    <button class="close">×</button>
+        <div class="about-me-content">
+            <div class="text-and-image">
+                <h2 data-i18n="aboutMeWindow.abotMeHeader">About Me 🕹️💻🐾</h2>
+                <div class="image-content">
+                    <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo" />
                 </div>
             </div>
-            
-            <!-- Menu Bar specific to the About Me window -->
-            <div class="menu-bar">
+            <div class="text-content">
+                <p data-i18n="aboutMeWindow.firstParagraph">
+                    Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short.
+                    I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend
+                    systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges
+                    that keep me learning and growing.
+                </p>
+
+                <h3 data-i18n="aboutMeWindow.skillsAndTools">Skills & Tools 🔧</h3>
                 <ul>
-                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
-                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
-                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
+                    <li data-i18n="aboutMeWindow.backend"><strong>Backend Development:</strong> Ruby on Rails, Flask</li>
+                    <li data-i18n="aboutMeWindow.dataEngineering"><strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark</li>
+                    <li data-i18n="aboutMeWindow.gameDevelopment"><strong>Game Development:</strong> Unity, LöVE2D</li>
+                    <li data-i18n="aboutMeWindow.frontEnd"><strong>Frontend Fun:</strong> HTML, CSS, JavaScript</li>
+                    <li data-i18n="aboutMeWindow.bonus"><strong>Bonus:</strong> I’m learning TypeScript and deep diving into AI & ML!</li>
                 </ul>
-            </div>
-            
-            <!-- About Me content section -->
-            <div class="content about-me-content">
-                <div class="text-and-image">
-                    <h2 data-i18n="aboutMeWindow.abotMeHeader">About Me 🕹️💻🐾</h2>
-                    <div class="image-content">
-                        <img src="src/assets/barbayoculo.jpg" alt="Jampa's photo" />
-                    </div>
-                </div>
-                <div class="text-content">
-                    <p data-i18n="aboutMeWindow.firstParagraph">
-                        Hi there! I'm <strong>João Paulo Coutinho de Matos</strong> – or just <strong>Jampa</strong>, for short.
-                        I’m a tech enthusiast, gamer, and problem-solver from Cataguases, Brazil. Whether I’m building backend
-                        systems, crafting data pipelines, or designing games, I love exploring creative and technical challenges
-                        that keep me learning and growing.
-                    </p>
 
-                    <h3 data-i18n="aboutMeWindow.skillsAndTools">Skills & Tools 🔧</h3>
-                    <ul>
-                        <li data-i18n="aboutMeWindow.backend"><strong>Backend Development:</strong> Ruby on Rails, Flask</li>
-                        <li data-i18n="aboutMeWindow.dataEngineering"><strong>Data Engineering:</strong> Python, SQL, Pandas, PySpark</li>
-                        <li data-i18n="aboutMeWindow.gameDevelopment"><strong>Game Development:</strong> Unity, LöVE2D</li>
-                        <li data-i18n="aboutMeWindow.frontEnd"><strong>Frontend Fun:</strong> HTML, CSS, JavaScript</li>
-                        <li data-i18n="aboutMeWindow.bonus"><strong>Bonus:</strong> I’m learning TypeScript and deep diving into AI & ML!</li>
-                    </ul>
-
-                    <h3 data-i18n="aboutMeWindow.funFact">Fun Facts About Me 🎮🐕🍕</h3>
-                    <ul>
-                        <li data-i18n="aboutMeWindow.li1">
-                            I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>,
-                            and I dream of creating unforgettable multiplayer experiences.
-                        </li>
-                        <li data-i18n="aboutMeWindow.li2">
-                            I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>, 
-                            and <strong>Luna the Dalmatian</strong> -- who keep life interesting!
-                        </li>
-                        <li data-i18n="aboutMeWindow.li3">
-                            I’m fluent in Portuguese, advanced in English, and know a little Spanish – 
-                            so feel free to reach out in any of these!
-                        </li>
-                        <li data-i18n="aboutMeWindow.li4">
-                            When I’m not coding, you can catch me enjoying retro games, tinkering with new tech, 
-                            or perfecting my cooking skills.
-                        </li>
-                        <br>
-                    </ul>
-                    <p data-i18n="aboutMeWindow.resume">
-                        You can <a href="resume.pdf" download>download my résumé</a> here for more details!
-                    </p>
-                </div>
+                <h3 data-i18n="aboutMeWindow.funFact">Fun Facts About Me 🎮🐕🍕</h3>
+                <ul>
+                    <li data-i18n="aboutMeWindow.li1">
+                        I’ve built games like <strong>Flappy Bird</strong> and <strong>JamPong!</strong>,
+                        and I dream of creating unforgettable multiplayer experiences.
+                    </li>
+                    <li data-i18n="aboutMeWindow.li2">
+                        I live with two huge, lovable dogs -- <strong>Mike the Border Collie</strong>,
+                        and <strong>Luna the Dalmatian</strong> -- who keep life interesting!
+                    </li>
+                    <li data-i18n="aboutMeWindow.li3">
+                        I’m fluent in Portuguese, advanced in English, and know a little Spanish –
+                        so feel free to reach out in any of these!
+                    </li>
+                    <li data-i18n="aboutMeWindow.li4">
+                        When I’m not coding, you can catch me enjoying retro games, tinkering with new tech,
+                        or perfecting my cooking skills.
+                    </li>
+                    <br>
+                </ul>
+                <p data-i18n="aboutMeWindow.resume">
+                    You can <a href="resume.pdf" download>download my résumé</a> here for more details!
+                </p>
             </div>
         </div>
     </template>
@@ -227,100 +196,68 @@
     <!-- Contact Window Template -->
     <!-- Provides structure for the Contact window with a form and social links -->
     <template id="contact-template">
-        <div class="window contact-window">
-            <!-- Resize Handles -->
-            <div class="resize-handle top"></div>
-            <div class="resize-handle right"></div>
-            <div class="resize-handle bottom"></div>
-            <div class="resize-handle left"></div>
-            <div class="resize-handle top-left"></div>
-            <div class="resize-handle top-right"></div>
-            <div class="resize-handle bottom-left"></div>
-            <div class="resize-handle bottom-right"></div>
-        
-            <div class="title-bar">
-                <span class="title" data-i18n="labels.contact">Contact</span>
-                <div class="controls">
-                    <button class="minimize">_</button>
-                    <button class="maximize">□</button>
-                    <button class="close">×</button>
-                </div>
-            </div>
-            
-            <div class="menu-bar">
-                <ul>
-                    <li id="menu-about" data-i18n="labels.aboutMe">About Me</li>
-                    <li id="menu-projects" data-i18n="labels.projects">Projects</li>
-                    <li id="menu-contact" data-i18n="labels.contact">Contact</li>
-                </ul>
-            </div>
-            
-            <div class="content contact-content">
-                <h2 data-i18n="contactWindow.label">Contact Me 📧</h2>
-                <p data-i18n="contactWindow.p">You can find me on:</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/jampamatos/" target="_blank">
-                        <img 
-                            src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=INSPIRE&logoColor=white" 
-                            alt="LinkedIn Badge"
-                        />
-                    </a>
-                    <a href="mailto:jp.coutm@gmail.com">
-                        <img 
-                            src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white" 
-                            alt="Email Badge"
-                        />
-                    </a>
-                    <a href="https://github.com/jampamatos" target="_blank">
-                        <img 
-                            src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" 
-                            alt="Github Badge"
-                        />
-                    </a>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/jampamatos/" target="_blank">
-                        <img 
-                            src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" 
-                            alt="Instagram Badge"
-                        />
-                    </a>
-                    <a href="https://bsky.app/profile/jampamatos.jampa.br" target="_blank">
-                        <img 
-                            src="https://img.shields.io/badge/Bluesky-blue?style=for-the-badge&logo=bluesky&logoColor=white" 
-                            alt="Bluesky Badge"
-                        />
-                    </a>
-                </div>
-
-                <!-- Contact Form -->
-                <form id="contact-form">
-                    <input 
-                        type="text" 
-                        name="name" 
-                        required 
-                        data-i18n-placeholder="contactWindow.namePlaceholder" 
+        <div class="contact-content">
+            <h2 data-i18n="contactWindow.label">Contact Me 📧</h2>
+            <p data-i18n="contactWindow.p">You can find me on:</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/jampamatos/" target="_blank">
+                    <img
+                        src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=INSPIRE&logoColor=white"
+                        alt="LinkedIn Badge"
                     />
-                    <input 
-                        type="email" 
-                        name="email" 
-                        required 
-                        data-i18n-placeholder="contactWindow.emailPlaceholder" 
+                </a>
+                <a href="mailto:jp.coutm@gmail.com">
+                    <img
+                        src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white"
+                        alt="Email Badge"
                     />
-                    <textarea 
-                        name="message" 
-                        required
-                        data-i18n-placeholder="contactWindow.messagePlaceholder">
-                    </textarea>
-                    <button 
-                        type="submit" 
-                        data-i18n="contactWindow.sendButton">
-                        Send
-                    </button>
-
-                </form>
-                <p id="status-message"></p>
+                </a>
+                <a href="https://github.com/jampamatos" target="_blank">
+                    <img
+                        src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white"
+                        alt="Github Badge"
+                    />
+                </a>
             </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/jampamatos/" target="_blank">
+                    <img
+                        src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white"
+                        alt="Instagram Badge"
+                    />
+                </a>
+                <a href="https://bsky.app/profile/jampamatos.jampa.br" target="_blank">
+                    <img
+                        src="https://img.shields.io/badge/Bluesky-blue?style=for-the-badge&logo=bluesky&logoColor=white"
+                        alt="Bluesky Badge"
+                    />
+                </a>
+            </div>
+
+            <form id="contact-form">
+                <input
+                    type="text"
+                    name="name"
+                    required
+                    data-i18n-placeholder="contactWindow.namePlaceholder"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    required
+                    data-i18n-placeholder="contactWindow.emailPlaceholder"
+                />
+                <textarea
+                    name="message"
+                    required
+                    data-i18n-placeholder="contactWindow.messagePlaceholder"></textarea>
+                <button
+                    type="submit"
+                    data-i18n="contactWindow.sendButton">
+                    Send
+                </button>
+            </form>
+            <p id="status-message"></p>
         </div>
     </template>
 
@@ -328,10 +265,8 @@
     <!-- Structure for the Projects window which dynamically loads project items -->
     <template id="projects-template">
         <div class="projects-window">
-            <div class="content">
-                <div class="project-grid">
-                    <!-- Projects will be appended here dynamically -->
-                </div>
+            <div class="project-grid">
+                <!-- Projects will be appended here dynamically -->
             </div>
         </div>
     </template>
@@ -339,19 +274,11 @@
     <!-- Project Details Template -->
     <!-- Structure for a single project's detailed view -->
     <template id="project-details-template">
-        <div class="window project-details-window">
-            <div class="title-bar">
-                <span class="title" data-i18n="projectDetails.title">Project Details</span>
-                <div class="controls">
-                    <button class="close">×</button>
-                </div>
-            </div>
-            <div class="content project-details-content">
-                <img src="placeholder.jpg" alt="Project Image" class="project-image" />
-                <h3 class="project-title">Project Title</h3>
-                <p class="project-description">Detailed description of the project goes here.</p>
-                <div class="project-link"></div>
-            </div>
+        <div class="project-details-content">
+            <img src="placeholder.jpg" alt="Project Image" class="project-image" />
+            <h3 class="project-title">Project Title</h3>
+            <p class="project-description">Detailed description of the project goes here.</p>
+            <div class="project-link"></div>
         </div>
     </template>
 

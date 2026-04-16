@@ -3,10 +3,11 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Language and Environment */
-    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "es2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 
     /* Modules */
-    "module": "commonjs",                                /* Specify what module code is generated. */
+    "module": "es2020",                                  /* Specify what module code is generated. */
+    "moduleResolution": "bundler",                       /* Resolve browser-friendly ES modules without a bundler. */
     "rootDir": "src/ts",                                    /* Specify the root folder within your source files. */
 
     /* Emit */

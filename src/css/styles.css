@@ -27,20 +27,26 @@ body {
 /* Main Program Manager (like a desktop) */
 #program-manager {
     position: relative;
-    display: flex;
-    flex-direction: column;
     background-color: var(--color-primary);
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     width: 100vw;
+}
+
+/* Main window layout */
+.main-window {
+    top: 72px;
+    left: 72px;
+    width: 500px;
+    height: 305px;
 }
 
 /* Main window content alignment */
 .main-window > .content {
     display: flex;
-    gap: 20px;
-    align-items: center;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 28px 20px;
 }
 
 /* Minimized window state */
@@ -106,7 +112,6 @@ body {
     box-shadow: 2px 2px var(--color-shadow), -2px -2px var(--color-text-inverse);
     background-color: var(--color-secondary);
     overflow: hidden;
-    resize: both;
     width: 500px;
     height: 300px;
     min-width: 230px;
@@ -115,10 +120,22 @@ body {
 
 /* Generic content area */
 .content {
-    overflow: auto;
-    max-height: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.content::-webkit-resizer,
+.content::-webkit-scrollbar-corner,
+.projects-window::-webkit-resizer,
+.projects-window::-webkit-scrollbar-corner,
+.contact-content::-webkit-resizer,
+.contact-content::-webkit-scrollbar-corner {
+    background-color: var(--color-secondary);
+    background-image: none;
 }
 
 /* Minimized state inside the window */
@@ -240,64 +257,66 @@ body {
 
 .resize-handle.top,
 .resize-handle.bottom {
-    height: 10px;
+    height: 8px;
     width: 100%;
     cursor: ns-resize;
+    left: 0;
 }
 
 .resize-handle.top {
-    top: -5px;
+    top: 0;
 }
 
 .resize-handle.bottom {
-    bottom: -5px;
+    bottom: 0;
 }
 
 .resize-handle.left,
 .resize-handle.right {
-    width: 10px;
+    width: 8px;
     height: 100%;
     cursor: ew-resize;
+    top: 0;
 }
 
 .resize-handle.left {
-    left: -5px;
+    left: 0;
 }
 
 .resize-handle.right {
-    right: -5px;
+    right: 0;
 }
 
 .resize-handle.top-left,
 .resize-handle.top-right,
 .resize-handle.bottom-left,
 .resize-handle.bottom-right {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background: transparent;
 }
 
 .resize-handle.top-left {
-    top: -5px;
-    left: -5px;
+    top: 0;
+    left: 0;
     cursor: nwse-resize;
 }
 
 .resize-handle.top-right {
-    top: -5px;
-    right: -5px;
+    top: 0;
+    right: 0;
     cursor: nesw-resize;
 }
 
 .resize-handle.bottom-left {
-    bottom: -5px;
-    left: -5px;
+    bottom: 0;
+    left: 0;
     cursor: nesw-resize;
 }
 
 .resize-handle.bottom-right {
-    bottom: -5px;
-    right: -5px;
+    bottom: 0;
+    right: 0;
     cursor: nwse-resize;
 }
 
@@ -326,14 +345,20 @@ body {
     gap: 20px;
 }
 
-#exit-popup .content div:first-child {
+.dialog-message {
     display: flex;
     align-items: center;
     gap: 10px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-#exit-popup .content div:last-child {
+.dialog-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.dialog-actions {
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -365,11 +390,6 @@ body {
 }
 
 /* About Me window specifics */
-.about-me-window {
-    width: 800px;
-    height: 500px;
-}
-
 .about-me-content {
     display: flex;
     gap: 20px;
@@ -416,19 +436,8 @@ body {
     border: 2px solid var(--color-text);
     filter: contrast(1.2) brightness(0.9);
     margin-bottom: 20px;
-}
-
-.about-me-content {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.image-content img {
-    width: 100%;
     max-height: 300px;
     object-fit: cover;
-    border: 2px solid var(--color-text);
 }
 
 /* Contact window specifics */
@@ -510,11 +519,6 @@ body {
 }
 
 /* Projects window specifics */
-.projects-window .content {
-    display: block;
-    overflow-y: auto;
-}
-
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -526,18 +530,9 @@ body {
 
 .projects-window {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto;
-}
-
-.projects-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    overflow-y: auto;
 }
 
 .grid-item {
