@@ -1,36 +1,36 @@
 # Jampa Matos Win98 Portfolio
 
-Portfolio pessoal com interface inspirada no Windows 98. O site é um frontend estático em HTML, CSS e TypeScript, com janelas arrastáveis e redimensionáveis, catálogo de projetos localizado em PT/EN/ES e formulário de contato via EmailJS.
+Personal portfolio with a Windows 98-inspired interface. The site is a static frontend built with HTML, CSS, and TypeScript, featuring draggable and resizable windows, a localized project catalog in PT/EN/ES, and a contact form powered by EmailJS.
 
-## Visão geral
+## Overview
 
-- Janela principal centralizada no carregamento e movível/redimensionável no desktop
-- Janelas secundárias com foco, arraste, resize, minimizar e maximizar
-- Catálogo de projetos carregado a partir de `src/data/projects.json`
-- Textos localizados em `src/locales/en.json`, `src/locales/pt.json` e `src/locales/es.json`
-- Tela de splash com mensagens rotativas
-- Layout responsivo com comportamento adaptado para mobile/tablet
+- Main window starts centered and is draggable/resizable on desktop
+- Secondary windows support focus, drag, resize, minimize, and maximize
+- Project catalog is loaded from `src/data/projects.json`
+- Localized copy lives in `src/locales/en.json`, `src/locales/pt.json`, and `src/locales/es.json`
+- Splash screen includes rotating loading messages
+- Responsive layout adapts behavior for mobile and tablet
 
 ## Stack
 
 - HTML5
 - CSS3
 - TypeScript
-- `http-server` para servir o site localmente
-- EmailJS para o formulário de contato
-- Docker opcional para rodar o projeto em container
+- `http-server` for local serving
+- EmailJS for the contact form
+- Optional Docker setup
 
-## Estrutura do projeto
+## Project structure
 
 ```text
 .
 ├── index.html
 ├── src/
-│   ├── assets/          # imagens, ícones e thumbs dos projetos
-│   ├── css/             # estilos globais
-│   ├── data/            # dados estruturados do catálogo
-│   ├── js/              # JavaScript gerado pelo TypeScript
-│   ├── locales/         # textos localizados
+│   ├── assets/          # images, icons, and project thumbnails
+│   ├── css/             # global styles
+│   ├── data/            # structured catalog data
+│   ├── js/              # JavaScript generated from TypeScript
+│   ├── locales/         # localized copy
 │   └── ts/
 │       ├── app/
 │       │   ├── about.ts
@@ -44,122 +44,122 @@ Portfolio pessoal com interface inspirada no Windows 98. O site é um frontend e
 │       │   ├── templates.ts
 │       │   ├── types.ts
 │       │   └── windows.ts
-│       └── main.ts      # bootstrap da aplicação
+│       └── main.ts      # application bootstrap
 ├── docker/
 ├── package.json
 └── tsconfig.json
 ```
 
-## Como rodar localmente
+## Running locally
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js
 - npm
-- Navegador moderno
+- A modern browser
 
 ### Setup
 
-1. Clone o repositório:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/jampamatos/portfolio.git
 cd portfolio
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Compile o TypeScript:
+3. Compile TypeScript:
 
 ```bash
 npm run build
 ```
 
-4. Suba um servidor local:
+4. Start a local server:
 
 ```bash
 npm run start
 ```
 
-5. Abra:
+5. Open:
 
 ```text
 http://localhost:3000
 ```
 
-Observação: o fluxo atual de desenvolvimento no navegador usa `npm run build` + `npm run start`. O código TypeScript fica em `src/ts` e o JavaScript gerado vai para `src/js`.
+Note: the current browser workflow is `npm run build` + `npm run start`. TypeScript source lives in `src/ts`, and compiled JavaScript is emitted into `src/js`.
 
 ## Docker
 
-Se preferir rodar em container:
+If you prefer running the project in a container:
 
 ```bash
 docker compose -f docker/docker-compose.yaml up --build
 ```
 
-Depois, abra a URL exposta pelo container.
+Then open the URL exposed by the container.
 
-## Gerenciamento de conteúdo
+## Content management
 
-### Adicionar um novo projeto
+### Adding a new project
 
-Para adicionar um projeto novo, você não precisa mais mexer em constantes TypeScript.
+You no longer need to edit TypeScript constants to add a project.
 
-1. Adicione a imagem em `src/assets/projects/`
-2. Cadastre o projeto em `src/data/projects.json`
-3. Adicione `title`, `summary` e `details` em:
+1. Add the image to `src/assets/projects/`
+2. Register the project in `src/data/projects.json`
+3. Add `title`, `summary`, and `details` in:
    - `src/locales/pt.json`
    - `src/locales/en.json`
    - `src/locales/es.json`
 
-Exemplo de entrada em `src/data/projects.json`:
+Example entry for `src/data/projects.json`:
 
 ```json
 {
-  "id": "novoProjeto",
+  "id": "newProject",
   "order": 11,
-  "image": "src/assets/projects/novo_projeto.png",
-  "github": "https://github.com/usuario/novo-projeto",
-  "live": "https://exemplo.com"
+  "image": "src/assets/projects/new_project.png",
+  "github": "https://github.com/user/new-project",
+  "live": "https://example.com"
 }
 ```
 
-O `id` precisa bater com a chave dentro de `projects` nos arquivos de locale.
+The `id` must match the key inside `projects` in the locale files.
 
-### Atualizar textos existentes
+### Updating existing text
 
-Se o projeto já existe e você quer mudar só o conteúdo textual, basta editar os arquivos em `src/locales/`.
+If the project already exists and you only want to change copy, just edit the files in `src/locales/`.
 
-## Organização interna
+## Internal organization
 
-- `main.ts`: inicialização da aplicação
-- `shell.ts`: controles da janela principal e popup de idioma/saída
-- `windows.ts`: drag, resize, foco, minimizar, maximizar e criação de janelas
-- `projects.ts`: catálogo, grid de projetos e detalhes
-- `localization.ts`: carregamento e aplicação de traduções
-- `state.ts`: estado compartilhado da aplicação
+- `main.ts`: application initialization
+- `shell.ts`: main window controls and language/exit popups
+- `windows.ts`: drag, resize, focus, minimize, maximize, and window creation
+- `projects.ts`: catalog loading, project grid, and project details
+- `localization.ts`: translation loading and application
+- `state.ts`: shared application state
 
-## Funcionalidades atuais
+## Current features
 
-- Janela principal com ícones de navegação
-- Janela Sobre Mim
-- Janela de Projetos
-- Janela de detalhes por projeto
-- Janela de contato com badges sociais e formulário
-- Alternância de idioma em tempo real
-- Comportamento de foco entre janelas
-- Reabertura correta de janelas já abertas
+- Main window with navigation icons
+- About window
+- Projects window
+- Project details window
+- Contact window with social badges and form
+- Real-time language switching
+- Proper window focus behavior
+- Correct reopen behavior for already-created windows
 
-## Créditos
+## Credits
 
-- Ícones baseados em recursos clássicos do Windows 98
-- Badges geradas com Shields.io
-- Formulário de contato via EmailJS
+- Icons inspired by classic Windows 98 resources
+- Badges generated with Shields.io
+- Contact form powered by EmailJS
 
-## Licença
+## License
 
-MIT. Veja [LICENSE](./LICENSE).
+MIT. See [LICENSE](./LICENSE).

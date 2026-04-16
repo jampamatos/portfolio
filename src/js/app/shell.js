@@ -51,6 +51,7 @@ export function setupProgramManagerControls() {
     });
     closeButton.addEventListener('click', () => {
         exitPopup.classList.remove('hidden');
+        bringToFront(exitPopup);
     });
     exitNo.addEventListener('click', () => {
         exitPopup.classList.add('hidden');
@@ -73,6 +74,7 @@ export function setupLocalizationControls(onLanguageSelect) {
     const languageButtons = localizationPopup.querySelectorAll('.localization-option');
     localizationButton.addEventListener('click', () => {
         localizationPopup.classList.remove('hidden');
+        bringToFront(localizationPopup);
     });
     popupCloseButton?.addEventListener('click', () => {
         localizationPopup.classList.add('hidden');

@@ -65,6 +65,7 @@ export function setupProgramManagerControls(): void {
 
     closeButton.addEventListener('click', () => {
         exitPopup.classList.remove('hidden');
+        bringToFront(exitPopup);
     });
 
     exitNo.addEventListener('click', () => {
@@ -96,6 +97,7 @@ export function setupLocalizationControls(onLanguageSelect: (language: string) =
 
     localizationButton.addEventListener('click', () => {
         localizationPopup.classList.remove('hidden');
+        bringToFront(localizationPopup);
     });
 
     popupCloseButton?.addEventListener('click', () => {

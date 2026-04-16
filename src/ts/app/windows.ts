@@ -246,6 +246,10 @@ export function applyResize(windowElement: HTMLElement): void {
 
 export function bringToFront(windowElement: HTMLElement): void {
     const highestZIndex = Array.from(document.querySelectorAll<HTMLElement>('.window')).reduce((highest, element) => {
+        if (element === windowElement || element.classList.contains('hidden')) {
+            return highest;
+        }
+
         const zIndex = parseInt(getComputedStyle(element).zIndex || '1', 10) || 1;
         return Math.max(highest, zIndex);
     }, 1);
